@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FrondEnd Store</title>
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preload" href="./css/styles.css" as="style" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <a class="header__logo" href="/">FrondEnd <span>Store</span></a>
+
+      <nav class="nav">
+        <a class="nav__link nav__link--activated" href="/">Tienda</a>
+        <a class="nav__link" href="./nosotros.html">Nostros</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      <h1>React JS</h1>
+      <div class="shirt">
+        <img class="shirt__image blackShadow" src="./img/3.jpg" alt="imagen del producto" />
+
+        <div class="shirt__content">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque qui
+            nisi dolorum iure fugiat animi accusamus maiores ab voluptate
+            consectetur perferendis tempore quaerat repellat quo nulla porro
+            quia, distinctio nostrum.animi accusamus maiores ab voluptate
+            consectetur perferendis tempore quaerat repellat quo nulla porro
+            quia, distinctio nostrum.
+          </p>
+
+          <form class="form">
+            <select class="form__field">
+                <option selected disabled value="">--Seleccionar talla--</option>
+                <option value="chica">Chica</option>
+                <option value="medina">Medina</option>
+                <option value="grande">Grande</option>
+            </select>
+            <input class="form__field" type="number" min="1" pattern="[1-9]+" placeholder="Cantidad">
+            <input class="form__submit" type="submit" value="Agregar al Carrito">
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__text">
+        Frond End Store | Todos los Derechos Reservados
+      </p>
+    </footer>
+  </body>
+</html>
