@@ -1,0 +1,323 @@
+:root {
+    --primary: #ebebeb;
+    --secondary: #f36060;
+    --darkSecondary: #e93333;
+    --gray: #6c6c75;
+    --lightGray: #d4d4e8;
+    --dark: #212121;
+    --white: #fff;
+
+    --mainFont: 'Staatliches', cursive;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+/* globals */
+
+body {
+    background-color: var(--primary);
+    font-size: 1.6rem;
+    /* interlineado desde la base de la fuente */
+    line-height: 1.5;
+    color: var(--dark);
+
+}
+
+p {
+    font-size: 1.8rem;
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+input {
+    outline: none;
+}
+
+img {
+    width: 100%;
+}
+
+.container {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+h1,
+h2,
+h3 {
+    text-align: center;
+    font-family: var(--mainFont);
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3.2rem;
+}
+
+h3 {
+    font-size: 2.4rem;
+}
+
+/* utils  */
+.remove-bg {
+    /*filtro de brillo*/
+    filter: brightness(1.1);
+    mix-blend-mode: multiply;
+}
+
+.blackShadow {
+    box-shadow: 8px 10px 10px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 2.5rem;
+}
+
+
+/* header */
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 8rem;
+    padding: 0 10rem;
+    background-color: var(--dark);
+}
+
+.header__logo,
+.header__logo span {
+    font-family: var(--mainFont);
+}
+
+.header__logo {
+    font-size: 4rem;
+    color: var(--white);
+}
+
+.header__logo span {
+    color: var(--secondary);
+}
+
+/* navigation */
+.nav {
+    display: flex;
+    gap: 3rem;
+}
+
+.nav__link {
+    font-size: 3rem;
+    color: var(--white);
+    font-family: var(--mainFont);
+}
+
+.nav__link--activated,
+.nav__link:hover {
+    color: var(--secondary);
+}
+
+/*grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem 5rem;
+    margin: 0 2rem;
+}
+
+/* products */
+.product {
+    background-color: var(--white);
+    transition: box-shadow 0.2s;
+}
+
+.product:hover {
+    box-shadow: 8px 10px 10px 0px rgba(233, 51, 51, 0.5);
+}
+
+.product__image {
+    transition: transform 0.1s;
+}
+
+.product__image:hover {
+    transform: scale(1.05)
+}
+
+.product__name {
+    font-size: 4rem;
+    color: var(--darkSecondary);
+}
+
+.product__cost {
+    font-size: 2.8rem;
+    color: var(--gray);
+}
+
+.product__cost,
+.product__name {
+    font-family: var(--mainFont);
+    text-align: center;
+    margin: 1rem 0;
+}
+
+/* graphic */
+
+.graph {
+    min-height: 30rem;
+    grid-column: 1 / 3;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.graph--shirt {
+    grid-row: 2 / 3;
+    background-image: url(../img/grafico1.jpg);
+}
+
+.graph--node {
+    grid-row: 7 / 8;
+    background-image: url(../img/grafico2.jpg);
+}
+
+/* about us */
+
+.about {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    row-gap: 2rem;
+    margin: 0 2rem;
+
+}
+
+.about__image {
+    grid-row: 1 / 3;
+}
+
+/* blocks */
+
+.blocks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 0 2rem;
+}
+
+.block {
+    padding: 1rem 0.5rem;
+    background-color: var(--white);
+    text-align: center;
+}
+
+.block__title {
+    margin: 0;
+    color: var(--darkSecondary);
+}
+
+
+/* product page */
+
+.shirt {
+    margin: 0 2rem;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.form__field {
+    background-color: var(--white);
+    border: .2rem solid var(--lightGray);
+    border-radius: 1rem;
+    font-size: 2rem;
+    padding: 1rem;
+}
+
+
+.form__submit {
+    grid-column: 1 / 3;
+    text-transform: uppercase;
+    background-color: var(--darkSecondary);
+    color: var(--white);
+    font-size: 2rem;
+    font-family: var(--mainFont);
+    padding: 2rem;
+    cursor: pointer;
+    border-radius: 1rem;
+    transition: font-size 0.3s;
+    border: none;
+}
+
+.form__submit:hover {
+    font-size: 2.3rem;
+}
+
+/* footer */
+
+.footer {
+    background-color: var(--dark);
+    padding: 1rem 0;
+    margin-top: 8rem;
+}
+
+.footer__text {
+    text-align: center;
+    color: var(--white);
+}
+
+/* media querys 768px */
+@media (min-width: 768px) {
+
+    /*header*/
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    /*grid*/
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /*graphic*/
+    .graph--node {
+        grid-row: 5 / 6;
+        grid-column: 2 / 4;
+    }
+
+    /*about us*/
+
+    .about {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+    }
+
+    .about__image {
+        grid-column: 2 / 3;
+    }
+
+    /* blocks */
+    .blocks {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* product page */
+    .shirt {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+    }
+}
