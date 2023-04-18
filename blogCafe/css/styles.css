@@ -1,0 +1,306 @@
+:root {
+    --fuenteHeading: 'PT Sans', sans-serif;
+    --fuenteParrafos: 'Open Sans', sans-serif;
+
+    --primary: #784D3C;
+    --white: #fff;
+    --black: #000;
+    --lightGray: #e1e1e1;
+}
+
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+
+body {
+    font-family: var(--fuenteParrafos);
+    font-size: 1.6rem;
+    line-height: 2;
+}
+
+.container {
+    max-width: 120rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--fuenteHeading);
+    line-height: 2;
+}
+
+h1 {
+    font-size: 4.8rem;
+}
+
+h2 {
+    font-size: 4rem;
+}
+
+h3 {
+    font-size: 3.2rem;
+}
+
+h4 {
+    font-size: 2.8rem;
+}
+
+img {
+    max-width: 100%;
+}
+
+/*utils*/
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* header */
+.webp .header {
+    background-image: url(../img/banner.webp);
+}
+
+.no-webp .header {
+    background-image: url(../img/banner.jpg);
+}
+
+.header {
+    height: 60rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.header__text {
+    text-align: center;
+    color: var(--white);
+    margin-top: 3rem;
+}
+
+/* logo */
+.logo {
+    color: var(--white); 
+    font-size: 4rem;
+}
+
+.logo__name {
+    font-weight: normal;
+}
+
+.logo__bold {
+    font-weight: bold;
+}
+/*nav*/
+.bar {
+    padding-top: 4rem;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.nav__link {
+    color: var(--white);
+}
+
+/*article*/
+
+.entry {
+    border-bottom: 1px solid var(--lightGray);
+    margin-bottom: 2rem;
+}
+
+.entry:last-child {
+    border: none;
+    margin-bottom: 0;
+}
+
+/*button*/
+
+.button {
+    display: block;
+    font-family: var(--fuenteHeading);
+    color: var(--white);
+    text-align: center;
+    padding: 1rem 3rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.button--main {
+    background-color: var(--black);
+}
+
+.button--secondary {
+    background-color: var(--primary);
+}
+
+/*course*/
+
+.widget-course {
+    border-bottom: 1px solid var(--lightGray);
+    margin-bottom: 2rem;
+}
+
+.widget-course:last-child {
+    border: none;
+    margin: 0;
+}
+
+.course__label{
+    font-family: var(--fuenteHeading);
+    font-weight: bold;
+}
+
+.course__info {
+    font-weight: normal;
+}
+
+/*course*/
+
+.course {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--lightGray);
+}
+
+.course:last-child {
+    border: none;
+    margin: 0;
+}
+
+/*contact*/
+
+.contact-bg {
+    background-image: url(../img/contacto.jpg);
+    height: 40rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.form {
+    background-color: var(--white);
+    margin: -5rem auto 0 auto;
+    width: 95%;
+    padding: 5rem;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.field {
+    display: flex;
+    margin-bottom: 3rem;
+}
+
+.field:last-child {
+    margin-bottom: 0;
+}
+
+.field__label {
+    flex: 0 0 9rem; 
+    text-align: right;
+    padding-right: 2rem;
+}
+
+.field__input {
+    padding: 0 2rem;
+    border: 1px solid var(--lightGray);
+    flex: 1; 
+    outline-color: var(--lightGray);
+}
+
+.field__input--textarea {
+    padding-top: 1rem;
+    height: 15rem;
+    resize: none;
+}
+
+.button--contact {
+    width: 100%; 
+    margin: 0;
+}
+
+
+/*footer*/
+
+.footer {
+    background-color: var(--black);
+    padding-bottom: 3rem;
+    margin-top: 4rem;
+}
+
+@media (min-width: 768px) {
+
+    .button {
+        display: inline-block;
+    }
+    .header__text {
+        margin-top: 15rem;
+    }
+
+    .bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .main-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 4rem;
+    }
+
+    .about {
+        display: grid; 
+        grid-template-columns:repeat(2, 1fr);
+        align-items: center;
+        column-gap: 3rem;
+    }
+
+    .course {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap: 2rem;
+    }
+
+    .button--contact {
+        width: auto; 
+        position: relative;
+        left: 83%;        
+    }
+
+}
