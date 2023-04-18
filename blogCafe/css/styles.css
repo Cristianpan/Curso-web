@@ -107,7 +107,8 @@ img {
 
 /* logo */
 .logo {
-    color: var(--white)
+    color: var(--white); 
+    font-size: 4rem;
 }
 
 .logo__name {
@@ -239,9 +240,11 @@ img {
     padding: 0 2rem;
     border: 1px solid var(--lightGray);
     flex: 1; 
+    outline-color: var(--lightGray);
 }
 
 .field__input--textarea {
+    padding-top: 1rem;
     height: 15rem;
     resize: none;
 }
