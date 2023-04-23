@@ -1,0 +1,14 @@
+@use 'variables' as color; 
+
+@mixin tablet {
+    @media (min-width: 768px) { 
+        @content
+    }
+};
+
+
+@mixin grid($columns, $space) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    gap: $space;
+}
