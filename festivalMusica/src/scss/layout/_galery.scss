@@ -1,0 +1,65 @@
+@use 'base/variables' as v; 
+@use 'base/mixins' as m;
+
+.galery {
+    padding: 5rem 0;
+    h3 {
+        text-align: center;
+    }
+}
+
+.galery-images {
+    @include m.grid(3, 2rem); 
+
+    @include m.tablet{
+        @include m.grid(6, 2rem); 
+    }
+
+    img {
+        border-radius: 0.5rem;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.75);
+        
+        &:hover {
+            box-shadow: 3px 3px 5px 1px opacify(v.$pink, 0.25);
+        }
+    }
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5rem;
+    background-color: rgb(20,20,20,0.5);
+    backdrop-filter: blur(10px);
+
+    picture {
+        display: block;
+        max-width: 40rem;
+        @include m.tablet {
+            max-width: 80rem;
+        }
+    }
+
+    img {
+        border-radius: 2rem; 
+    }
+}
+
+.btn-close {
+    background-color: v.$white;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+}

@@ -3,6 +3,7 @@
 html {
     font-size: 62.5%;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 *, *::before, *::after {
@@ -12,6 +13,10 @@ html {
 body {
     font-family: v.$mainFont; 
     font-size: 1.6rem;
+
+    &.body-fixed {
+        overflow: hidden; 
+    }
 }
 
 a {
@@ -52,6 +57,13 @@ p {
 
 img {
     display: block;
-    max-width: 100%;
+    width: 100%;
+    height: auto;
 }
 
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
