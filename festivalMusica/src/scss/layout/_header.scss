@@ -2,6 +2,12 @@
 @use 'base/mixins' as m;
 .header {
     background-color: v.$green;
+    
+    @include m.tablet {
+        position: sticky;
+        top: 0;
+        z-index: 10;        
+    }
 
     h1 {
         color: v.$white; 
@@ -36,4 +42,5 @@
             color: v.$pink; 
         }
     }
+
 }
