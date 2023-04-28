@@ -19,4 +19,16 @@ echo $num1**2;
 echo "<br>"; 
 
 
+//incremento en 1; 
+
+$num1++; 
+echo "$num1 <br/>"; 
+
+$num1--; 
+echo "$num1 <br/>"; 
+
+echo "$num1 <br/>"; 
+$num1 += 10; 
+
+
 include 'includes/footer.php';
