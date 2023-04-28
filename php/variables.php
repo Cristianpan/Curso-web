@@ -13,8 +13,4 @@ const variable = "Hola Mundo";
 
 echo variable; 
 
-
-
-
-
 include 'includes/footer.php';

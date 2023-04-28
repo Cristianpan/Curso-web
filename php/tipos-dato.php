@@ -4,9 +4,9 @@
 $logueado = true; 
 
 if ($logueado) {
-    echo "Has iniciado sesión <br>"; 
+    echo "Has iniciado sesión <br/>"; 
 } else {
-    echo "Credenciales incorrectas <br>"; 
+    echo "Credenciales incorrectas <br/>"; 
 }
 
 //Enteros
