@@ -82,18 +82,19 @@ function cambiarSeccion() {
 
             // Llamar la función de mostrar sección
             mostrarSeccion();
-
             botonesPaginador();
-        })
-    })
+        });
+    });
 }
 
 
 async function mostrarServicios() {
-    try { 
-        const resultado = await fetch('/servicios.php');
-        const servicios = await resultado.json();
+    try {         
+        const resultado = await fetch('./servicios.php');
+        
 
+        const servicios = await resultado.json(); 
+        
        // Generar el HTML
        servicios.forEach( servicio => {
             const { id, nombre, precio } = servicio;
@@ -124,7 +125,7 @@ async function mostrarServicios() {
 
             // Inyectarlo en el HTML
             document.querySelector('#servicios').appendChild(servicioDiv);
-       } )
+       } ); 
     } catch (error) {
         console.log(error);
     }
@@ -179,7 +180,7 @@ function paginaSiguiente() {
     const paginaSiguiente = document.querySelector('#siguiente');
     paginaSiguiente.addEventListener('click', () => {
         pagina++;
-        botonesPaginador();
+        botonesPaginador(); 
     });
 }
 
@@ -306,7 +307,7 @@ function mostrarResumen() {
 function nombreCita() {
     const nombreInput = document.querySelector('#nombre');
 
-    nombreInput.addEventListener('input', e => {
+    nombreInput.addEventListener('change', e => {
         const nombreTexto = e.target.value.trim();
 
         // Validación de que nombreTexto debe tener algo
@@ -364,7 +365,7 @@ function fechaCita() {
 
             console.log(cita);
         }
-    })
+    }); 
 }
 
 function deshabilitarFechaAnterior() {
@@ -373,9 +374,8 @@ function deshabilitarFechaAnterior() {
     const fechaAhora = new Date();
     const year = fechaAhora.getFullYear();
     const mes = fechaAhora.getMonth() + 1;
-    const dia = fechaAhora.getDate() + 1;
-    const fechaDeshabilitar = `${year}-${mes}-${dia}`;
-
+    const dia = fechaAhora.getDate(); 
+    const fechaDeshabilitar = `${year}-${mes < 10 ? '0' : ''}${mes}-${dia < 10 ? '0': ''}${dia}`;
     inputFecha.min = fechaDeshabilitar;
 }
 
@@ -384,17 +384,19 @@ function horaCita() {
     inputHora.addEventListener('input', e => {
 
         const horaCita = e.target.value;
-        const hora = horaCita.split(':');
-
-        if(hora[0] < 10 || hora[0] > 18 ) {
-            mostrarAlerta('Hora no válida', 'error');
-            setTimeout(() => {
-                inputHora.value = '';
-            }, 3000);
+        const hora = horaCita.split(":"); 
+        console.log(hora[0])
+        console.log(hora[1])
+        
+        if(hora[0] < 10 || (hora[0] >= 18 && hora[1] > 0)) {
+            mostrarAlerta('El horario es de 10:00 a.m. a 6:00 p.m. Por favor intente nuevamente', 'error');
+            inputHora.value = ''; 
+            inputHora.readOnly = true; 
+            setTimeout(()=> {
+                inputHora.readOnly = false; 
+            }, 3000); 
         } else {
             cita.hora = horaCita;
-
-            console.log(cita);
-        }
+        } 
     });
 }

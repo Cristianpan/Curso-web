@@ -14,7 +14,6 @@ function obtenerServicios(): array
         //Servicios 
         $servicios = [];
 
-
         // Obtener los resultados
         while ($row = mysqli_fetch_assoc($consulta)) {
             $servicios[] = $row; //formato alternativa a un array_push($array, $element); 
@@ -25,3 +24,4 @@ function obtenerServicios(): array
         var_dump($th);
     }
 }
+
