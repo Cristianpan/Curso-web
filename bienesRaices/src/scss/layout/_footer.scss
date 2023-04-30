@@ -1,11 +1,12 @@
 @use 'base/variables' as v; 
 @use 'base/mixins' as m;
 .footer {
-    padding: calc(v.$separacion / 2) 0;
+    padding: 1rem 0;
     background-color: v.$grisOscuro;
+    margin-bottom: 0;
 
     .footer-content {
-        padding-top: calc(v.$separacion / 2); 
+        padding-top: 2rem; 
     }
 
     .copyright {

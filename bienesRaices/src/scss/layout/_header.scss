@@ -11,8 +11,7 @@
 
 .header {
     background-color: v.$grisOscuro;
-    padding:  1rem 0 3rem 0;
-    
+        
     &.inicio {
         background-position: center center;
         background-size: cover;
@@ -36,13 +35,14 @@
     flex-direction: column;
     justify-content: space-between;
 
-    p {
+    h1 {
         text-align: left;
         color: v.$blanco; 
         font-size: 3rem;
         font-weight: bold;
         max-width: 50rem;
         line-height: 2;
+        margin-bottom: 8rem;
     }
 
 }

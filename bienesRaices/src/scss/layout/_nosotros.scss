@@ -1,0 +1,18 @@
+@use 'base/variables' as v; 
+@use 'base/mixins' as m;
+
+.aboutUs {
+    @include m.tablet {
+        @include m.grid(2, 3rem);         
+    }
+
+    img {
+        border-radius: 2rem;
+        box-shadow: 4px 4px 16px 0px rgba(0,0,0,0.75);
+        margin-bottom: 3rem;
+    }
+
+    h4 {
+        margin: 0;
+    }
+}
