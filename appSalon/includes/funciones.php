@@ -18,10 +18,11 @@ function obtenerServicios(): array
         while ($row = mysqli_fetch_assoc($consulta)) {
             $servicios[] = $row; //formato alternativa a un array_push($array, $element); 
         }
-
         return $servicios;
     } catch (\Throwable $th) {
-        var_dump($th);
+        header('Content-Type: application/json');
+        echo json_encode($th);
+        exit;
     }
 }
 
