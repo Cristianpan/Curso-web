@@ -1,0 +1,60 @@
+@use 'base/variables' as v; 
+@use 'base/mixins' as m;
+
+.section-bottom {
+    @include m.tablet {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 2rem;
+    }
+}
+
+.entry-blog {
+    margin-top: 3rem;
+
+    @include m.tablet {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap: 2rem;   
+    }
+    
+    img {
+        border-radius: 0.5rem;
+        box-shadow: 4px 4px 16px 0px rgba(0,0,0,0.75);
+    }
+    
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+}
+.info-meta {
+    span {
+     color: v.$amarillo; 
+    }
+}
+
+.entry-text {
+    a {
+        color: v.$negro;
+        margin-top: 2rem;
+        display: block;
+
+        @include m.tablet {
+            margin-top: 0;
+        }
+    }
+
+    h4 {
+        margin: 0;
+        line-height: 1.4;
+
+        &::after {
+            content: '';
+            display: block;
+            width: 15rem;
+            height: 0.5rem;
+            background-color: v.$verde;
+            margin-top: 1rem;
+        }
+    }
+}

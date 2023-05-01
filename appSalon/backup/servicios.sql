@@ -12,7 +12,7 @@ CREATE TABLE `servicios` (
   `nombre` varchar(60) NOT NULL,
   `precio` decimal(6,2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 INSERT INTO `servicios` (`id`, `nombre`, `precio`) VALUES
 (1, 'Corte de Cabello Niño', 60.00);
