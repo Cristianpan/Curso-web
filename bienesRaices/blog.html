@@ -11,15 +11,26 @@
     <header class="header">
       <div class="container header-content">
         <div class="bar">
-          <a href="/">
+          <a href="./">
             <img src="./build/img/logo.svg" alt="Logotipo de bienes raices " />
           </a>
-          <nav class="nav">
-            <a href="/nosotros.html">Nosotros</a>
-            <a href="/anuncios.html">Anuncios</a>
-            <a href="/blog.html">Blog</a>
-            <a href="/contacto.html">Contacto</a>
-          </nav>
+          <div class="mobile-menu">
+            <img src="./build/img/barras.svg" alt="menú responsive" />
+          </div>
+
+          <div class="derecha">
+            <img
+              class="dark-mode-boton"
+              src="./build/img/dark-mode.svg"
+              alt="dark mode"
+            />
+            <nav class="nav">
+              <a href="nosotros.html">Nosotros</a>
+              <a href="anuncios.html">Anuncios</a>
+              <a href="blog.html">Blog</a>
+              <a href="contacto.html">Contacto</a>
+            </nav>
+          </div>
         </div>
       </div>
     </header>
@@ -29,16 +40,18 @@
       <article class="entry-blog">
         <div>
           <picture>
-            <source srcset="/build/img/blog1.webp" type="image/webp" />
-            <source srcset="/build/img/blog1.jpg" type="image/jpeg" />
-            <img loading="lazy" src="/build/img/blog1.jpg" alt="Entrada Blog" />
+            <source srcset="./build/img/blog1.webp" type="image/webp" />
+            <source srcset="./build/img/blog1.jpg" type="image/jpeg" />
+            <img loading="lazy" src="./build/img/blog1.jpg" alt="Entrada Blog" />
           </picture>
         </div>
 
         <div class="entry-text">
           <a href="entrada.html">
             <h4>Terraza en el techo de tu casa</h4>
-            <p class="info-meta">Escrito el: <span>20/10/2021</span> por: <span>Admin</span></p>
+            <p class="info-meta">
+              Escrito el: <span>20/10/2021</span> por: <span>Admin</span>
+            </p>
 
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -51,16 +64,18 @@
       <article class="entry-blog">
         <div class="image">
           <picture>
-            <source srcset="/build/img/blog2.webp" type="image/webp" />
-            <source srcset="/build/img/blog2.jpg" type="image/jpeg" />
-            <img loading="lazy" src="/build/img/blog2.jpg" alt="Entrada Blog" />
+            <source srcset="./build/img/blog2.webp" type="image/webp" />
+            <source srcset="./build/img/blog2.jpg" type="image/jpeg" />
+            <img loading="lazy" src="./build/img/blog2.jpg" alt="Entrada Blog" />
           </picture>
         </div>
 
         <div class="entry-text">
           <a href="entrada.html">
             <h4>Construye una alberca en tu hogar</h4>
-            <p class="info-meta">Escrito el: <span>20/10/2021</span> por: <span>Admin</span></p>
+            <p class="info-meta">
+              Escrito el: <span>20/10/2021</span> por: <span>Admin</span>
+            </p>
 
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -73,16 +88,18 @@
       <article class="entry-blog">
         <div class="image">
           <picture>
-            <source srcset="/build/img/blog3.webp" type="image/webp" />
-            <source srcset="/build/img/blog3.jpg" type="image/jpeg" />
-            <img loading="lazy" src="/build/img/blog3.jpg" alt="Entrada Blog" />
+            <source srcset="./build/img/blog3.webp" type="image/webp" />
+            <source srcset="./build/img/blog3.jpg" type="image/jpeg" />
+            <img loading="lazy" src="./build/img/blog3.jpg" alt="Entrada Blog" />
           </picture>
         </div>
 
         <div class="entry-text">
           <a href="entrada.html">
             <h4>Guía Para la decoración de tu hogar</h4>
-            <p class="info-meta">Escrito el: <span>20/10/2021</span> por: <span>Admin</span></p>
+            <p class="info-meta">
+              Escrito el: <span>20/10/2021</span> por: <span>Admin</span>
+            </p>
 
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -95,16 +112,18 @@
       <article class="entry-blog">
         <div class="image">
           <picture>
-            <source srcset="/build/img/blog4.webp" type="image/webp" />
-            <source srcset="/build/img/blog4.jpg" type="image/jpeg" />
-            <img loading="lazy" src="/build/img/blog4.jpg" alt="Entrada Blog" />
+            <source srcset="./build/img/blog4.webp" type="image/webp" />
+            <source srcset="./build/img/blog4.jpg" type="image/jpeg" />
+            <img loading="lazy" src="./build/img/blog4.jpg" alt="Entrada Blog" />
           </picture>
         </div>
 
         <div class="entry-text">
           <a href="entrada.html">
             <h4>Guía Para la decoración de tu habitación</h4>
-            <p class="info-meta">Escrito el: <span>20/10/2021</span> por: <span>Admin</span></p>
+            <p class="info-meta">
+              Escrito el: <span>20/10/2021</span> por: <span>Admin</span>
+            </p>
 
             <p>
               Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -119,15 +138,15 @@
     <footer class="footer section">
       <div class="container footer-content">
         <nav class="nav">
-          <a href="/nosotros.html">Nosotros</a>
-          <a href="/anuncios.html">Anuncios</a>
-          <a href="/blog.html">Blog</a>
-          <a href="/contacto.html">Contacto</a>
+          <a href="nosotros.html">Nosotros</a>
+          <a href="anuncios.html">Anuncios</a>
+          <a href="blog.html">Blog</a>
+          <a href="contacto.html">Contacto</a>
         </nav>
       </div>
 
       <p class="copyright">Todos los derechos reservados</p>
     </footer>
-    <script src="build/js/bundle.min.js"></script>
+    <script src="./build/js/bundle.min.js"></script>
   </body>
 </html>
