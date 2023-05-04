@@ -1,14 +1,42 @@
 <?php
-    require '../includes/config/database.php';
-    require '../includes/funciones.php';
-    incluirTemplate('header', false, true);
-    $db = getDbConnection(); 
+require '../includes/funciones.php'; 
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-       printObjetc($_POST); 
+incluirTemplate('header', false, true);
+$datosPropiedad =  [
+    'titulo' => '',
+    'precio' => '',
+    'descripcion' => '',
+    'habitaciones' => '',
+    'wc' => '',
+    'estacionamiento' => '',
+    'vendedor' => '',
+    'creado' => date('Y/m/d')
+];
 
-       $titulo = $_POST['titulo']; 
+$vendedores = obtenerVendedores(); 
+
+//Arreglo con mensajes de errores
+$errores = [];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $datosPropiedad['titulo'] = $_POST['titulo'];
+    $datosPropiedad['precio'] = $_POST['precio'];
+    $datosPropiedad['descripcion'] = $_POST['descripcion'];
+    $datosPropiedad['habitaciones'] = $_POST['habitaciones'];
+    $datosPropiedad['wc'] = $_POST['wc'];
+    $datosPropiedad['estacionamiento'] = $_POST['estacionamiento'];
+    $datosPropiedad['vendedor'] = $_POST['vendedor'];
+    
+    $errores = validarDatos($datosPropiedad);     
+    if (empty($errores)) {
+        //insertar en la base de datos 
+        crearPropiedad($datosPropiedad);
+        //redireccionar al usuario
+        header('Location: index.php'); 
     }
+
+}
 ?>
 
 <main class="container section centered-content">
@@ -20,39 +48,48 @@
             <legend>Información General</legend>
 
             <label for="titulo">Titulo</label>
-            <input type="text" id="titulo" name="titulo" placeholder="Propiedad">
-
+            <?php echo isset($errores['titulo']) ? "<p class='error'>".$errores['titulo']."</p>" : '';?>
+            <input type="text" id="titulo" name="titulo" placeholder="Propiedad" value="<?php echo $datosPropiedad['titulo'];?>">
+            
             <label for="precio">Precio</label>
-            <input type="number" id="precio" name="precio" placeholder="Precio propiedad">
-
+            <?php echo isset($errores['precio']) ? "<p class='error'>".$errores['precio']."</p>" : '';?>
+            <input type="number" id="precio" name="precio" placeholder="Precio propiedad" value="<?php echo $datosPropiedad['precio'];?>">
+            
             <label for="imagen">Imagen</label>
             <input type="file" id="imagen" name="imagen" accept="image/jpeg, image/png">
-
+            
             <label for="descripcion">Descripción</label>
-            <textarea id="descripcion" name="descripcion"></textarea>
+            <?php echo isset($errores['descripcion']) ? "<p class='error'>".$errores['descripcion']."</p>" : '';?>
+            <textarea id="descripcion" name="descripcion"><?php echo $datosPropiedad['descripcion'];?></textarea>
         </fieldset>
-
+        
         <fieldset>
             <legend>Información Propiedad</legend>
-
+            
             <label for="habitaciones">Habitaciones:</label>
-            <input type="number" id="habitaciones" name="habitaciones" min="1" max="9" placeholder="3">
-
+            <?php echo isset($errores['habitaciones']) ? "<p class='error'>".$errores['habitaciones']."</p>" : '';?>
+            <input type="number" id="habitaciones" name="habitaciones" min="1" max="9" placeholder="3" value="<?php echo $datosPropiedad['habitaciones'];?>">
+            
             <label for="wc">Baños:</label>
-            <input type="number" id="wc" min="1" max="9" name="wc" placeholder="3">
-
+            <?php echo isset($errores['wc']) ? "<p class='error'>".$errores['wc']."</p>" : '';?>
+            <input type="number" id="wc" min="1" max="9" name="wc" placeholder="3" value="<?php echo $datosPropiedad['wc'];?>">
+            
             <label for="estacionamiento">Estacionamiento:</label>
-            <input type="number" id="estacionamiento" name="estacionamiento" min="1" max="9" placeholder="3">
+            <?php echo isset($errores['estacionamiento']) ? "<p class='error'>".$errores['estacionamiento']."</p>" : '';?>
+            <input type="number" id="estacionamiento" name="estacionamiento" min="1" max="9" placeholder="3" value="<?php echo $datosPropiedad['estacionamiento'];?>">
         </fieldset>
-
+        
         <fieldset>
             <legend for="vendedor">Vendedor</legend>
+            <?php echo isset($errores['vendedor']) ? "<p class='error'>".$errores['vendedor']."</p>" : '';?>
             <select id="vendedor" name="vendedor">
-                <option value="" default disabled>Seleccionar</option>
-                <option value="1">Cristian</option>
-                <option value="2">Diana</option>
+                <option value=" " selected>Seleccionar</option>
+                <?php 
+                    foreach($vendedores as $vendedor) {
+                        echo "<option value ='" .$vendedor['id']. "'" . ($datosPropiedad['vendedor'] === $vendedor['id'] ? 'selected' : '') . ">" . $vendedor['nombre'] . " " .$vendedor['apellido']; 
+                    }
+                ?>
             </select>
-
         </fieldset>
 
         <div class="submit">

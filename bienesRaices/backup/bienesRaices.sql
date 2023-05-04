@@ -38,6 +38,12 @@ INSERT INTO `vendedores` (`id`, `nombre`, `apellido`, `telefono`) VALUES
 
 INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
 (1, 1, 'Casa en la playa', 1000000.00, NULL, 'Casa en la playa con descuento', 4, 2, 1, NULL);
+INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
+(2, 2, 'Casa en el bosque', 1950000.00, NULL, 'Casa en el bosque con vista hacia el lago más grande de la ciudad. Buen lugar para descanso cuenta con chimenea y una excelente vista hacia el horizonte.', 5, 2, 1, '2023-05-04');
+INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
+(3, 1, 'Departamente en Renta', 1000000.00, NULL, 'Departamento en Renta en el centro de Mérida Yucatán', 3, 1, 1, '2023-05-04');
+INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
+(4, 2, 'Casa en renta', 10000.00, NULL, 'Casa en renta en el centro de Mérida Yucatán, en paseo de montejo', 5, 2, 1, '2023-05-04');
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
