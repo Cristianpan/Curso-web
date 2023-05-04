@@ -1,0 +1,34 @@
+<?php 
+    function validarDatos(array $datos): array {
+        $errores = []; 
+        
+        if (!$datos['titulo']) {
+            $errores['titulo'] = "El titulo es obligatorio"; 
+        }
+
+        if (!$datos['precio']) {
+            $errores['precio'] = "El precio es obligatorio"; 
+        }
+
+        if (!$datos['descripcion'] || strlen($datos['descripcion']) < 20) {
+            $errores['descripcion'] = "La descripción es obligatoria y debe contener al menos 20 caracteres"; 
+        }
+
+        if (!$datos['habitaciones']) {
+            $errores['habitaciones'] = "El número de habitaciones es obligatorio"; 
+        }
+
+        if (!$datos['wc']) {
+            $errores['wc'] = "El número de baños es obligatorio"; 
+        }
+
+        if (!$datos['estacionamiento']) {
+            $errores['estacionamiento'] = "El número de estacionamientos es obligatorio"; 
+        }
+
+        if ($datos['vendedor'] === " ") {
+            $errores['vendedor'] = "Eliga un vendedor"; 
+        }
+
+        return $errores; 
+    }

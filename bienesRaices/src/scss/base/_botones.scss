@@ -9,6 +9,8 @@
     @include m.boton(v.$amarillo, inline-block)
 }
 
-.button-green {
+.button-green { 
     @include m.boton(v.$verde, inline-block); 
+    margin: 0 0 2rem 0;
+
 }
