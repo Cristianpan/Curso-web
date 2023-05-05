@@ -30,5 +30,11 @@
             $errores['vendedor'] = "Eliga un vendedor"; 
         }
 
+        if (!$datos['imagen']['name'] || $datos['imagen']['error']){
+            $errores['imagen'] = "La imagen es obligatoria"; 
+        } else if ($datos['imagen']['size'] > 2000*1000) { //validar que sea menor a 2mb
+            $errores['imagen'] = "El tamaño de la imagen debe de ser menor a 100kb"; 
+        }
+
         return $errores; 
     }

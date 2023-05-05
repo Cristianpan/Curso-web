@@ -37,13 +37,14 @@ INSERT INTO `vendedores` (`id`, `nombre`, `apellido`, `telefono`) VALUES
 (2, 'Diana', 'Vazquez', '9995069754');
 
 INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
-(1, 1, 'Casa en la playa', 1000000.00, NULL, 'Casa en la playa con descuento', 4, 2, 1, NULL);
+(2, 1, 'Casa en la playa', 1200000.00, '../imagenes/0b944914392ab4ffd5edc7e76158ea64.jpg', 'Casa en la playa con excelente vista hacia el mar', 5, 2, 1, '2023-05-05');
 INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
-(2, 2, 'Casa en el bosque', 1950000.00, NULL, 'Casa en el bosque con vista hacia el lago más grande de la ciudad. Buen lugar para descanso cuenta con chimenea y una excelente vista hacia el horizonte.', 5, 2, 1, '2023-05-04');
+(3, 2, 'Casa en el bosque', 1500000.00, '../imagenes/47d8672efd7ffa4594e3db172aecc7ae.jpg', 'Casa en el bosque, ubicada cerca de un lago, perfecto para descansar', 7, 3, 1, '2023-05-05');
 INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
-(3, 1, 'Departamente en Renta', 1000000.00, NULL, 'Departamento en Renta en el centro de Mérida Yucatán', 3, 1, 1, '2023-05-04');
+(4, 1, 'Casa en renta', 789000.00, '../imagenes/1705f5c8f1570229b5ba5941339672f7.jpg', 'Casa en renta, ubicada en zona centro. ', 4, 1, 1, '2023-05-05');
 INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
-(4, 2, 'Casa en renta', 10000.00, NULL, 'Casa en renta en el centro de Mérida Yucatán, en paseo de montejo', 5, 2, 1, '2023-05-04');
+(5, 1, 'Casa en renta', 789000.00, '../imagenes/f86f948788bde9be5b7997de6bffb409.jpg', 'Casa en renta, ubicada en zona centro. ', 4, 1, 1, '2023-05-05'),
+(6, 1, 'Casa en la playa', 12312312.00, '../imagenes/6f65f677da6913fff7b6f63b1088c99c.jpg', 'sdasdasdasdasdasdasd asdasda asdasdad', 3, 1, 1, '2023-05-05');
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

@@ -11,13 +11,6 @@ window.addEventListener("resize", () => {
   }
 });
 
-function initApp() {
-  const darkMode = localStorage.getItem("darkMode");
-  if (darkMode !== null && darkMode === "dark-mode") {
-    document.body.classList.add("dark-mode");
-  }
-}
-
 function eventListeners() {
   const mobilMenu = document.querySelector(".mobile-menu");
   mobilMenu.addEventListener("click", navegacionResponsive);
@@ -47,8 +40,20 @@ function addPreferensColor() {
   const preferences = window.matchMedia("(prefers-color-scheme: dark)");
 
   if (darkMode != null) {
-      if (darkMode === "dark-mode" || preferences.matches) {
-        document.body.classList.add("dark-mode");
-      }
+    if (darkMode === "dark-mode" || preferences.matches) {
+      document.body.classList.add("dark-mode");
+    }
+  }
+}
+
+function mostrarModalResultado() { 
+  const urlParams = new URLSearchParams(window.location.search);
+  const result = urlParams.get('resultado');
+if (result && parseInt(result) === 1) {
+    const modal = document.querySelector(".modal");
+    modal.textContent = "Anuncio creadoCorrectamente";
+    setTimeout(() => {
+      modal.textContent = ""; 
+    }, 1500);
   }
 }

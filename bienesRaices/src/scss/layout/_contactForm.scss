@@ -9,15 +9,10 @@
     box-shadow: 2px 5px 16px 2px rgba(0,0,0,0.25);
     
     
-    p {
+    .info {
         font-size: 1.4rem;
         margin: 0 0 1rem 0;
         color: v.$grisOscuro;
-
-        &.error {
-            color: v.$amarillo;
-            margin: 0;
-        }
     }
     
     legend {
