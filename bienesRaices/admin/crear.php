@@ -1,7 +1,7 @@
 <?php
 require '../includes/funciones.php'; 
-
 incluirTemplate('header', false, true);
+
 $datosPropiedad =  [
     'titulo' => '',
     'precio' => '',
@@ -27,13 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $datosPropiedad['wc'] = $_POST['wc'];
     $datosPropiedad['estacionamiento'] = $_POST['estacionamiento'];
     $datosPropiedad['vendedor'] = $_POST['vendedor'];
+    $datosPropiedad['imagen'] = $_FILES['imagen']; 
+    $errores = validarDatos($datosPropiedad);      
     
-    $errores = validarDatos($datosPropiedad);     
     if (empty($errores)) {
-        //insertar en la base de datos 
+        //insertar en la base de datos  
         crearPropiedad($datosPropiedad);
         //redireccionar al usuario
-        header('Location: index.php'); 
+        header('Location: index.php?resultado=1'); 
     }
 
 }
@@ -43,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1>Crear</h1>
     <a href="index.php" class="button-green">Volver</a>
 
-    <form class="form" method="post" action="crear.php">
+    <form class="form" method="post" action="crear.php" enctype="multipart/form-data">
         <fieldset>
             <legend>Información General</legend>
 
@@ -56,7 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="number" id="precio" name="precio" placeholder="Precio propiedad" value="<?php echo $datosPropiedad['precio'];?>">
             
             <label for="imagen">Imagen</label>
-            <input type="file" id="imagen" name="imagen" accept="image/jpeg, image/png">
+            <?php echo isset($errores['imagen']) ? "<p class='error'>".$errores['imagen']."</p>" : '';?>
+            <input type="file" id="imagen" name="imagen" accept="image/jpeg, image/png" name="imagen">
             
             <label for="descripcion">Descripción</label>
             <?php echo isset($errores['descripcion']) ? "<p class='error'>".$errores['descripcion']."</p>" : '';?>

@@ -46,14 +46,14 @@
     <fieldset>
       <legend>Contacto</legend>
 
-      <p>Como desea ser Contactado</p>
+      <p class="info">Como desea ser Contactado</p>
       <div class="forma-contacto">
         <label for="contact-telefono">Teléfono</label>
         <input type="radio" value="telefono" id="contact-telefono" name="contacto" />
         <label for="contact-email">E-mail</label>
         <input type="radio" value="emai" id="email" name="contacto" />
       </div>
-      <p>Si eligió teléfono, eliga la fecha y la hora</p>
+      <p class="info">Si eligió teléfono, eliga la fecha y la hora</p>
 
       <label for="fecha">Fecha</label>
       <input type="date" id="fecha" />
