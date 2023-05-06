@@ -30,7 +30,7 @@ table.propiedades{
         background-color: v.$blanco;
         text-align: center;
 
-        a {
+        a, form {
             width: 90%;
             margin: 1rem auto;
         }
@@ -39,4 +39,8 @@ table.propiedades{
     .imagen-tabla {
         width: 10rem;
     }
+}
+.imagen-propiedad {
+    width: 80%;
+    margin: 0 auto;
 }

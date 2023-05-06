@@ -1,8 +1,21 @@
 <?php
 require '../includes/funciones.php';
+require '../includes/config/database.php'; 
+require '../includes/backend/propiedades.php';
+
 incluirTemplate('header', false, true);
 $propiedades = obtenerPropiedades();
-$i = 0;
+
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
+  $id = $_POST['id']; 
+  $id = filter_var($id, FILTER_VALIDATE_INT);
+   
+  if(eliminarPropiedad($id)) {
+    header('Location: index.php?resultado=3'); 
+  }
+}
+
+
 ?>
 
 <main class="container section centered-content">
@@ -27,8 +40,11 @@ $i = 0;
           <td><img class="imagen-tabla" src="<?php echo $propiedad['imagen']; ?>" alt="imagen tabla"></td>
           <td>$ <?php echo $propiedad['precio']; ?></td>
           <td>
-            <a href="" class="button-red-block">Eliminar</a>
-            <a href="" class="button-green-block">Actualizar</a>
+            <form method="post">
+              <input type="hidden" name="id" value="<?php echo $propiedad['id']?>">
+              <input type="submit" class="button-red-block" value="Eliminar">
+            </form>
+            <a href="actualizar.php?id=<?php echo $propiedad['id']?>" class="button-green-block">Actualizar</a>
           </td>
         </tr>
       <?php endforeach ?>
