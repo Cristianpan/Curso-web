@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  initApp();
   eventListeners();
   darkMode();
+  mostrarModalResultado(); 
 });
 
 window.addEventListener("resize", () => {
@@ -49,11 +49,22 @@ function addPreferensColor() {
 function mostrarModalResultado() { 
   const urlParams = new URLSearchParams(window.location.search);
   const result = urlParams.get('resultado');
-if (result && parseInt(result) === 1) {
+  let mensaje; 
+
+  if (result) {
+    if (parseInt(result) === 1) {
+      mensaje = "creado"; 
+    } else if (parseInt(result) === 2) {
+      mensaje = "actualizado"; 
+    } else if (parseInt(result) === 3) {
+      mensaje = "eliminado"; 
+    }
+    
     const modal = document.querySelector(".modal");
-    modal.textContent = "Anuncio creadoCorrectamente";
+    modal.textContent = `Anuncio ${mensaje} correctamente`;
     setTimeout(() => {
       modal.textContent = ""; 
-    }, 1500);
+    }, 1500); 
   }
+
 }
