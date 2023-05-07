@@ -1,3 +1,11 @@
+<?php
+  if(!isset($_SESSION)) {
+    session_start(); 
+  }
+
+  $auth = $_SESSION['auth'] ?? false; 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,10 +34,13 @@
               alt="dark mode"
             />
             <nav class="nav">
-              <a href="<?php echo $cssExterno ? '../' : '' ?>nosotros.php">Nosotros</a>
-              <a href="<?php echo $cssExterno ? '../' : '' ?>anuncios.php">Anuncios</a>
-              <a href="<?php echo $cssExterno ? '../' : '' ?>blog.php">Blog</a>
-              <a href="<?php echo $cssExterno ? '../' : '' ?>contacto.php">Contacto</a>
+              <a href="<?php echo $cssExterno ? '../' : ''?>nosotros.php">Nosotros</a>
+              <a href="<?php echo $cssExterno ? '../' : ''?>anuncios.php">Anuncios</a>
+              <a href="<?php echo $cssExterno ? '../' : ''?>blog.php">Blog</a>
+              <a href="<?php echo $cssExterno ? '../' : ''?>contacto.php">Contacto</a>
+              <?php if($auth): ?>
+                <a href="<?php echo $cssExterno ? '../' : ''?>cerrarSesion.php">Cerrar Sesion</a>
+              <?php endif ?>
             </nav>
           </div>
         </div>

@@ -11,7 +11,7 @@
 
 .button-green { 
     @include m.boton(v.$verde, inline-block); 
-    margin: 0 0 2rem 0;
+    margin: 0 0 1rem 0; 
 }
 
 .button-red-block {

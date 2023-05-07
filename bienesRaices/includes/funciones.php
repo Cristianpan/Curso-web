@@ -10,3 +10,16 @@ function printObjetc($object) {
     var_dump($object); 
     echo "</pre>"; 
 }
+
+function isAuth(): bool {
+    session_start(); 
+    $auth = $_SESSION['auth']; 
+
+
+    if ($auth !== null && $auth === true) {
+        return true; 
+    }
+
+    return false; 
+
+} 
