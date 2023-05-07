@@ -14,6 +14,7 @@ function generarIdentificadorArchivo(string $extension): string {
 
 function crearArchivoImagen($temporal, $nombreImagen){
     move_uploaded_file($temporal, $nombreImagen);
+    chmod($nombreImagen, 0777); 
 }
 
 function eliminarArchivo(string $path) {

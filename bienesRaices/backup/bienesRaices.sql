@@ -37,16 +37,9 @@ INSERT INTO `vendedores` (`id`, `nombre`, `apellido`, `telefono`) VALUES
 (2, 'Diana', 'Vazquez', '9995069754');
 
 INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
-(17, 1, 'Casa en el bosque', 1250000.00, '../imagenes/e3d9bab9a176dd77e265f137feba562c.jpg', 'Casa en el bosque con excelente vista hacia las montañas. Lugar perfecto para acampar', 4, 2, 1, '2023-05-06');
-INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
-(18, 1, 'Casa en la playa', 1200000.00, '../imagenes/81dbae5ba96d28a61744e906588c79e6.jpg', 'Casa en la playa, con excelente vista hacia el mar. Cuenta con una magnífica piscina.', 3, 1, 1, '2023-05-06');
-INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
-(19, 1, 'Departamente en Renta', 10000.00, '../imagenes/41d1e11b63dcacb1629166e93efd7c24.jpg', 'Departamento ubicado en zona centro. Cuenta con accesibilidad a diferentes zonas.', 2, 1, 1, '2023-05-06');
-INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
+(19, 1, 'Departamente en Renta', 10000.00, '../imagenes/41d1e11b63dcacb1629166e93efd7c24.jpg', 'Departamento ubicado en zona centro. Cuenta con accesibilidad a diferentes zonas.', 2, 1, 1, '2023-05-06'),
 (20, 2, 'Casa en la playa', 3000000.00, '../imagenes/e5e7dba204cdd6ce8906e46390b0108b.jpg', 'Magnífica casa en la playa con piscina incluida.', 5, 3, 1, '2023-05-06'),
 (21, 2, 'Casa privada', 2500000.00, '../imagenes/de11186c388113721a086ab6c1a95f59.jpg', 'Casa privada, ubicada en zona residencial norte', 4, 2, 1, '2023-05-06');
-
-
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;

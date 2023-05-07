@@ -13,7 +13,7 @@ $datosPropiedad =  [
     'habitaciones' => '',
     'wc' => '',
     'estacionamiento' => '',
-    'vendedor' => '',
+    'vendedorId' => '',
     'creado' => date('Y/m/d')
 ];
 

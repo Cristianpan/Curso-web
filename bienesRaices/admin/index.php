@@ -2,6 +2,7 @@
 require '../includes/funciones.php';
 require '../includes/config/database.php'; 
 require '../includes/backend/propiedades.php';
+require "../includes/utils/utileria.php"; 
 
 incluirTemplate('header', false, true);
 $propiedades = obtenerPropiedades();
