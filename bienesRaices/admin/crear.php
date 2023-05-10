@@ -1,8 +1,9 @@
 <?php
 require '../includes/funciones.php';
 require '../includes/config/database.php';
-require '../includes/backend/index.php';
-require '../includes/validators/index.php';
+require '../includes/backend/propiedades.php';
+require '../includes/backend/vendedores.php';
+require '../includes/validators/validadorPropiedad.php';
 require '../includes/utils/utileria.php';
 incluirTemplate('header', false, true);
 

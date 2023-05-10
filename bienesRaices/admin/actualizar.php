@@ -1,10 +1,15 @@
 <?php
 require '../includes/funciones.php';
 require '../includes/config/database.php'; 
- require '../includes/backend/index.php';
-require '../includes/validators/index.php';
 require '../includes/utils/utileria.php';
+require '../includes/backend/propiedades.php';
+require '../includes/backend/vendedores.php';
+require '../includes/validators/validadorPropiedad.php';
 incluirTemplate('header', false, true);
+
+if (!isAuth()) {
+    header("Location: ../login.php"); 
+}
 
 $id = $_GET['id']; 
 $id = filter_var($id, FILTER_VALIDATE_INT); 
