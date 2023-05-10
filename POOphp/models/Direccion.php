@@ -1,4 +1,5 @@
 <?php
+namespace models; 
 class Direccion {
     private string $calle;
     private string $codigoPostal; 
