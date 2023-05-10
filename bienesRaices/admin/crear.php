@@ -1,11 +1,14 @@
 <?php
-require '../includes/funciones.php';
-require '../includes/config/database.php';
+require '../includes/app.php'; 
 require '../includes/backend/propiedades.php';
 require '../includes/backend/vendedores.php';
 require '../includes/validators/validadorPropiedad.php';
 require '../includes/utils/utileria.php';
-incluirTemplate('header', false, true);
+use App\Propiedad;
+
+isAuth();
+
+incluirTemplate('header', false);
 
 $datosPropiedad =  [
     'titulo' => '',
@@ -106,5 +109,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </main>
 
 <?php
-incluirTemplate('footer', false, true);
+incluirTemplate('footer', false);
 ?>

@@ -1,7 +1,9 @@
 <?php 
-require 'app.php'; 
 
-function incluirTemplate(String $nombre, bool $inicio = false, $cssExterno = false) {
+define('TEMPLATES_URL', __DIR__ . '/templates'); 
+define('FUNCIONES_URL',__DIR__  . 'funciones.php');
+
+function incluirTemplate(String $nombre, bool $inicio = false) {
     include TEMPLATES_URL . "/$nombre.php"; 
 }
 
@@ -15,11 +17,9 @@ function isAuth(): bool {
     session_start(); 
     $auth = $_SESSION['auth']; 
 
-
-    if ($auth !== null && $auth === true) {
-        return true; 
+    if ($auth === null || $auth === false) {
+        header("Location: ../login.php"); 
     }
 
-    return false; 
-
+    return true; 
 } 

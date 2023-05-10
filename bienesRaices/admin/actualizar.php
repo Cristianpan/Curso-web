@@ -1,15 +1,13 @@
 <?php
-require '../includes/funciones.php';
-require '../includes/config/database.php'; 
+require '../includes/app.php'; 
 require '../includes/utils/utileria.php';
 require '../includes/backend/propiedades.php';
 require '../includes/backend/vendedores.php';
 require '../includes/validators/validadorPropiedad.php';
-incluirTemplate('header', false, true);
+isAuth();
 
-if (!isAuth()) {
-    header("Location: ../login.php"); 
-}
+incluirTemplate('header', false);
+
 
 $id = $_GET['id']; 
 $id = filter_var($id, FILTER_VALIDATE_INT); 
@@ -40,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errores = validarDatos($datosPropiedad);    
     
     if($datosPropiedad['imagen']['name']) {
-        echo "Hola"; 
         eliminarArchivo($imagenAnterior); 
     }
     printObjetc($imagenAnterior); 

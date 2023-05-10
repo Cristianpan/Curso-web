@@ -7,7 +7,7 @@
   <h2>Más Sobre Nosotros</h2>
   <div class="icons-aboutUs">
     <div class="icon">
-      <img src="./build/img/icono1.svg" alt="Icono seguridad" loading="lazy" />
+      <img src="/build/img/icono1.svg" alt="Icono seguridad" loading="lazy" />
       <h3>Seguridad</h3>
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
@@ -17,7 +17,7 @@
       </p>
     </div>
     <div class="icon">
-      <img src="./build/img/icono2.svg" alt="Icono Precio" loading="lazy" />
+      <img src="/build/img/icono2.svg" alt="Icono Precio" loading="lazy" />
       <h3>Precio</h3>
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
@@ -27,7 +27,7 @@
       </p>
     </div>
     <div class="icon">
-      <img src="./build/img/icono3.svg" alt="Icono tiempo" loading="lazy" />
+      <img src="/build/img/icono3.svg" alt="Icono tiempo" loading="lazy" />
       <h3>A tiempo</h3>
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
@@ -68,9 +68,9 @@
     <article class="entry-blog">
       <div>
         <picture>
-          <source srcset="./build/img/blog1.webp" type="image/webp" />
-          <source srcset="./build/img/blog1.jpg" type="image/jpeg" />
-          <img loading="lazy" src="./build/img/blog1.jpg" alt="Entrada Blog" />
+          <source srcset="/build/img/blog1.webp" type="image/webp" />
+          <source srcset="/build/img/blog1.jpg" type="image/jpeg" />
+          <img loading="lazy" src="/build/img/blog1.jpg" alt="Entrada Blog" />
         </picture>
       </div>
 
@@ -92,9 +92,9 @@
     <article class="entry-blog">
       <div class="image">
         <picture>
-          <source srcset="./build/img/blog2.webp" type="image/webp" />
-          <source srcset="./build/img/blog2.jpg" type="image/jpeg" />
-          <img loading="lazy" src="./build/img/blog2.jpg" alt="Entrada Blog" />
+          <source srcset="/build/img/blog2.webp" type="image/webp" />
+          <source srcset="/build/img/blog2.jpg" type="image/jpeg" />
+          <img loading="lazy" src="/build/img/blog2.jpg" alt="Entrada Blog" />
         </picture>
       </div>
 

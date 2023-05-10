@@ -7,9 +7,9 @@
   <article class="entry-blog">
     <div>
       <picture>
-        <source srcset="./build/img/blog1.webp" type="image/webp" />
-        <source srcset="./build/img/blog1.jpg" type="image/jpeg" />
-        <img loading="lazy" src="./build/img/blog1.jpg" alt="Entrada Blog" />
+        <source srcset="/build/img/blog1.webp" type="image/webp" />
+        <source srcset="/build/img/blog1.jpg" type="image/jpeg" />
+        <img loading="lazy" src="/build/img/blog1.jpg" alt="Entrada Blog" />
       </picture>
     </div>
 
@@ -31,9 +31,9 @@
   <article class="entry-blog">
     <div class="image">
       <picture>
-        <source srcset="./build/img/blog2.webp" type="image/webp" />
-        <source srcset="./build/img/blog2.jpg" type="image/jpeg" />
-        <img loading="lazy" src="./build/img/blog2.jpg" alt="Entrada Blog" />
+        <source srcset="/build/img/blog2.webp" type="image/webp" />
+        <source srcset="/build/img/blog2.jpg" type="image/jpeg" />
+        <img loading="lazy" src="/build/img/blog2.jpg" alt="Entrada Blog" />
       </picture>
     </div>
 
@@ -55,9 +55,9 @@
   <article class="entry-blog">
     <div class="image">
       <picture>
-        <source srcset="./build/img/blog3.webp" type="image/webp" />
-        <source srcset="./build/img/blog3.jpg" type="image/jpeg" />
-        <img loading="lazy" src="./build/img/blog3.jpg" alt="Entrada Blog" />
+        <source srcset="/build/img/blog3.webp" type="image/webp" />
+        <source srcset="/build/img/blog3.jpg" type="image/jpeg" />
+        <img loading="lazy" src="/build/img/blog3.jpg" alt="Entrada Blog" />
       </picture>
     </div>
 
@@ -79,9 +79,9 @@
   <article class="entry-blog">
     <div class="image">
       <picture>
-        <source srcset="./build/img/blog4.webp" type="image/webp" />
-        <source srcset="./build/img/blog4.jpg" type="image/jpeg" />
-        <img loading="lazy" src="./build/img/blog4.jpg" alt="Entrada Blog" />
+        <source srcset="/build/img/blog4.webp" type="image/webp" />
+        <source srcset="/build/img/blog4.jpg" type="image/jpeg" />
+        <img loading="lazy" src="/build/img/blog4.jpg" alt="Entrada Blog" />
       </picture>
     </div>
 
