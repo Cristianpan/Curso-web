@@ -1,5 +1,4 @@
 <?php
-require 'includes/config/database.php';
 require 'includes/backend/propiedades.php';
   $propiedades = obtenerPropiedades($limit);
 ?>

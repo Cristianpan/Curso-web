@@ -1,5 +1,5 @@
 <?php
-require 'includes/app.php';
+require 'includes/app.php'; 
 require 'includes/backend/propiedades.php';
 $id = $_GET['id'];
 $id = filter_var($id, FILTER_VALIDATE_INT);

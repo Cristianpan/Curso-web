@@ -1,5 +1,5 @@
 <?php
-  require 'includes/funciones.php';
+  require 'includes/app.php'; 
   incluirTemplate('header', true);
 ?>
 
@@ -59,7 +59,7 @@
     Llena el formulario de contacto y un asesor se pondrá en contacto
     contigo a la brevedad
   </p>
-  <a href="contacto.html" class="button-yellow">Contactános</a>
+  <a href="contacto.php" class="button-yellow">Contactános</a>
 </section>
 
 <div class="container section section-bottom">
@@ -75,7 +75,7 @@
       </div>
 
       <div class="entry-text">
-        <a href="entrada.html">
+        <a href="entrada.php">
           <h4>Terraza en el techo de tu casa</h4>
           <p class="info-meta">
             Escrito el: <span>20/10/2021</span> por: <span>Admin</span>
@@ -99,7 +99,7 @@
       </div>
 
       <div class="entry-text">
-        <a href="entrada.html">
+        <a href="entrada.php">
           <h4>Construye una alberca en tu casa</h4>
           <p class="info-meta">
             Escrito el: <span>20/10/2021</span> por: <span>Admin</span>
