@@ -8,9 +8,9 @@
   <div class="aboutUs">
     <div class="image">
       <picture>
-        <source srcset="./build/img/nosotros.webp" type="image/webp" />
-        <source srcset="./build/img/nosotros.jpg" type="image/jpeg" />
-        <img loading="lazy" src="./build/img/nosotros.jpg" alt="Nostros imagen" />
+        <source srcset="/build/img/nosotros.webp" type="image/webp" />
+        <source srcset="/build/img/nosotros.jpg" type="image/jpeg" />
+        <img loading="lazy" src="/build/img/nosotros.jpg" alt="Nostros imagen" />
       </picture>
     </div>
 
@@ -41,7 +41,7 @@
   <h2>Más Sobre Nosotros</h2>
   <div class="icons-aboutUs">
     <div class="icon">
-      <img src="./build/img/icono1.svg" alt="Icono seguridad" loading="lazy" />
+      <img src="/build/img/icono1.svg" alt="Icono seguridad" loading="lazy" />
       <h3>Seguridad</h3>
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
@@ -51,7 +51,7 @@
       </p>
     </div>
     <div class="icon">
-      <img src="./build/img/icono2.svg" alt="Icono Precio" loading="lazy" />
+      <img src="/build/img/icono2.svg" alt="Icono Precio" loading="lazy" />
       <h3>Precio</h3>
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
@@ -61,7 +61,7 @@
       </p>
     </div>
     <div class="icon">
-      <img src="./build/img/icono3.svg" alt="Icono tiempo" loading="lazy" />
+      <img src="/build/img/icono3.svg" alt="Icono tiempo" loading="lazy" />
       <h3>A tiempo</h3>
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur

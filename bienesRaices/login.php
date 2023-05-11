@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"){
             session_start(); 
             $_SESSION['usuario'] = $email; 
             $_SESSION['auth'] = true; 
-            header("Location: ./admin/index.php"); 
+            header("Location: admin/index.php"); 
         }
     }
 }
@@ -51,8 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST"){
         </div>
     </form>
 </main>
-
-
 
 <?php
 incluirTemplate('footer');

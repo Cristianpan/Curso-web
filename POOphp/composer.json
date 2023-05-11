@@ -1,0 +1,15 @@
+{
+    "name": "panza/po-ophp",
+    "description": "Aprendiendo namespaces",
+    "autoload": {
+        "psr-4": {
+            "Panza\\POOphp\\": "/src"
+        }
+    },
+    "require": {}, 
+    "autoload": {
+        "psr-4": {
+            "models\\" : "models"
+        }
+    }
+}

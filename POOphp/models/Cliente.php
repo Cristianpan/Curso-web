@@ -1,4 +1,5 @@
 <?php
+namespace models; 
 class Cliente {
     private string $id; 
     private string $nombre;  

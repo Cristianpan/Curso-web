@@ -1,5 +1,5 @@
 <?php
-  require 'includes/funciones.php';
+  require 'includes/app.php'; 
   incluirTemplate('header', true);
 ?>
 
@@ -7,7 +7,7 @@
   <h2>Más Sobre Nosotros</h2>
   <div class="icons-aboutUs">
     <div class="icon">
-      <img src="./build/img/icono1.svg" alt="Icono seguridad" loading="lazy" />
+      <img src="/build/img/icono1.svg" alt="Icono seguridad" loading="lazy" />
       <h3>Seguridad</h3>
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
@@ -17,7 +17,7 @@
       </p>
     </div>
     <div class="icon">
-      <img src="./build/img/icono2.svg" alt="Icono Precio" loading="lazy" />
+      <img src="/build/img/icono2.svg" alt="Icono Precio" loading="lazy" />
       <h3>Precio</h3>
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
@@ -27,7 +27,7 @@
       </p>
     </div>
     <div class="icon">
-      <img src="./build/img/icono3.svg" alt="Icono tiempo" loading="lazy" />
+      <img src="/build/img/icono3.svg" alt="Icono tiempo" loading="lazy" />
       <h3>A tiempo</h3>
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
@@ -59,7 +59,7 @@
     Llena el formulario de contacto y un asesor se pondrá en contacto
     contigo a la brevedad
   </p>
-  <a href="contacto.html" class="button-yellow">Contactános</a>
+  <a href="contacto.php" class="button-yellow">Contactános</a>
 </section>
 
 <div class="container section section-bottom">
@@ -68,14 +68,14 @@
     <article class="entry-blog">
       <div>
         <picture>
-          <source srcset="./build/img/blog1.webp" type="image/webp" />
-          <source srcset="./build/img/blog1.jpg" type="image/jpeg" />
-          <img loading="lazy" src="./build/img/blog1.jpg" alt="Entrada Blog" />
+          <source srcset="/build/img/blog1.webp" type="image/webp" />
+          <source srcset="/build/img/blog1.jpg" type="image/jpeg" />
+          <img loading="lazy" src="/build/img/blog1.jpg" alt="Entrada Blog" />
         </picture>
       </div>
 
       <div class="entry-text">
-        <a href="entrada.html">
+        <a href="entrada.php">
           <h4>Terraza en el techo de tu casa</h4>
           <p class="info-meta">
             Escrito el: <span>20/10/2021</span> por: <span>Admin</span>
@@ -92,14 +92,14 @@
     <article class="entry-blog">
       <div class="image">
         <picture>
-          <source srcset="./build/img/blog2.webp" type="image/webp" />
-          <source srcset="./build/img/blog2.jpg" type="image/jpeg" />
-          <img loading="lazy" src="./build/img/blog2.jpg" alt="Entrada Blog" />
+          <source srcset="/build/img/blog2.webp" type="image/webp" />
+          <source srcset="/build/img/blog2.jpg" type="image/jpeg" />
+          <img loading="lazy" src="/build/img/blog2.jpg" alt="Entrada Blog" />
         </picture>
       </div>
 
       <div class="entry-text">
-        <a href="entrada.html">
+        <a href="entrada.php">
           <h4>Construye una alberca en tu casa</h4>
           <p class="info-meta">
             Escrito el: <span>20/10/2021</span> por: <span>Admin</span>

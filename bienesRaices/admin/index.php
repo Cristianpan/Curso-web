@@ -1,14 +1,11 @@
 <?php
-require '../includes/funciones.php';
-require '../includes/config/database.php'; 
+require '../includes/app.php'; 
 require '../includes/backend/propiedades.php';
 require "../includes/utils/utileria.php"; 
 
-if (!isAuth()) {
-  header("Location: ../login.php"); 
-} 
+isAuth(); 
 
-incluirTemplate('header', false, true);
+incluirTemplate('header', false);
 $propiedades = obtenerPropiedades();
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -58,5 +55,5 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 </main>
 
 <?php
-incluirTemplate('footer', false, true);
+incluirTemplate('footer', false);
 ?>

@@ -6,9 +6,9 @@
 <main class="container section centered-content">
   <h1>Terraza en el techo de tu casa</h1>
   <picture>
-    <source srcset="./build/img/blog1.webp" type="image/webp" />
-    <source srcset="./build/img/blog1.jpg" type="image/jpeg" />
-    <img loading="lazy" src="./build/img/blog1.jpg" alt="Imagen de casa en venta" />
+    <source srcset="/build/img/blog1.webp" type="image/webp" />
+    <source srcset="/build/img/blog1.jpg" type="image/jpeg" />
+    <img loading="lazy" src="/build/img/blog1.jpg" alt="Imagen de casa en venta" />
   </picture>
 
   <p class="info-meta">
