@@ -1,11 +1,10 @@
 <?php
-    function getDbConnection(): mysqli {
-        $db = mysqli_connect('localhost', 'root', 'Gatosinbotas1', 'bienesRaices');
-        mysqli_set_charset($db, "utf8");
-        if (!$db) {
-            echo "Error en la conexión";
-            exit;
-        }
+class DbConnection{
 
-        return $db; 
+    static function getDbConnection(){
+        $db = new mysqli('localhost', 'root', 'Gatosinbotas1', 'bienesRaices');
+        $db->set_charset("utf8");
+        
+        return $db;
     }
+}

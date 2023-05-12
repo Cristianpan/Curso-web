@@ -1,4 +1,7 @@
 <?php
+
+use App\Propiedad;
+
 require '../includes/app.php'; 
 require '../includes/utils/utileria.php';
 require '../includes/backend/propiedades.php';
@@ -6,7 +9,7 @@ require '../includes/backend/vendedores.php';
 require '../includes/validators/validadorPropiedad.php';
 isAuth();
 
-incluirTemplate('header', false);
+incluirTemplate('header');
 
 
 $id = $_GET['id']; 
@@ -25,7 +28,7 @@ if (empty($datosPropiedad)) {
 $imagenAnterior = $datosPropiedad['imagen'];  
 $errores = []; 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+    $propiedad = new Propiedad($_POST);
     $datosPropiedad['titulo'] = $_POST['titulo'];
     $datosPropiedad['precio'] = $_POST['precio'];
     $datosPropiedad['descripcion'] = $_POST['descripcion'];
@@ -35,12 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $datosPropiedad['vendedorId'] = $_POST['vendedor'];
     $datosPropiedad['imagen'] = $_FILES['imagen']; 
 
-    $errores = validarDatos($datosPropiedad);    
+    $errores = validarDatos($propiedad, $_FILES['imagen']);    
     
     if($datosPropiedad['imagen']['name']) {
         eliminarArchivo($imagenAnterior); 
     }
-    printObjetc($imagenAnterior); 
     
     if (empty($errores)) {
         //insertar en la base de datos  

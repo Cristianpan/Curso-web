@@ -1,6 +1,6 @@
 <?php 
 function obtenerVendedores(): array {
-    $db = getDbConnection();
+    $db = DbConnection::getDbConnection();
     $vendedores = []; 
     
     $query = "SELECT * FROM vendedores"; 
@@ -9,8 +9,8 @@ function obtenerVendedores(): array {
     while ($row = mysqli_fetch_assoc($resultado)) {
         $vendedores[] = $row; 
     }
-    
-    mysqli_close($db); 
+
+    $db->close();
 
     return $vendedores;
 }

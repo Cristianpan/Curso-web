@@ -1,6 +1,6 @@
 <?php 
 function obtenerUsuarioPorEmail (string $email): array{
-    $db = getDbConnection();
+    $db = DbConnection::getDbConnection();
     $email = mysqli_real_escape_string($db, $email); 
     $usuario = []; 
 
@@ -10,6 +10,8 @@ function obtenerUsuarioPorEmail (string $email): array{
     if ($resultado->num_rows !== 0) {
         $usuario = mysqli_fetch_assoc($resultado); 
     }
+
+    $db->close();
 
     return $usuario;
 }
