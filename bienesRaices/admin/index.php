@@ -5,14 +5,18 @@ require "../includes/utils/utileria.php";
 
 isAuth(); 
 
-incluirTemplate('header', false);
-$propiedades = obtenerPropiedades();
+use App\Propiedad;
+$propiedades = [];
+$propiedades = Propiedad::getAll();
+
+incluirTemplate('header');
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
   $id = $_POST['id']; 
   $id = filter_var($id, FILTER_VALIDATE_INT);
-   
-  if(eliminarPropiedad($id)) {
+   $propiedad = Propiedad::getById($id);
+  if($propiedad->delete()) {
+    eliminarArchivo($propiedad->getImagen());
     header('Location: index.php?resultado=3'); 
   }
 }
@@ -37,16 +41,16 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     <tbody>
       <?php foreach ($propiedades as $propiedad) : ?>
         <tr>
-          <td><?php echo $propiedad['id']; ?></td>
-          <td><?php echo $propiedad['titulo']; ?></td>
-          <td><img class="imagen-tabla" src="<?php echo $propiedad['imagen']; ?>" alt="imagen tabla"></td>
-          <td>$ <?php echo $propiedad['precio']; ?></td>
+          <td><?php echo $propiedad->getId(); ?></td>
+          <td><?php echo $propiedad->getTitulo(); ?></td>
+          <td><img class="imagen-tabla" src="<?php echo $propiedad->getImagen(); ?>" alt="imagen tabla"></td>
+          <td>$ <?php echo $propiedad->getPrecio(); ?></td>
           <td>
             <form method="post">
-              <input type="hidden" name="id" value="<?php echo $propiedad['id']?>">
+              <input type="hidden" name="id" value="<?php echo $propiedad->getId();?>">
               <input type="submit" class="button-red-block" value="Eliminar">
             </form>
-            <a href="actualizar.php?id=<?php echo $propiedad['id']?>" class="button-green-block">Actualizar</a>
+            <a href="actualizar.php?id=<?php echo $propiedad->getId();?>" class="button-green-block">Actualizar</a>
           </td>
         </tr>
       <?php endforeach ?>
@@ -55,5 +59,5 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 </main>
 
 <?php
-incluirTemplate('footer', false);
+incluirTemplate('footer');
 ?>

@@ -22,7 +22,7 @@ class Propiedad {
         $this->vendedorId = $args['vendedorId'] ?? ''; 
         $this->titulo = $args['titulo'] ?? ''; 
         $this->precio = $args['precio'] ?? ''; 
-        $this->imagen = $args['imagen'] ?? '../imagenes/' . generarIdentificadorArchivo('.jpg'); 
+        $this->imagen = $args['imagen'] ?? ''; 
         $this->habitaciones = $args['habitaciones'] ?? ''; 
         $this->descripcion = $args['descripcion'] ?? ''; 
         $this->wc = $args['wc'] ?? ''; 
@@ -31,7 +31,7 @@ class Propiedad {
     }
 
 
-    public function guardar(){
+    public function save(){
         $flag = false; 
         $db = DbConnection::getDbConnection();
 
@@ -52,6 +52,84 @@ class Propiedad {
         $stmt->close();
         $db->close();
         return $flag; 
+    }
+
+    public function update(){
+        $flag = false; 
+        $db = DbConnection::getDbConnection();
+
+        $query = "UPDATE propiedades SET vendedorId = ?, titulo = ?, imagen = ?, precio = ?, descripcion = ?, habitaciones = ?, wc = ?, estacionamiento = ? WHERE id = ?";
+        $stmt = $db->prepare($query);
+        $stmt->bind_param("issdsiiii", $this->vendedorId, $this->titulo,$this->imagen, $this->precio, $this->descripcion, $this->habitaciones, $this->wc, $this->estacionamiento, $this->id);
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            $flag = true;  
+        }
+        
+        $stmt->close();
+        $db->close();
+        return $flag;
+    }
+
+    public function delete() {
+        $flag = false; 
+        $db = DbConnection::getDbConnection();  
+        $query = "DELETE FROM propiedades WHERE id = ?";
+        $stmt = $db->prepare($query);
+        
+        $stmt->bind_param("i", $this->id);
+        $stmt->execute();
+    
+        if ($stmt->affected_rows > 0) {
+            $flag = true; 
+        }
+        
+        $stmt->close();
+        $db->close();
+
+        return $flag;
+    }
+
+
+    public static function getAll() {
+        $db = DbConnection::getDbConnection();
+        $query = "SELECT * FROM propiedades"; 
+
+        $stmt = $db->prepare($query); 
+        $stmt->execute();
+
+        $resultado = $stmt->get_result();
+        $propiedades = [];
+        while ($propiedad = $resultado->fetch_assoc()){
+            $propiedades[]= new Propiedad($propiedad);
+        }
+
+
+        $stmt->close();
+        $db->close();
+        return $propiedades;
+    }
+
+    public static function getById($id) {
+        $propiedad = null;
+        $db = DbConnection::getDbConnection();
+        $query = "SELECT * FROM propiedades WHERE id = (?)";
+
+        $stmt = $db->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        
+        $resultado = $stmt->get_result();
+
+        if ($resultado->num_rows != 0) {
+            $propiedad = new Propiedad($resultado->fetch_assoc());
+        }
+
+
+        $stmt->close();
+        $db->close();
+        return $propiedad; 
     }
 
     //getters and setters
