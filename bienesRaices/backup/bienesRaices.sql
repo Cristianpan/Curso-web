@@ -6,7 +6,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
 CREATE TABLE `vendedores` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -14,11 +13,6 @@ CREATE TABLE `vendedores` (
   `telefono` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO `vendedores` (`id`, `nombre`, `apellido`, `telefono`) VALUES
-(1, 'Cristian', 'Pan', '9993981242');
-INSERT INTO `vendedores` (`id`, `nombre`, `apellido`, `telefono`) VALUES
-(2, 'Diana', 'Vazquez', '9995069754');
 
 CREATE TABLE `propiedades` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -34,12 +28,7 @@ CREATE TABLE `propiedades` (
   PRIMARY KEY (`id`),
   KEY `fk_propiedades_vendedores_idx` (`vendedorId`),
   CONSTRAINT `fk_propiedades_vendedores` FOREIGN KEY (`vendedorId`) REFERENCES `vendedores` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
-(19, 1, 'Departamente en Renta', 10000.00, '../imagenes/41d1e11b63dcacb1629166e93efd7c24.jpg', 'Departamento ubicado en zona centro. Cuenta con accesibilidad a diferentes zonas.', 2, 1, 1, '2023-05-06'),
-(20, 2, 'Casa en la playa', 3000000.00, '../imagenes/e5e7dba204cdd6ce8906e46390b0108b.jpg', 'Magnífica casa en la playa con piscina incluida.', 5, 3, 1, '2023-05-06'),
-(21, 2, 'Casa privada', 2500000.00, '../imagenes/de11186c388113721a086ab6c1a95f59.jpg', 'Casa privada, ubicada en zona residencial norte', 4, 2, 1, '2023-05-06');
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -48,9 +37,25 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+
+INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
+(19, 1, 'Departamente en Renta', 10000.00, '../imagenes/41d1e11b63dcacb1629166e93efd7c24.jpg', 'Departamento ubicado en zona centro. Cuenta con accesibilidad a diferentes zonas.', 2, 1, 1, '2023-05-06');
+INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
+(20, 2, 'Casa en la playa', 3000000.00, '../imagenes/e5e7dba204cdd6ce8906e46390b0108b.jpg', 'Magnífica casa en la playa con piscina incluida.', 5, 3, 1, '2023-05-06');
+INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
+(21, 2, 'Casa privada', 2500000.00, '../imagenes/de11186c388113721a086ab6c1a95f59.jpg', 'Casa privada, ubicada en zona residencial norte', 4, 2, 1, '2023-05-06');
+INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
+(26, 2, 'Departamente en Renta', 70000.00, '../imagenes/4f484d2ccb7f29c0d5a9d2570121ab88.jpg', 'Departamente amueblado. Incluye lo indespensable', 1, 1, 1, '2023-05-12'),
+(29, 2, 'Casa en la playa', 1313123.00, '../imagenes/1229f0030b6d68bd0ddc715364eb11a9.jpg', 'Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 3, 2, 1, '2023-05-12');
+
 INSERT INTO `usuarios` (`id`, `email`, `password`) VALUES
 (1, 'panza@gmail.com', '$2y$10$jaCcMqEEn4g0dgzoqDs3dOXTy./S//WNqJMpFWUAorBZ81yKvNtru');
 
+
+INSERT INTO `vendedores` (`id`, `nombre`, `apellido`, `telefono`) VALUES
+(1, 'Cristian', 'Pan', '9993981242');
+INSERT INTO `vendedores` (`id`, `nombre`, `apellido`, `telefono`) VALUES
+(2, 'Diana', 'Vazquez', '9995069754');
 
 
 

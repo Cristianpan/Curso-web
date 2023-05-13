@@ -1,36 +1,39 @@
-<?php 
-    function validarDatos(array $datos): array {
+<?php
+
+use App\Propiedad;
+
+    function validarDatos(Propiedad $propiedad, array $imagen): array {
         $errores = []; 
         
-        if (!$datos['titulo']) {
+        if (!$propiedad->getTitulo()) {
             $errores['titulo'] = "El titulo es obligatorio"; 
         }
 
-        if (!$datos['precio']) {
+        if (!$propiedad->getPrecio()) {
             $errores['precio'] = "El precio es obligatorio"; 
         }
 
-        if (!$datos['descripcion'] || strlen($datos['descripcion']) < 20) {
+        if (!$propiedad->getDescripcion() || strlen($propiedad->getDescripcion()) < 20) {
             $errores['descripcion'] = "La descripción es obligatoria y debe contener al menos 20 caracteres"; 
         }
 
-        if (!$datos['habitaciones']) {
+        if (!$propiedad->getHabitaciones()) {
             $errores['habitaciones'] = "El número de habitaciones es obligatorio"; 
         }
 
-        if (!$datos['wc']) {
+        if (!$propiedad->getWc()) {
             $errores['wc'] = "El número de baños es obligatorio"; 
         }
 
-        if (!$datos['estacionamiento']) {
+        if (!$propiedad->getEstacionamiento()) {
             $errores['estacionamiento'] = "El número de estacionamientos es obligatorio"; 
         }
 
-        if ($datos['vendedorId'] === " ") {
+        if ($propiedad->getVendedorId() === " ") {
             $errores['vendedor'] = "Eliga un vendedor"; 
         }
 
-        if ($datos['imagen']['size'] > 2000*1000) { //validar que sea menor a 2mb
+        if ($imagen['size'] > 2000*1000) { //validar que sea menor a 2mb
             $errores['imagen'] = "El tamaño de la imagen debe de ser menor a 100kb"; 
         }
 

@@ -1,7 +1,11 @@
 <?php 
-namespace app; 
+namespace app;
 
-class Propiedad {
+use DbConnection;
+
+
+class Propiedad {   
+
     private $id; 
     private $vendedorId;
     private $titulo; 
@@ -10,7 +14,7 @@ class Propiedad {
     private $descripcion; 
     private $habitaciones;
     private $wc; 
-    private $estacionamineto;  
+    private $estacionamiento;  
     private $creado; 
 
     public function __construct($args = []) {
@@ -18,13 +22,39 @@ class Propiedad {
         $this->vendedorId = $args['vendedorId'] ?? ''; 
         $this->titulo = $args['titulo'] ?? ''; 
         $this->precio = $args['precio'] ?? ''; 
-        $this->imagen = $args['imagen'] ?? ''; 
+        $this->imagen = $args['imagen'] ?? '../imagenes/' . generarIdentificadorArchivo('.jpg'); 
         $this->habitaciones = $args['habitaciones'] ?? ''; 
+        $this->descripcion = $args['descripcion'] ?? ''; 
         $this->wc = $args['wc'] ?? ''; 
-        $this->estacionamineto = $args['estacionamineto'] ?? ''; 
-        $this->creado = $args['creado'] ?? ''; 
+        $this->estacionamiento = $args['estacionamiento'] ?? ''; 
+        $this->creado = $args['creado'] ?? date('Y/m/d'); 
     }
 
+
+    public function guardar(){
+        $flag = false; 
+        $db = DbConnection::getDbConnection();
+
+        //creacion de query
+        $query = "INSERT INTO propiedades (vendedorId, titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado) 
+        VALUES (?,?,?,?,?,?,?,?,?)";
+        //creando el prepared statement
+        $stmt = $db->prepare($query);  
+        //dandole valores al prepared statement
+        $stmt->bind_param("isdssiiis", $this->vendedorId, $this->titulo, $this->precio, $this->imagen, $this->descripcion, $this->habitaciones, $this->wc, $this->estacionamiento, $this->creado);
+
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            $flag = true;  
+        }
+        
+        $stmt->close();
+        $db->close();
+        return $flag; 
+    }
+
+    //getters and setters
     public function getId() {
         return $this->id; 
     }
@@ -75,10 +105,10 @@ class Propiedad {
     }
 
     public function getEstacionamiento() {
-        return $this->estacionamineto; 
+        return $this->estacionamiento; 
     }
-    public function setEstacionamiento($estacionamineto) {
-        $this->estacionamineto = $estacionamineto; 
+    public function setEstacionamiento($estacionamiento) {
+        $this->estacionamiento = $estacionamiento; 
     }
     
     public function getCreado() {
