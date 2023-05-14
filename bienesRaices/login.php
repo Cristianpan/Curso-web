@@ -1,7 +1,7 @@
 <?php
 require 'includes/funciones.php';
 require 'includes/config/database.php'; 
-require 'includes/validators/validadorLogin.php'; 
+require 'includes/validators/ValidadorLogin.php'; 
 require 'includes/backend/usuarios.php'; 
 incluirTemplate('header');
 

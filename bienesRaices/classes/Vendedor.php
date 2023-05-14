@@ -12,7 +12,7 @@ class Vendedor extends ActiveRecord {
     private $apellido; 
     private $telefono;
 
-    public function __construct($dato){
+    public function __construct($dato=[]){
         $this->id = $dato['id'] ?? '';
         $this->nombre = $dato['nombre'] ?? '';
         $this->apellido = $dato['apellido'] ?? '';
