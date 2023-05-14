@@ -1,6 +1,7 @@
 <?php
 
 use App\Propiedad;
+use App\Vendedor;
 use Intervention\Image\ImageManagerStatic as Image;
 require '../includes/app.php'; 
 require '../includes/utils/utileria.php';
@@ -19,7 +20,7 @@ if(!$id) {
     header("Location: index.php"); 
 }
 
-$vendedores = obtenerVendedores(); 
+$vendedores = Vendedor::getAll(); 
 
 $propiedad = Propiedad::getById($id);
 $nombreImagen = $propiedad->getImagen();

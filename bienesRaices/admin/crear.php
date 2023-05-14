@@ -5,6 +5,7 @@ require '../includes/validators/validadorPropiedad.php';
 require '../includes/utils/utileria.php';
 
 use App\Propiedad;
+use App\Vendedor;
 use Intervention\Image\ImageManagerStatic as Image;
 
 isAuth();
@@ -13,7 +14,7 @@ incluirTemplate('header');
 
 $carpetaImagen = '../imagenes/';
 $propiedad = new Propiedad;
-$vendedores = obtenerVendedores();
+$vendedores = Vendedor::getAll();
 
 //Arreglo con mensajes de errores
 $errores = [];

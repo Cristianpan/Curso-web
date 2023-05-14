@@ -44,7 +44,7 @@
                 <option value=" " selected>Seleccionar</option>
                 <?php
                 foreach ($vendedores as $vendedor) {
-                    echo "<option value ='" . $vendedor['id'] . "'" . ($propiedad->getVendedorId() == $vendedor['id'] ? 'selected' : '') . ">" . $vendedor['nombre'] . " " . $vendedor['apellido'];
+                    echo "<option value ='" . $vendedor->getId() . "'" . ($propiedad->getVendedorId() == $vendedor->getId() ? 'selected' : '') . ">" . $vendedor->getNombre() . " " . $vendedor->getApellido();
                 }
                 ?>
             </select>
