@@ -20,3 +20,8 @@ function crearArchivoImagen($temporal, $nombreImagen){
 function eliminarArchivo(string $path) {
     unlink($path); 
 }
+
+
+function sanitizarHtml($value) {
+    return htmlspecialchars($value);
+}
