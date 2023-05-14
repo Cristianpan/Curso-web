@@ -1,7 +1,6 @@
 <?php
 require '../../includes/app.php';
 require '../../includes/validators/ValidadorVendedor.php';
-require '../../includes/utils/utileria.php';
 use App\Vendedor;
 isAuth();
 

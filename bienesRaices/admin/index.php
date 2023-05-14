@@ -1,6 +1,5 @@
 <?php
 require '../includes/app.php';
-require '../includes/backend/propiedades.php';
 require "../includes/utils/utileria.php";
 
 isAuth();

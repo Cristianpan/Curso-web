@@ -12,7 +12,7 @@ CREATE TABLE `vendedores` (
   `apellido` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `telefono` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `propiedades` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -28,7 +28,7 @@ CREATE TABLE `propiedades` (
   PRIMARY KEY (`id`),
   KEY `fk_propiedades_vendedores_idx` (`vendedorId`),
   CONSTRAINT `fk_propiedades_vendedores` FOREIGN KEY (`vendedorId`) REFERENCES `vendedores` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -37,10 +37,15 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+
 INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
-(26, 2, 'Departamento en Renta', 70000.00, '../imagenes/2849a8dbcabf98818203b72fa47dfb02.jpg', 'Departamente amueblado. Incluye lo indespensable', 1, 1, 1, '2023-05-12'),
-(29, 2, 'Casa en la playa', 1313123.00, '../imagenes/1229f0030b6d68bd0ddc715364eb11a9.jpg', 'Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 3, 2, 1, '2023-05-12'),
-(31, 1, 'Casa en el bosque', 1120252.00, '../imagenes/f4309dd3ce59b1fec9119ae80fd3eb3f.jpg', 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit', 3, 2, 1, '2023-05-13');
+(32, 1, 'Casa en renta', 500000.00, '../imagenes/6bd905519538d57ed8e46c1d2e9868ca.jpg', 'Casa de dos pisos ubicada en zona privada', 3, 2, 1, '2023-05-14');
+INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
+(33, 1, 'Casa en la playa', 1230000.00, '../imagenes/e0db5c0af2f6aa392a4045cb7c60fd5d.jpg', 'Casa en la playa con piscina incluida. Cuenta con lo indispensable para tener una buena estadía', 5, 3, 2, '2023-05-14');
+INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
+(34, 1, 'Departamento en renta', 70000.00, '../imagenes/6b1e1ae47d8f16f8108e76f8b5ece968.jpg', 'Departamento amueblado. Ideal para joven estudiante', 2, 1, 1, '2023-05-14');
+INSERT INTO `propiedades` (`id`, `vendedorId`, `titulo`, `precio`, `imagen`, `descripcion`, `habitaciones`, `wc`, `estacionamiento`, `creado`) VALUES
+(35, 6, 'Casa en el bosque', 2500000.00, '../imagenes/6ddd91c6084ca0bbec09755a2e6a8463.jpg', 'Casa en el bosque, excelente lugar para descansar', 4, 2, 2, '2023-05-14');
 
 INSERT INTO `usuarios` (`id`, `email`, `password`) VALUES
 (1, 'panza@gmail.com', '$2y$10$jaCcMqEEn4g0dgzoqDs3dOXTy./S//WNqJMpFWUAorBZ81yKvNtru');
@@ -49,8 +54,9 @@ INSERT INTO `usuarios` (`id`, `email`, `password`) VALUES
 INSERT INTO `vendedores` (`id`, `nombre`, `apellido`, `telefono`) VALUES
 (1, 'Cristian', 'Pan', '9993981242');
 INSERT INTO `vendedores` (`id`, `nombre`, `apellido`, `telefono`) VALUES
-(2, 'Diana', 'Vazquez', '9995069754');
-
+(6, 'Diana', 'Vazquez', '9993955071');
+INSERT INTO `vendedores` (`id`, `nombre`, `apellido`, `telefono`) VALUES
+(7, 'Mauricio', 'Carrillo', '9993981242');
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

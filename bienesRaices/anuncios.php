@@ -1,7 +1,6 @@
 <?php
   require 'includes/app.php'; 
   incluirTemplate('header');
-  $limit = 0; 
 ?>
 <main class="container section">
   <h1>Casas y Depas en Venta</h1>
