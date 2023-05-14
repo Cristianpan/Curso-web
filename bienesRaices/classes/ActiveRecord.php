@@ -45,6 +45,27 @@ abstract class ActiveRecord {
         $db->close();
         return $dato; 
     }
+    
+    public static function getLimit($limit) {
+        $db = DbConnection::getDbConnection();
+        $query = "SELECT * FROM " . static::$table . " LIMIT ?"; 
+
+        $stmt = $db->prepare($query);
+        $stmt->bind_param("i", $limit);
+        $stmt->execute();
+
+        $resultado = $stmt->get_result();
+        $array = [];
+        while ($dato = $resultado->fetch_assoc()){
+            $array[] = static::crearObjeto($dato); 
+        }
+
+
+        $stmt->close();
+        $db->close();
+        return $array;
+
+    }
 
     public function delete() {
         $flag = false; 

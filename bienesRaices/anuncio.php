@@ -14,7 +14,7 @@ if (is_null($propiedad)) {
 ?>
 
 <main class="container section centered-content">
-  <h1>Casa en venta frente al bosque</h1>
+  <h1><?php echo $propiedad->getTitulo()?></h1>
   <img loading="lazy" src="<?php echo str_replace("../", "", $propiedad->getImagen()) ?>" alt="Imagen de casa en venta" />
 
 

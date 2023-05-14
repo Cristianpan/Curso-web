@@ -1,6 +1,6 @@
 <?php 
 namespace App;
-
+use App\ActiveRecord;
 use DbConnection;
 
 
