@@ -1,12 +1,12 @@
 <?php 
-namespace app;
-
+namespace App;
+use App\ActiveRecord;
 use DbConnection;
 
 
-class Propiedad {   
-
-    private $id; 
+class Propiedad extends ActiveRecord {   
+    protected static $table = 'propiedades';
+    protected $id; 
     private $vendedorId;
     private $titulo; 
     private $precio; 
@@ -71,65 +71,9 @@ class Propiedad {
         $db->close();
         return $flag;
     }
-
-    public function delete() {
-        $flag = false; 
-        $db = DbConnection::getDbConnection();  
-        $query = "DELETE FROM propiedades WHERE id = ?";
-        $stmt = $db->prepare($query);
-        
-        $stmt->bind_param("i", $this->id);
-        $stmt->execute();
     
-        if ($stmt->affected_rows > 0) {
-            $flag = true; 
-        }
-        
-        $stmt->close();
-        $db->close();
-
-        return $flag;
-    }
-
-
-    public static function getAll() {
-        $db = DbConnection::getDbConnection();
-        $query = "SELECT * FROM propiedades"; 
-
-        $stmt = $db->prepare($query); 
-        $stmt->execute();
-
-        $resultado = $stmt->get_result();
-        $propiedades = [];
-        while ($propiedad = $resultado->fetch_assoc()){
-            $propiedades[]= new Propiedad($propiedad);
-        }
-
-
-        $stmt->close();
-        $db->close();
-        return $propiedades;
-    }
-
-    public static function getById($id) {
-        $propiedad = null;
-        $db = DbConnection::getDbConnection();
-        $query = "SELECT * FROM propiedades WHERE id = (?)";
-
-        $stmt = $db->prepare($query);
-        $stmt->bind_param("i", $id);
-        $stmt->execute();
-        
-        $resultado = $stmt->get_result();
-
-        if ($resultado->num_rows != 0) {
-            $propiedad = new Propiedad($resultado->fetch_assoc());
-        }
-
-
-        $stmt->close();
-        $db->close();
-        return $propiedad; 
+    public static function crearObjeto($dato){
+        return new Propiedad($dato);
     }
 
     //getters and setters

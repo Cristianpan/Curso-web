@@ -48,20 +48,23 @@ function addPreferensColor() {
 
 function mostrarModalResultado() { 
   const urlParams = new URLSearchParams(window.location.search);
-  const result = urlParams.get('resultado');
-  let mensaje; 
+  let result = urlParams.get('resultado');
+  let mensaje;
+  result = parseInt(result);
+  
+  
 
-  if (result) {
-    if (parseInt(result) === 1) {
-      mensaje = "creado"; 
-    } else if (parseInt(result) === 2) {
-      mensaje = "actualizado"; 
-    } else if (parseInt(result) === 3) {
-      mensaje = "eliminado"; 
+  if (result < 4 && result > 0) {
+    if (result === 1) {
+      mensaje = "Creado"; 
+    } else if (result === 2) {
+      mensaje = "Actualizado"; 
+    } else if (result === 3) {
+      mensaje = "Eliminado"; 
     }
     
     const modal = document.querySelector(".modal");
-    modal.textContent = `Anuncio ${mensaje} correctamente`;
+    modal.textContent = `${mensaje} correctamente`;
     setTimeout(() => {
       modal.textContent = ""; 
     }, 1500); 

@@ -1,12 +1,11 @@
 <?php
 
 use App\Propiedad;
+use App\Vendedor;
 use Intervention\Image\ImageManagerStatic as Image;
-require '../includes/app.php'; 
-require '../includes/utils/utileria.php';
-require '../includes/backend/propiedades.php';
-require '../includes/backend/vendedores.php';
-require '../includes/validators/validadorPropiedad.php';
+require '../../includes/app.php'; 
+require '../../includes/utils/utileria.php';
+require '../../includes/validators/ValidadorPropiedad.php';
 isAuth();
 
 incluirTemplate('header');
@@ -16,10 +15,10 @@ $id = $_GET['id'];
 $id = filter_var($id, FILTER_VALIDATE_INT); 
 
 if(!$id) {
-    header("Location: index.php"); 
+    header("Location: ../index.php"); 
 }
 
-$vendedores = obtenerVendedores(); 
+$vendedores = Vendedor::getAll(); 
 
 $propiedad = Propiedad::getById($id);
 $nombreImagen = $propiedad->getImagen();
@@ -43,12 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errores)) {
         //insertar en la base de datos  
         if ($propiedad->update() && $imagenPropiedad['name']) {
-            eliminarArchivo($nombreImagen);
+            eliminarArchivo("../".$nombreImagen);
             $imagen = Image::make($imagenPropiedad['tmp_name'])->fit(800,600);
-            $imagen->save($propiedad->getImagen());
+            $imagen->save("../".$propiedad->getImagen());
         }
         //redireccionar al usuario
-        header('Location: index.php?resultado=2'); 
+        header('Location: ../index.php?resultado=2'); 
     }
 }
 
@@ -57,11 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <main class="container section centered-content">
 <h1>Actualizar Propiedad</h1>
-    <a href="index.php" class="button-green">Volver</a>
+    <a href="../index.php" class="button-green">Volver</a>
 
     <form class="form" method="post" enctype="multipart/form-data">
 
-        <?php include '../includes/templates/formulario.php' ?>
+        <?php include '../../includes/templates/formularioPropiedad.php' ?>
 
         <div class="submit">
             <input type="submit" class="button-green" value="Actualizar Propiedad" />

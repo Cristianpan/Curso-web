@@ -43,7 +43,6 @@
   <h2>Casas y Depas en Venta</h2>
 
   <?php
-    $limit = 3; 
     require "includes/templates/anuncios.php";  
   ?>
   

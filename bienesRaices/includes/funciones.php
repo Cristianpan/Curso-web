@@ -18,8 +18,13 @@ function isAuth(): bool {
     $auth = $_SESSION['auth']; 
 
     if ($auth === null || $auth === false) {
-        header("Location: ../login.php"); 
+        header("Location: /login.php"); 
     }
 
     return true; 
 } 
+
+function validarTipoContenido($tipo) {
+    $tipos = ['vendedor', 'propiedad'];
+    return in_array($tipo, $tipos);
+}
