@@ -1,0 +1,42 @@
+@use 'base/variables' as v; 
+@use 'base/mixins' as m;
+
+.dark-mode {
+    background-color: darken(v.$grisOscuro, 10);
+
+    p {
+        color: v.$blanco;
+    }
+
+    a, h1, h2, h3, h4 {
+        color: v.$gris;
+    }
+
+    .ad {
+        background-color: v.$grisOscuro;
+        border: none;
+
+        
+    }
+    
+    .price {
+        color: v.$verde;
+    }
+    .characteristics-icon {
+        img {
+            filter: invert(100%);
+        }
+    }
+
+    .form {
+        p, label, legend {
+            color: v.$blanco;
+        }
+
+        input:not([type="submit"]), select, textarea {
+            background-color: v.$grisOscuro;
+            color: v.$blanco;
+            border: none;
+        }
+    }
+}
