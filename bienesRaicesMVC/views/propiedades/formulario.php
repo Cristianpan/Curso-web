@@ -13,7 +13,7 @@
     <?php echo isset($errores['imagen']) ? "<p class='error'>" . $errores['imagen'] . "</p>" : ''; ?>
     <input type="file" id="imagen" name="imagen" accept="image/jpeg, image/png" name="imagen">
     <?php if ($propiedad->getImagen()) : ?>
-        <img src="<?php echo "../" . $propiedad->getImagen() ?>" alt="imagen propiedad" class="imagen-propiedad">
+        <img src="<?php echo "/imagenes/" . $propiedad->getImagen() ?>" alt="imagen propiedad" class="imagen-propiedad">
     <?php endif; ?>
 
     <label for="descripcion">Descripción</label>

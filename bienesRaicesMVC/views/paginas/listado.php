@@ -1,19 +1,9 @@
-<?php
-  use App\Propiedad;
-
-  if ($_SERVER['SCRIPT_NAME'] === '/anuncios.php'){
-    $propiedades = Propiedad::getAll();
-  } else {
-    $propiedades = Propiedad::getLimit(3);
-  }
-?>
-
 <div class="ads-content">
 
   <?php foreach ($propiedades as $propiedad) : ?>
     <div class="ad">
 
-      <img loading="lazy" src="<?php echo str_replace("../", "", $propiedad->getImagen()) ?>" alt="anuncio" />
+      <img loading="lazy" src="<?php echo "/imagenes/" . $propiedad->getImagen() ?>" alt="anuncio" />
 
       <div class="ad-content">
         <h3><?php echo $propiedad->getTitulo() ?></h3>
@@ -34,7 +24,7 @@
           </li>
         </ul>
 
-        <a href="anuncio.php?id=<?php echo $propiedad->getId()?>" class="button-yellow-block">Ver Propiedad</a>
+        <a href="/propiedad?id=<?php echo $propiedad->getId()?>" class="button-yellow-block">Ver Propiedad</a>
       </div>
       <!-- .ad-content -->
     </div>

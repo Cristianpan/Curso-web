@@ -17,15 +17,15 @@
         <tr>
           <td><?php echo $propiedad->getId(); ?></td>
           <td><?php echo $propiedad->getTitulo(); ?></td>
-          <td><img class="imagen-tabla" src="<?php echo $propiedad->getImagen(); ?>" alt="imagen tabla"></td>
+          <td><img class="imagen-tabla" src="<?php echo "/imagenes/" . $propiedad->getImagen(); ?>" alt="imagen tabla"></td>
           <td>$ <?php echo $propiedad->getPrecio(); ?></td>
           <td>
-            <form method="post">
+            <form method="post" action="/propiedades/eliminar">
               <input type="hidden" name="id" value="<?php echo $propiedad->getId(); ?>">
               <input type="hidden" name="tipo" value="propiedad">
               <input type="submit" class="button-red-block" value="Eliminar">
             </form>
-            <a href="./propiedades/actualizar?id=<?php echo $propiedad->getId(); ?>" class="button-green-block">Actualizar</a>
+            <a href="/propiedades/actualizar?id=<?php echo $propiedad->getId(); ?>" class="button-green-block">Actualizar</a>
           </td>
         </tr>
       <?php endforeach ?>
@@ -51,7 +51,7 @@
           <td><?php echo $vendedor->getNombre() . " " . $vendedor->getApellido(); ?></td>
           <td><?php echo $vendedor->getTelefono(); ?></td>
           <td>
-            <form method="post">
+            <form method="post" action="/vendedores/eliminar">
               <input type="hidden" name="id" value="<?php echo $vendedor->getId(); ?>">
               <input type="hidden" name="tipo" value="vendedor">
               <input type="submit" class="button-red-block" value="Eliminar">
