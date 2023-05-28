@@ -7,53 +7,52 @@
     </picture>
 
     <h2>Llene el formulario de contacto</h2>
-    <form class="form">
+
+    <?php 
+        if (!empty($mensaje)) {
+            if ($mensaje[0]) {
+                echo "<p class='modal exito'> $mensaje[1] </p>";
+            } else {
+                echo "<p class='modal error'> $mensaje[1] </p>";
+            }
+        }
+    ?>
+
+
+    <form class="form" action="/contacto" method="post">
         <fieldset>
-            <legend>Información Personal</legend>
+            <legend>Información de Contacto</legend>
 
             <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" placeholder="Tu nombre" />
-
-            <label for="telefono">Telefono</label>
-            <input type="tel" id="telefono" placeholder="Tu telefono" />
-
-            <label for="email">E-mail</label>
-            <input type="email" id="email" placeholder="Tu email" />
-
+            <input type="text" id="nombre" placeholder="Tu nombre" name="contacto[nombre]" required />
+            
             <label for="mensaje">Mensaje</label>
-            <textarea name="mensaje" id="mensaje"></textarea>
+            <textarea id="mensaje" required name="contacto[mensaje]"></textarea>
+            
+            <p class="info">Como desea ser Contactado</p>
+            <div class="forma-contacto">
+                <label for="contact-telefono">Teléfono</label>
+                <input type="radio" value="telefono" id="contact-telefono" name="contacto[contacto]" />
+                <label for="contact-email">E-mail</label>
+                <input type="radio" value="email" id="email" name="contacto[contacto]" />
+            </div>
+
+            <div id="contacto"></div>
+
         </fieldset>
 
         <fieldset>
             <legend>Información sobre Propiedad</legend>
 
             <label for="venta">Vende o Compra</label>
-            <select name="venta" id="venta">
+            <select id="venta" required name="contacto[tipo]">
                 <option value="" selected disabled>Seleccione</option>
                 <option value="compra">Compra</option>
-                <option value="compra">Vende</option>
+                <option value="vende">Vende</option>
             </select>
 
             <label for="presupuesto">Precio o Presupuesto</label>
-            <input type="number" placeholder="Tu presupuesto" />
-        </fieldset>
-
-        <fieldset>
-            <legend>Contacto</legend>
-
-            <p class="info">Como desea ser Contactado</p>
-            <div class="forma-contacto">
-                <label for="contact-telefono">Teléfono</label>
-                <input type="radio" value="telefono" id="contact-telefono" name="contacto" />
-                <label for="contact-email">E-mail</label>
-                <input type="radio" value="emai" id="email" name="contacto" />
-            </div>
-            <p class="info">Si eligió teléfono, eliga la fecha y la hora</p>
-
-            <label for="fecha">Fecha</label>
-            <input type="date" id="fecha" />
-            <label for="hora">Hora</label>
-            <input type="time" id="hora" />
+            <input type="number" placeholder="Tu presupuesto" name="contacto[precio]" required />
         </fieldset>
 
         <div class="submit">

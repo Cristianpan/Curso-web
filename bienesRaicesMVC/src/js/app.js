@@ -14,6 +14,33 @@ window.addEventListener("resize", () => {
 function eventListeners() {
   const mobilMenu = document.querySelector(".mobile-menu");
   mobilMenu.addEventListener("click", navegacionResponsive);
+
+  //Mostrar campos condicionales
+  const metodoContacto = document.querySelectorAll('input[name="contacto[contacto]"');
+  metodoContacto.forEach(input=> input.addEventListener('click', mostrarMetodosContacto));
+
+}
+
+function mostrarMetodosContacto(event){
+  const contactoDiv = document.querySelector('#contacto'); 
+  if (event.target.value === 'telefono'){
+    contactoDiv.innerHTML = `
+    <label for="telefono">Número de Teléfono</label>
+    <input type="tel" id="telefono" placeholder="Tu telefono" name="contacto[telefono]" required/>
+
+    <p class="info">Elija la fecha y la hora para la llamada</p>
+
+    <label for="fecha">Fecha</label>
+    <input type="date" id="fecha" name="contacto[fecha]" required/>
+    <label for="hora">Hora</label>
+    <input type="time" id="hora" name="contacto[hora]" required/>
+    `;
+  } else {
+    contactoDiv.innerHTML = `
+    <label for="email">E-mail</label>
+    <input type="email" id="email" placeholder="Tu email" name="contacto[email]" required />
+    `;
+  }
 }
 
 function navegacionResponsive() {
@@ -51,8 +78,6 @@ function mostrarModalResultado() {
   let result = urlParams.get('resultado');
   let mensaje;
   result = parseInt(result);
-  
-  
 
   if (result < 4 && result > 0) {
     if (result === 1) {
