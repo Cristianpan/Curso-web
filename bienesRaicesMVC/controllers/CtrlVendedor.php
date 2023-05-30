@@ -1,12 +1,14 @@
 <?php 
 namespace Controller;
 require '../includes/validators/ValidadorVendedor.php';
+require '../includes/validators/ValidadorLogin.php';
 use MVC\Router;
 use Model\Vendedor;
 
 
 class CtrlVendedor {
     public static function crear(Router $router) {
+        isAuth();
         $vendedor = new Vendedor;  
         $errores = [];
 
@@ -22,15 +24,16 @@ class CtrlVendedor {
             } 
         }
 
-        $router->render("/vendedores/crear", [
+        $router->render("vendedores/crear", [
             'vendedor' => $vendedor, 
             'errores' => $errores,
         ]);  
     }
-
+    
     public static function actualizar(Router $router) {
+        isAuth();
         $id = validarORedireccionar("/admin");
-
+        
         $vendedor = Vendedor::getById($id);
         $errores = [];
         if (is_null($vendedor)) {
@@ -49,26 +52,27 @@ class CtrlVendedor {
                 header('Location: /admin?resultado=2');
             } 
         }
-
-        $router->render("/vendedores/actualizar", [
+        
+        $router->render("vendedores/actualizar", [
             'vendedor' => $vendedor, 
             'errores' => $errores
         ]);
     }
     
     public static function eliminar() {
+        isAuth();
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $id = $_POST['id'];
             $id = filter_var($id, FILTER_VALIDATE_INT);
             $tipo = $_POST['tipo'];
-          
+            
             if (validarTipoContenido($tipo)) {
                 $vendedor = Vendedor::getById($id);
               if ($vendedor->delete()) {
                 header('Location: /admin?resultado=3');
               }
             }
-          }
+        }
         
     }
 }

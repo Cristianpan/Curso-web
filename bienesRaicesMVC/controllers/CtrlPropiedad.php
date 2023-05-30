@@ -1,6 +1,7 @@
 <?php
 namespace Controller;
 require '../includes/validators/ValidadorPropiedad.php';
+require '../includes/validators/ValidadorLogin.php';
 use MVC\Router;
 use Model\Propiedad;
 use Model\Vendedor;
@@ -9,6 +10,8 @@ use Intervention\Image\ImageManagerStatic as Image;
 class CtrlPropiedad {
 
     public static function index (Router $router) {
+        isAuth();
+        
         $propiedades = Propiedad::getAll();
         $vendedores = Vendedor::getAll();
         $router->render("propiedades/admin", [
@@ -16,9 +19,10 @@ class CtrlPropiedad {
             'vendedores' => $vendedores
         ]);        
     }
-
+    
     public static function crear(Router $router){
-
+        isAuth();
+        
         $propiedad = new Propiedad;
         $vendedores = Vendedor::getAll();
         $errores = [];
@@ -51,6 +55,7 @@ class CtrlPropiedad {
     }
     
     public static function actualizar(Router $router){
+        isAuth();
         $id = validarORedireccionar("/admin"); 
         $propiedad = Propiedad::getById($id);
         $errores = [];
@@ -65,7 +70,7 @@ class CtrlPropiedad {
             $propiedad = new Propiedad($_POST);
             $propiedad->setId($id);
             $imagenPropiedad = $_FILES['imagen'];
-        
+            
             $errores = validarDatos($propiedad, $imagenPropiedad);    
             if ($imagenPropiedad['name']) {
                 $propiedad->setImagen(generarIdentificadorArchivo(".jpg"));
@@ -84,8 +89,8 @@ class CtrlPropiedad {
                 header('Location: /admin?resultado=2'); 
             }
         }
-
-        $router->render('/propiedades/actualizar', [
+        
+        $router->render('propiedades/actualizar', [
             'propiedad' => $propiedad, 
             'errores' => $errores,
             'vendedores' => $vendedores
@@ -93,6 +98,7 @@ class CtrlPropiedad {
     }
 
     public static function eliminar() {
+        isAuth();
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $id = $_POST['id'];
             $id = filter_var($id, FILTER_VALIDATE_INT);

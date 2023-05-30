@@ -5,6 +5,7 @@
     use Controller\CtrlPropiedad;
     use Controller\CtrlVendedor;
     use Controller\CtrlPaginas;
+    use Controller\CtrlLogin;
 
     $router = new Router;
     //index admin
@@ -33,6 +34,13 @@
     $router->get('/entrada', [CtrlPaginas::class, 'entrada']);
     $router->get('/contacto', [CtrlPaginas::class, 'contacto']);
     $router->post('/contacto', [CtrlPaginas::class, 'contacto']);
+    
+    // Login y autenticacion 
+    $router->get('/login', [CtrlLogin::class, 'login']);
+    $router->post('/login', [CtrlLogin::class, 'login']);
+    $router->get('/logout', [CtrlLogin::class, 'logout']);
+
+
     
 
     $router->comprobarRutas();
