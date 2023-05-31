@@ -13,7 +13,7 @@ class CtrlRegistrar {
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             $alerts = ValidadorUsuario::validarDatosRegistro($_POST);
             $usuario = new Usuario($_POST);
-
+            
             if (empty($alerts)) {
                 if ($usuario->existeCorreoRegistrado()){
                     $alerts["email"] = "El correo ya ha sido registrado. Por favor ingrese otro.";
@@ -24,7 +24,7 @@ class CtrlRegistrar {
                     $email->enviarConfirmacion();
                     
                     if ($usuario->save()) {
-                        header("Location: /");
+                        header("Location: /mensaje");
                     }
                 }
             }
@@ -39,4 +39,8 @@ class CtrlRegistrar {
     public static function confirmarCuenta (){
         echo "Confirmando cuenta...";
     } 
+
+    public static function mensaje(Router $router) {
+        $router->render("auth/mensaje");
+    }
 }
