@@ -59,12 +59,32 @@ abstract class ActiveRecord {
         while ($dato = $resultado->fetch_assoc()){
             $array[] = static::crearObjeto($dato); 
         }
-
-
+        
+        
         $stmt->close();
         $db->close();
         return $array;
+        
+    }
+    public static function where($data, $column) {
+        $db = DbConnection::getDbConnection();
+        $dato = null; 
+        $query = "SELECT * FROM " .  static::$table . " WHERE $column = ?";  
+        $stmt = $db->prepare($query);
 
+        $stmt->bind_param("s", $data);
+        $stmt->execute();
+
+        $resultado = $stmt->get_result();
+
+        if ($resultado->num_rows != 0){
+            $dato = static::crearObjeto($resultado->fetch_assoc());
+        }
+
+        $stmt->close();
+        $db->close();
+
+        return $dato; 
     }
 
     public function delete() {
@@ -85,6 +105,7 @@ abstract class ActiveRecord {
 
         return $flag;
     }
+
 
     abstract public static function crearObjeto($dato);
 
