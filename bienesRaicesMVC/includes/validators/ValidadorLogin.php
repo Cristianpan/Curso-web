@@ -29,9 +29,9 @@ function isLogin(Admin $usuario, $password): array {
 
 function isAuth(): bool {
     session_start();
-    $auth = $_SESSION['auth'];
+    $auth = $_SESSION['auth'] ?? false;
 
-    if ($auth === null || $auth === false) {
+    if ($auth === false) {
         header("Location: /login");
     }
 
