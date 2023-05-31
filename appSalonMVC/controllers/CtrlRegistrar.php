@@ -1,7 +1,10 @@
 <?php 
-namespace Controller; 
+namespace Controller;
+
+use MVC\Router;
+
 class CtrlRegistrar {
-    public static function registrar() {
-        echo "registrar usuario...";
+    public static function registrar(Router $router) {
+        $router->render("auth/crearCuenta");
     }
 }

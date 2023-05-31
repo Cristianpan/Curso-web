@@ -1,0 +1,25 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v;
+
+.form {
+    width: 100%;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+    padding: 0 2rem;
+}
+
+.field {
+    display:  flex;
+    margin-bottom: 2rem;
+    align-items: center;
+
+    label {
+        flex: 0 0 10rem; 
+    }
+
+    input {
+        flex: 1;
+        padding: calc(v.$separacion / 4);
+        border-radius: 1rem;
+    }
+}

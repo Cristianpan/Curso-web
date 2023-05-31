@@ -31,3 +31,17 @@ a {
 img {
     max-width: 100%;
 }
+
+input {
+    border: none;
+    outline: none;
+}
+
+input:focus {
+    border: 0.3rem solid v.$azul; 
+}
+
+.align-right {
+    display: flex;
+    justify-content: flex-end;
+}
