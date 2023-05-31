@@ -1,0 +1,17 @@
+@use 'base/variables' as v; 
+
+.section {
+    margin-top: calc(v.$separacion / 2);
+    margin-bottom: calc(v.$separacion / 2);
+}
+.centered-content {
+    max-width: 800px;
+    margin: 0 auto; 
+}
+
+.align-right {
+    display: flex;
+    justify-content: end;
+}
+
+

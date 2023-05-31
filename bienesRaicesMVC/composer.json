@@ -1,0 +1,22 @@
+{
+    "name": "panza/bienes-raices",
+    "description": "Creando un proyecto con POO",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Cristian Pan",
+            "email": "a16003566@alumnos.uady.mx"
+        }
+    ],
+    "require": {
+        "intervention/image": "^2.7",
+        "phpmailer/phpmailer": "^6.8"
+    }, 
+    "autoload": {
+        "psr-4": {
+            "Model\\" : "./models", 
+            "MVC\\" : "./",
+            "Controller\\": "./controllers"
+        }
+    }
+}

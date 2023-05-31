@@ -1,0 +1,19 @@
+{
+    "name": "panza/app-salon-mvc",
+    "description": "Proyecto de app salon con arquitectura mvc",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\" : "./", 
+            "Controller\\": "./controllers", 
+            "Model\\": "./models" 
+        }
+    },
+    "authors": [
+        {
+            "name": "Cristian Pan",
+            "email": "a16003566@alumnos.uady.mx"
+        }
+    ],
+    "require": {}
+}
