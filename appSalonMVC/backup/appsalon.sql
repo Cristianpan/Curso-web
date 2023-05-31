@@ -11,12 +11,13 @@ CREATE TABLE `usuarios` (
   `nombre` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `apellido` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `telefono` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `admin` tinyint(1) NOT NULL,
-  `confirmado` tinyint(1) NOT NULL,
+  `admin` tinyint(1) NOT NULL DEFAULT '0',
+  `confirmado` tinyint(1) NOT NULL DEFAULT '0',
   `token` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `citas` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -34,7 +35,6 @@ CREATE TABLE `servicios` (
   `precio` decimal(5,2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 
 CREATE TABLE `citasservicios` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -63,6 +63,8 @@ INSERT INTO `servicios` (`id`, `nombre`, `precio`) VALUES
 (10, 'Lavado de Cabello', 50.00),
 (11, 'Tratamiento Capilar', 150.00);
 
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `telefono`, `admin`, `confirmado`, `token`) VALUES
+(1, 'Cristian David', 'Pan Zaldivar', 'panzaldivarcristian@gmail.com', '$2y$10$DWkq.n3WdfEWJvEy4DBHMOYCoDkhUQcPzLh3PDLU2BR7vTBFLFNrC', '9993981242', 0, 0, '647781ebbe7b1');
 
 
 

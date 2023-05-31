@@ -5,20 +5,17 @@
     width: 100%;
     margin-top: 5rem;
     margin-bottom: 1rem;
-    padding: 0 2rem;
+    padding: 0 5rem;
 }
 
 .field {
     display:  flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 1rem;
     margin-bottom: 2rem;
-    align-items: center;
-
-    label {
-        flex: 0 0 10rem; 
-    }
 
     input {
-        flex: 1;
         padding: calc(v.$separacion / 4);
         border-radius: 1rem;
     }

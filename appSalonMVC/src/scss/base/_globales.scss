@@ -45,3 +45,9 @@ input:focus {
     display: flex;
     justify-content: flex-end;
 }
+
+.error {
+    color: v.$rojo;
+    margin: 0;
+    font-size: 1.6rem;
+}

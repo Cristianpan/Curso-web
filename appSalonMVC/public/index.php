@@ -21,6 +21,7 @@ $router->post('/recuperar', [CtrlLogin::class, 'recuperar']);
 //Registrar usuario
 $router->get('/crearCuenta', [CtrlRegistrar::class, 'registrar']);
 $router->post('/crearCuenta', [CtrlRegistrar::class, 'registrar']);
+$router->get('/confirmarCuenta', [CtrlRegistrar::class, 'confirmarCuenta']);
 
 
 
