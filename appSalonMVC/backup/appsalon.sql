@@ -64,9 +64,9 @@ INSERT INTO `servicios` (`id`, `nombre`, `precio`) VALUES
 (11, 'Tratamiento Capilar', 150.00);
 
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `telefono`, `admin`, `confirmado`, `token`) VALUES
-(1, 'Cristian David', 'Pan Zaldivar', 'panzaldivarcristian@gmail.com', '$2y$10$DWkq.n3WdfEWJvEy4DBHMOYCoDkhUQcPzLh3PDLU2BR7vTBFLFNrC', '9993981242', 0, 0, '647781ebbe7b1');
-
-
+(1, 'Cristian David', 'Pan Zaldivar', 'panzaldivarcristian@gmail.com', '$2y$10$jUL/N0Drzox9hfsfhn91/.i0Y2nRuZnyADu28fnVaJ79Z5nLhQrJ6', '9993981242', 0, 1, NULL),
+(3, 'Cristian David', 'Pan Zaldivar', 'cristianpanzaldivar60101@hotmail.com', '$2y$10$kUcVKFrUm09ZutJwIjFyWeumAzIKlDmKVcDjW5yFnUWDtBw5.pxFa', '9993981242', 0, 1, NULL),
+(4, 'Cristian', 'Pan', 'a16003566@gmail.com', '$2y$10$kiD43LEuX.3d0UZYFNQ6GOaIenjJl9WZMKjC1VZwIYPzXmZqDdxDO', '9993981242', 0, 1, NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

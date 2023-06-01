@@ -27,4 +27,14 @@
 
             return $alerts; 
         }
+
+        public static function isAuth(): bool {
+            session_start();
+            if (!isset($_SESSION['auth']) || $_SESSION['auth'] === false) {
+                header("Location: /");
+                exit();
+            }
+        
+            return true;
+        }
     }
