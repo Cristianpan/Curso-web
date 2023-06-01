@@ -32,7 +32,7 @@ class CtrlRegistrar {
 
         $router->render("auth/crearCuenta", [
             "usuario" => $usuario, 
-            "errors" => $errors,
+            "alerts" => $errors,
         ]);
     }
 

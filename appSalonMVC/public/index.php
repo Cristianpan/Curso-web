@@ -15,8 +15,8 @@ $router->get('/cerrarSesion', [CtrlLogin::class, 'logout']);
 //Recuperar password
 $router->get('/olvide', [CtrlLogin::class, 'olvide']); 
 $router->post('/olvide', [CtrlLogin::class, 'olvide']); 
-$router->get('/recuperar', [CtrlLogin::class, 'recuperar']); 
-$router->post('/recuperar', [CtrlLogin::class, 'recuperar']);
+$router->get('/restablecer', [CtrlLogin::class, 'restablecer']); 
+$router->post('/restablecer', [CtrlLogin::class, 'restablecer']);
 
 //Registrar usuario
 $router->get('/crearCuenta', [CtrlRegistrar::class, 'registrar']);

@@ -20,7 +20,7 @@
             if (is_null($usuario)) {
                 $alerts["usuario"] = "No existe algún usuario con el correo ingresado";
             } else if (!$usuario->getConfirmado()) {
-                $alerts["usuario"] = "Por favor verifique compruebe su cuenta e intente nuevamente";
+                $alerts["usuario"] = "Por favor verifique su cuenta e intente nuevamente";
             } else if (!password_verify($password, $usuario->getPassword())){
                 $alerts['usuario'] = "La contraseña es incorrecta"; 
             }

@@ -3,8 +3,10 @@
 namespace Controller;
 
 use Model\Usuario;
+use Classes\Email;
 use MVC\Router;
 use Validator\ValidadorLogin;
+use Validator\ValidadorUsuario;
 
 class CtrlLogin {
     
@@ -43,14 +45,78 @@ class CtrlLogin {
         ]);
     }
     public static function logout(){
-        echo "cerrando sesion..."; 
+        session_start(); 
+        $_SESSION = []; 
+
+        header("Location: /");
     }
 
     public static function olvide(Router $router) {
-        $router->render("auth/olvidePassword"); 
+        $alerts = [];
+        $message = [];
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $email = $_POST['email'];
+
+            $alerts = ValidadorUsuario::validarEmail($email);
+
+            if (empty($alerts)){
+                $usuario = Usuario::where($email, 'email');
+
+                if ($usuario && $usuario->getConfirmado()){
+                    $usuario->crearToken();
+                    $usuario->update();
+
+                    $email = new Email($usuario->getEmail(), $usuario->getNombre(), $usuario->getToken());
+                    $email->enviarInstrucciones();
+
+
+                    $message['tipo'] = "exito"; 
+                    $message['informacion'] = "Revisa tu Email";
+                } else {
+                    $message['tipo'] = "error"; 
+                    $message['informacion'] = "El usuario no existe o no ha confirmado su cuenta";
+                }
+            }
+        }
+
+        $router->render("auth/olvidePassword", [
+            "alerts" => $alerts, 
+            "message" => $message,
+        ]); 
     }
 
-    public static function recuperar(){
-        echo "cerrando sesion..."; 
+    public static function restablecer(Router $router){
+        $message = [];
+        $alerts = [];
+        $token = sanitizarHtml($_GET['token']);
+
+        $usuario = Usuario::where($token, "token");
+
+        if (is_null($usuario)) {
+            $message['tipo'] = "error";
+            $message['informacion'] = "El token es invalido";
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            $password = $_POST['password'];
+            $alerts = ValidadorUsuario::validarPassword($password);
+
+            if (empty($alerts)) {
+                $usuario->setPassword($password); 
+                $usuario->setToken(null);
+                $usuario->hashPassword();
+                if ($usuario->update()) {
+                    header("Location: /");
+                }
+            }
+        }
+
+
+        $router->render("auth/restablecerPassword", [
+            "message" => $message,
+            "alerts" => $alerts,
+        ]);
+        
     }
 }
