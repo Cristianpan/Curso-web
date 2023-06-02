@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controller\CtrlApi;
 use MVC\Router;
 use Controller\CtrlLogin;
 use Controller\CtrlRegistrar;
@@ -26,8 +27,11 @@ $router->post('/crearCuenta', [CtrlRegistrar::class, 'registrar']);
 $router->get('/confirmarCuenta', [CtrlRegistrar::class, 'confirmarCuenta']);
 
 // Area privada
-
 $router->get('/citas', [CtrlCita::class, 'index']);
+
+
+//Api
+$router->get('/api/servicios', [CtrlApi::class, 'index']);
 
 
 

@@ -21,22 +21,22 @@
             <div class="field">
                 <label for="nombre">Nombre</label>
                 <input id="nombre" type="text" placeholder="Tu nombre" value="<?php echo $nombre?>" disabled>
-
+                
             </div>
             <div class="field">
                 <label for="fecha">Fecha</label>
-                <input id="fecha" type="date">
+                <p class="ocultar"></p>
+                <input id="fecha" type="date" min="<?php echo Date('Y-m-d')?>">
             </div>
             <div class="field">
                 <label for="hora">Hora</label>
+                <p class="ocultar"></p>
                 <input id="hora" type="time">
             </div>
         </form>
 
     </div>
-    <div id="paso-3" class="seccion">
-        <h2>Resumen</h2>
-        <p class="text-center">Verifica que la información sea correcta</p>
+    <div id="paso-3" class="seccion contenido-resumen">
     </div>
 
     <div class="paginacion">
