@@ -6,7 +6,9 @@
         "psr-4": {
             "MVC\\" : "./", 
             "Controller\\": "./controllers", 
-            "Model\\": "./models" 
+            "Model\\": "./models",
+            "Validator\\" : "./validators", 
+            "Classes\\": "./classes"
         }
     },
     "authors": [
@@ -15,5 +17,7 @@
             "email": "a16003566@alumnos.uady.mx"
         }
     ],
-    "require": {}
+    "require": {
+        "phpmailer/phpmailer": "^6.8"
+    }
 }
