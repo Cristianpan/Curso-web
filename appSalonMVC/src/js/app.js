@@ -2,6 +2,7 @@ let paso = 1;
 
 
 const cita = {
+    usuarioId: '',
     nombre: '', 
     fecha: '', 
     hora: '', 
@@ -18,7 +19,7 @@ function iniciarApp() {
     paginaAnterior();
     paginaSiguiente();
     consultarApi();
-    añadirNombreCliente();
+    agregarDatosCliente();
     obtenerHoraCita();
     obtenerFechaCita();
 }
@@ -151,8 +152,9 @@ function seleccionarServicio(servicio){
 
 }
 
-function añadirNombreCliente() {
+function agregarDatosCliente() {
     cita.nombre = document.querySelector("#nombre").value;
+    cita.usuarioId = document.querySelector("#usuarioId").value; 
 }
 
 function obtenerHoraCita(){
@@ -324,6 +326,49 @@ function generarBotonEnviarCita(){
     return contenedor; 
 }
 
-function reservarCita(){
-    console.log('Reservando cita...');
+async function reservarCita(){
+    const url = "/api/citas"; 
+    const {usuarioId, fecha, hora, servicios} = cita; 
+    const datosCita = {
+        usuarioId, 
+        fecha, 
+        hora
+    }
+    datosCita.servicios = servicios.map(servicio => servicio.id);
+    
+    try {
+        const respuesta = await fetch(url, {
+            method: 'POST', 
+            body: JSON.stringify(datosCita), 
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    
+        const result = await respuesta.json();
+
+        console.log(result);
+    
+        if (result.ok) {
+            await Swal.fire({
+                icon: 'success', 
+                title: 'Cita Creada', 
+                text: 'Su cita ha sido creada correctamente', 
+                button: 'Ok', 
+            });
+    
+            setTimeout(()=> {
+                window.location.reload();
+            }, 3000);
+        }
+    } catch (error) {
+        console.log(error);
+        Swal.fire({
+            icon: 'error', 
+            title: 'Error', 
+            text: 'Ha ocurrido un error al crear la cita.', 
+            button: 'Ok',
+        });   
+    }
+    
 }

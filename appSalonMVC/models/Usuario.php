@@ -3,7 +3,7 @@ namespace Model;
 use DbConnection;
 
 class Usuario extends ActiveRecord {
-    public static $table = "usuarios";
+    protected static $table = "usuarios";
 
     protected $id; 
     private $nombre; 
