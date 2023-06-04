@@ -6,6 +6,7 @@ use Controller\CtrlApi;
 use MVC\Router;
 use Controller\CtrlLogin;
 use Controller\CtrlRegistrar;
+use Controller\CtrlAdmin;
 use Controller\CtrlCita;
 
 $router = new Router();
@@ -28,13 +29,13 @@ $router->get('/confirmarCuenta', [CtrlRegistrar::class, 'confirmarCuenta']);
 
 // Area privada
 $router->get('/citas', [CtrlCita::class, 'index']);
+$router->get('/admin', [CtrlAdmin::class, 'index']);
 
 
 //Api
 $router->get('/api/servicios', [CtrlApi::class, 'index']);
 $router->post('/api/citas', [CtrlApi::class, 'reservarCita']);
-
-
+$router->post('/api/eliminar', [CtrlApi::class, 'eliminar']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

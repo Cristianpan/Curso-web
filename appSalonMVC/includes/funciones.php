@@ -10,3 +10,7 @@ function debuguear($variable) : string {
 function sanitizarHtml($value) {
     return htmlspecialchars($value);
 }
+
+function esUltimo($actual, $proximo){
+    return $actual !== $proximo; 
+}

@@ -1,0 +1,20 @@
+@use '../base/variables' as v; 
+
+.citas {
+    list-style: none;
+    padding: 0; 
+
+    li {
+        padding: 1rem;
+        border-top: 1px solid v.$blanco;
+
+        p{
+            font-weight: bold;
+            color: v.$azul; 
+        }  
+        span, .servicio {
+            color: v.$blanco; 
+            font-weight: normal;
+        } 
+    }
+}

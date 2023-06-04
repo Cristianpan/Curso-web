@@ -23,10 +23,17 @@
         width: 95%;
         margin: 0 auto;
         padding: 3rem 0;
+        @include m.tablet {
+            overflow-y: scroll;
+        }
     }
 }
 
 .barra {
+    p{
+        text-align: center
+    }
+
     .button {
         @include m.boton(v.$negro, v.$blanco);
     }

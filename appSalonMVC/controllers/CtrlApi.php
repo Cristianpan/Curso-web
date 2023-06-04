@@ -37,4 +37,15 @@ use Model\Servicio;
             header('Content-Type: application/json');
             echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
         }
+
+        public static function eliminar() {
+            if ($_SERVER["REQUEST_METHOD"] === "POST"){
+                $id = $_POST['id'];
+                $cita = Cita::getById($id); 
+
+                $cita->delete(); 
+
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
+            }
+        }
     }
