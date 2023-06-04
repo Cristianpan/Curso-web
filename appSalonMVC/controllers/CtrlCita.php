@@ -11,6 +11,7 @@ use Validator\ValidadorLogin;
             
             $router->render('cita/index', [
                 'nombre' => $_SESSION['nombre'],
+                'usuarioId' => $_SESSION['id'],
             ]);
         }
     }

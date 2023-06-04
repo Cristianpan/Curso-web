@@ -24,6 +24,16 @@
         margin: 0 auto;
         padding: 3rem 0;
     }
+}
 
+.barra {
+    .button {
+        @include m.boton(v.$negro, v.$blanco);
+    }
 
+    @include m.tablet {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 }

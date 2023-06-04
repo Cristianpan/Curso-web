@@ -4,7 +4,7 @@
 use JsonSerializable;
 
     class Servicio extends ActiveRecord implements JsonSerializable {
-        public static $table = "servicios"; 
+        protected static $table = "servicios"; 
         protected $id; 
         private $nombre; 
         private $precio; 

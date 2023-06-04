@@ -68,6 +68,18 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `telefo
 (3, 'Cristian David', 'Pan Zaldivar', 'cristianpanzaldivar60101@hotmail.com', '$2y$10$kUcVKFrUm09ZutJwIjFyWeumAzIKlDmKVcDjW5yFnUWDtBw5.pxFa', '9993981242', 0, 1, NULL),
 (4, 'Cristian', 'Pan', 'a16003566@gmail.com', '$2y$10$kiD43LEuX.3d0UZYFNQ6GOaIenjJl9WZMKjC1VZwIYPzXmZqDdxDO', '9993981242', 0, 1, NULL);
 
+INSERT INTO `citas` (`id`, `usuarioId`, `fecha`, `hora`) VALUES
+(16, 1, '2023-06-08', '11:12:00'),
+(17, 1, '2023-06-27', '11:19:00');
+
+INSERT INTO `citasservicios` (`id`, `servicioId`, `citaId`) VALUES
+(1, 1, 16),
+(2, 2, 16),
+(3, 1, 17),
+(4, 3, 17),
+(5, 4, 17),
+(6, 2, 17);
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;

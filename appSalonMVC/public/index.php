@@ -32,6 +32,7 @@ $router->get('/citas', [CtrlCita::class, 'index']);
 
 //Api
 $router->get('/api/servicios', [CtrlApi::class, 'index']);
+$router->post('/api/citas', [CtrlApi::class, 'reservarCita']);
 
 
 
