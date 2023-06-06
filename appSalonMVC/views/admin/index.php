@@ -8,17 +8,17 @@
     <form class="form">
         <div class="field">
             <label for="fecha">Fecha</label>
-            <input type="date" id="fecha" name="fecha" value="<?php echo $fecha?>">
+            <input type="date" id="fecha" name="fecha" value="<?php echo $fecha ?>">
         </div>
     </form>
 
 </div>
 
 <div id="citas-admin">
-    <?php 
-        if (!count($citas)){
-            echo "<h3>No hay citas registradas para la fecha seleccionada</h3>";
-        }
+    <?php
+    if (!count($citas)) {
+        echo "<h3>No hay citas registradas para la fecha seleccionada</h3>";
+    }
     ?>
 
     <ul class="citas">
@@ -45,14 +45,14 @@
                 $actual = $cita->getId();
                 $proximo = 0;
 
-                if (isset($citas[$key+1])){
+                if (isset($citas[$key + 1])) {
                     $proximo = $citas[$key + 1]->getId();
                 }
 
                 if (esUltimo($actual, $proximo)) { ?>
                     <p class="total"> Total: <span>$ <?php echo $total ?></span></p>
                     <form action="/api/eliminar" method="POST" class="align-right">
-                        <input type="hidden" name="id" value="<?php echo $cita->getId()?>">
+                        <input type="hidden" name="id" value="<?php echo $cita->getId() ?>">
                         <input type="submit" class="boton-eliminar" value="Eliminar cita">
                     </form>
             <?php
@@ -63,6 +63,6 @@
 </div>
 
 
-<?php 
-    $script = "<script src='build/js/buscador.js'></script>";
+<?php
+$script = "<script src='build/js/buscador.js'></script>"
 ?>

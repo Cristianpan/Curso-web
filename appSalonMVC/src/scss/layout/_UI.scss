@@ -25,12 +25,17 @@
         padding: 3rem 0;
         @include m.tablet {
             overflow-y: scroll;
+           
+            &::-webkit-scrollbar {
+                display: none;
+            }
         }
+
     }
 }
 
 .barra {
-    p{
+    p {
         text-align: center
     }
 

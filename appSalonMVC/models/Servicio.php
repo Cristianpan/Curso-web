@@ -10,9 +10,9 @@ use JsonSerializable;
         private $precio; 
 
         public function __construct($args = []) {
-            $this->id = $args['id'];
-            $this->nombre = $args['nombre'];
-            $this->precio = $args['precio'];
+            $this->id = $args['id'] ?? '';
+            $this->nombre = $args['nombre'] ?? '';
+            $this->precio = $args['precio'] ?? '';
         }
 
         public function jsonSerialize() {
