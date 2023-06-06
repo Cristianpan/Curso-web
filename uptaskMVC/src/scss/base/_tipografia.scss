@@ -19,3 +19,15 @@ p {
     color: v.$gris;
     line-height: 1.8;
 }
+
+.tagline {
+    font-family: v.$fuente_headings;
+    font-weight: bold;
+    color: v.$negro;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.descripcion-pagina {
+    text-align: center;
+}

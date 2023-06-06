@@ -1,9 +1,17 @@
 <?php 
-namespace Controllers; 
+namespace Controllers;
+
+use MVC\Router;
 
 class CtrlCuenta {
-    public static function crear() {
-        echo "Desde crear";
+    public static function crear(Router $router) {
+        if ($_SERVER["REQUEST_METHOD"] === "POST"){
+            
+        }
+
+        $router->render("auth/crear", [
+            'titulo' => 'Crea tu cuenta'
+        ]);
     }
     public static function olvide() {
         echo "Desde Olvide";
