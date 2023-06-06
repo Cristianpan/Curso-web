@@ -13,17 +13,26 @@ class CtrlCuenta {
             'titulo' => 'Crea tu cuenta'
         ]);
     }
-    public static function olvide() {
-        echo "Desde Olvide";
+    public static function olvide(Router $router) {
+        $router->render("auth/olvide", [
+            'titulo' => 'Olvide mi contraseña'
+        ]);
     }
-    public static function restablecer() {
-        echo "Desde restablecer";
+    public static function restablecer(Router $router) {
+        $router->render("auth/restablecer", [
+            'titulo' => 'Restablecer contraseña'
+        ]);
     }
-
-    public static function mensaje(){
-        echo "Desde mensaje";
+    
+    public static function mensaje(Router $router){
+        $router->render("auth/mensaje", [
+            'titulo' => 'Cuenta creada'
+        ]);
+        
     }
-    public static function confirmar(){
-        echo "Desde confirmar cuenta";
+    public static function confirmar(Router $router){
+        $router->render("auth/confirmar", [
+            'titulo' => 'Confirma tu cuenta'
+        ]);
     }
 }
