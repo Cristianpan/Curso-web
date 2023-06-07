@@ -46,4 +46,16 @@ class ValidadorUsuario {
 
         return $error;
     }
+
+    public static function validarPasswordLogin($password) {
+        $error = [];
+
+        if (!$password) {
+            $error['password'] = "La contraseña es obligatoria";
+        } else if (strlen($password) < 6) {
+            $error['password'] = "La contraseña debe contener al menos 6 caracteres";
+        } 
+
+        return $error; 
+    }
 }
