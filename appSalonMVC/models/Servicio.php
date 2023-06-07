@@ -15,7 +15,7 @@ use JsonSerializable;
             $this->precio = $args['precio'] ?? '';
         }
 
-        public function jsonSerialize() {
+        public function jsonSerialize():array {
             return [
                 'id' => $this->id,
                 'nombre' => $this->nombre, 
