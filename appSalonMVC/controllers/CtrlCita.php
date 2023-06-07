@@ -7,7 +7,12 @@ use Validator\ValidadorLogin;
 
     class CtrlCita {
         public static function index(Router $router){
+            session_start();
             ValidadorLogin::isAuth();
+
+            if (isset($_SESSION['admin'])) {
+                header("Location: /admin");
+            }
             
             $router->render('cita/index', [
                 'nombre' => $_SESSION['nombre'],

@@ -10,14 +10,14 @@ CREATE TABLE `usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `apellido` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `telefono` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT '0',
   `confirmado` tinyint(1) NOT NULL DEFAULT '0',
-  `token` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `citas` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -27,7 +27,7 @@ CREATE TABLE `citas` (
   PRIMARY KEY (`id`),
   KEY `usuarioId` (`usuarioId`),
   CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`usuarioId`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `servicios` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -45,7 +45,21 @@ CREATE TABLE `citasservicios` (
   KEY `servicioId` (`servicioId`),
   KEY `citaId` (`citaId`),
   CONSTRAINT `citasservicios_ibfk_1` FOREIGN KEY (`servicioId`) REFERENCES `servicios` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `telefono`, `admin`, `confirmado`, `token`) VALUES
+(1, 'Cristian David', ' Pan Zaldivar', 'panzaldivarcristian@gmail.com', '$2y$10$jUL/N0Drzox9hfsfhn91/.i0Y2nRuZnyADu28fnVaJ79Z5nLhQrJ6', '9993981242', 0, 1, NULL);
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `telefono`, `admin`, `confirmado`, `token`) VALUES
+(3, 'Cristian David', 'Pan Zaldivar', 'cristianpanzaldivar60101@hotmail.com', '$2y$10$kUcVKFrUm09ZutJwIjFyWeumAzIKlDmKVcDjW5yFnUWDtBw5.pxFa', '9993981242', 0, 1, NULL);
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `telefono`, `admin`, `confirmado`, `token`) VALUES
+(4, 'Cristian', 'Pan', 'a16003566@gmail.com', '$2y$10$kiD43LEuX.3d0UZYFNQ6GOaIenjJl9WZMKjC1VZwIYPzXmZqDdxDO', '9993981242', 0, 1, NULL);
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `telefono`, `admin`, `confirmado`, `token`) VALUES
+(5, 'David', 'Zaldivar', 'admin@gmail.com', '$2y$10$VS6C.MMaBmAmutlxlzz7R.fjKMg1k4cFg6NWlKrLJogO5HWZT5wb.', '9993955071', 1, 1, NULL);
+
+
+INSERT INTO `citas` (`id`, `usuarioId`, `fecha`, `hora`) VALUES
+(17, 1, '2023-06-27', '11:19:00');
 
 INSERT INTO `servicios` (`id`, `nombre`, `precio`) VALUES
 (1, 'Corte de Cabello Mujer', 90.00);
@@ -63,22 +77,17 @@ INSERT INTO `servicios` (`id`, `nombre`, `precio`) VALUES
 (10, 'Lavado de Cabello', 50.00),
 (11, 'Tratamiento Capilar', 150.00);
 
-INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `telefono`, `admin`, `confirmado`, `token`) VALUES
-(1, 'Cristian David', 'Pan Zaldivar', 'panzaldivarcristian@gmail.com', '$2y$10$jUL/N0Drzox9hfsfhn91/.i0Y2nRuZnyADu28fnVaJ79Z5nLhQrJ6', '9993981242', 0, 1, NULL),
-(3, 'Cristian David', 'Pan Zaldivar', 'cristianpanzaldivar60101@hotmail.com', '$2y$10$kUcVKFrUm09ZutJwIjFyWeumAzIKlDmKVcDjW5yFnUWDtBw5.pxFa', '9993981242', 0, 1, NULL),
-(4, 'Cristian', 'Pan', 'a16003566@gmail.com', '$2y$10$kiD43LEuX.3d0UZYFNQ6GOaIenjJl9WZMKjC1VZwIYPzXmZqDdxDO', '9993981242', 0, 1, NULL);
-
-INSERT INTO `citas` (`id`, `usuarioId`, `fecha`, `hora`) VALUES
-(16, 1, '2023-06-08', '11:12:00'),
-(17, 1, '2023-06-27', '11:19:00');
-
 INSERT INTO `citasservicios` (`id`, `servicioId`, `citaId`) VALUES
-(1, 1, 16),
-(2, 2, 16),
-(3, 1, 17),
+(1, 1, 16);
+INSERT INTO `citasservicios` (`id`, `servicioId`, `citaId`) VALUES
+(2, 2, 16);
+INSERT INTO `citasservicios` (`id`, `servicioId`, `citaId`) VALUES
+(3, 1, 17);
+INSERT INTO `citasservicios` (`id`, `servicioId`, `citaId`) VALUES
 (4, 3, 17),
 (5, 4, 17),
 (6, 2, 17);
+
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

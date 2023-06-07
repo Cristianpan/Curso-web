@@ -29,12 +29,19 @@
         }
 
         public static function isAuth(): bool {
-            session_start();
             if (!isset($_SESSION['auth']) || $_SESSION['auth'] === false) {
                 header("Location: /");
                 exit();
             }
         
             return true;
+        }
+
+        public static function isAdmin() {
+            if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
+                header("Location: /citas");
+            }
+
+            return true; 
         }
     }

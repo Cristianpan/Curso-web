@@ -13,6 +13,12 @@ class CtrlLogin {
     public static function login(Router $router){
         $alerts = [];
 
+        session_start(); 
+        //Redirige a una página si ya existe una sesion activa
+        if (!empty($_SESSION)) {
+            header("Location: /citas");
+        }
+
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $email = $_POST['email'];
             $password = $_POST['password'];
@@ -23,7 +29,6 @@ class CtrlLogin {
                 $alerts = ValidadorLogin::isLogin($usuario, $password);
 
                 if (empty($alerts)) {
-                    session_start();
                     $_SESSION['id'] = $usuario->getId(); 
                     $_SESSION['nombre'] = $usuario->getNombre() . " " .  $usuario->getApellido(); 
                     $_SESSION['email'] = $usuario->getEmail(); 
@@ -37,7 +42,6 @@ class CtrlLogin {
                     }
                 }
             }
-
         }
 
         $router->render("auth/login", [
