@@ -48,6 +48,7 @@ class CtrlCuenta {
             'titulo' => 'Olvide mi contraseña'
         ]);
     }
+    
     public static function restablecer(Router $router) {
         $router->render("auth/restablecer", [
             'titulo' => 'Restablecer contraseña'
@@ -60,10 +61,11 @@ class CtrlCuenta {
         ]);
         
     }
+
     public static function confirmar(Router $router){
 
         $token = sanitizarHtml($_GET['token']);
-        $error = [];
+        $message = [];
         
         if (!$token) {
             header("Location: /");
@@ -72,18 +74,20 @@ class CtrlCuenta {
         $usuario = Usuario::where($token, 'token');
 
         if (is_null($usuario)){
-            $error['token'] = "El token no es valido";
+            $message['tipo'] = "error";
+            $message['info'] = "El token no es valido";
         } else {
             $usuario->setToken(null);
             $usuario->setConfirmado(1);
             if ($usuario->update()){
-                $error['token'] = "La cuenta ha sido comprobada correctamente";
+                $message['tipo'] = "exito";
+                $message['info'] = "La cuenta ha sido comprobada correctamente";
             }
         }
         
         $router->render("auth/confirmar", [
             'titulo' => 'Confirma tu cuenta', 
-            'error' => $error
+            'message' => $message
         ]);
     }
 }

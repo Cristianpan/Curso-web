@@ -1,6 +1,5 @@
 <div class="contenedor restablecer">
-    <?php include_once __DIR__ . "/../templates/nombreCitio.php" ?>
-
+    <?php include_once __DIR__ . "/../templates/nombreSitio.php" ?>
     <div class="contenedor-sm">
         <p class="descripcion-pagina">Coloca tu nuevo password</p>
 

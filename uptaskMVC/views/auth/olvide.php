@@ -1,5 +1,5 @@
 <div class="contenedor olvide">
-    <?php include_once __DIR__ . "/../templates/nombreCitio.php" ?>
+    <?php include_once __DIR__ . "/../templates/nombreSitio.php" ?>
 
     <div class="contenedor-sm">
         <p class="descripcion-pagina">Recupera tu Acceso a Uptask</p>
@@ -13,7 +13,7 @@
                 <input type="submit" class="button" value="Enviar Instrucciones">
             </div>
         </form>
-        
+
         <div class="actions">
             <a href="/">¿Ya tienes una cuenta? Inicia Sesión</a>
             <a href="/crear">¿Aún no tienes una cuenta? Obtener una</a>
