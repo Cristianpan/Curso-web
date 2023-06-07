@@ -7,7 +7,11 @@
         <form action="/restablecer" class="form" method="post">
             <div class="field">
                 <label for="password">Contraseña</label>
-                <input type="password" id="password" placeholder="Tu Contraseña" name="password">
+                <input type="password" id="password" placeholder="Tu contraseña" name="password">
+            </div>
+            <div class="field">
+                <label for="password2">Repetir Contraseña</label>
+                <input type="password" id="password2" placeholder="Confirma tu contraseña" name="password2">
             </div>
             <div class="aling-right">
                 <input type="submit" class="button" value="Guardar contraseña">

@@ -5,20 +5,23 @@
         <p class="descripcion-pagina">Crea tu cuenta en UpTask</p>
 
         <form action="/crear" class="form" method="post">
+            <?php echo isset($errors['nombre']) ? "<p class='error'>" . $errors['nombre'] . "</p>" : ''; ?>
             <div class="field">
                 <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" placeholder="Tu Nombre" name="nombre">
+                <input type="text" id="nombre" placeholder="Tu Nombre" name="nombre" value="<?php echo $usuario->getNombre()?>" >
             </div>
+            <?php echo isset($errors['email']) ? "<p class='error'>" . $errors['email'] . "</p>" : ''; ?>
             <div class="field">
                 <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Tu Email" name="email">
+                <input type="email" id="email" placeholder="Tu Email" name="email" value="<?php echo $usuario->getEmail()?>" >
             </div>
+            <?php echo isset($errors['password']) ? "<p class='error'>" . $errors['password'] . "</p>" : ''; ?>
             <div class="field">
                 <label for="password">Contraseña</label>
                 <input type="password" id="password" placeholder="Tu Contraseña" name="password">
             </div>
             <div class="field">
-                <label for="password2">Contraseña</label>
+                <label for="password2">Repetir Contraseña</label>
                 <input type="password" id="password2" placeholder="Confirma tu contrasseña" name="password2">
             </div>
             <div class="aling-right">
