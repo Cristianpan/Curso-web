@@ -34,6 +34,26 @@ class Email {
         $mailer->send();
     }
 
+    public function enviarInstrucciones(){
+        $mailer = $this->crearPhpMailer(); 
+        $mailer->Subject = 'Restablece tu contraseña'; 
+        
+        $mailer->isHtml(true);
+        $mailer->CharSet = 'UTF-8';
+        
+        $contenido = "<html>";
+        $contenido .= "<p><strong>Hola ". $this->nombre . "</strong> Has solicitado restablecer tu contraseña.
+        Haz click en el siguiente enlace para poder hacerlo</p>";
+        $contenido .= "<p>Presiona aquí: <a href='http://localhost:3000/restablecer?token=" . $this->token . "'>Restablecer Contraseña</a></p>"; 
+        $contenido .= "<p>Si no solicitaste restablecer tu contraseña, puedes ignorar este mensaje</p>"; 
+        $contenido .= "</html>";
+        
+        $mailer->Body = $contenido; 
+    
+        $mailer->send();
+
+    }
+
     private function crearPhpMailer(){
          //Crear objeto email
          $mailer = new PHPMailer();

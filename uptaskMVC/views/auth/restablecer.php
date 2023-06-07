@@ -2,8 +2,12 @@
     <?php include_once __DIR__ . "/../templates/nombreSitio.php" ?>
     <div class="contenedor-sm">
         <p class="descripcion-pagina">Coloca tu nuevo password</p>
+        <?php include_once __DIR__ . "/../templates/alert.php" ?>
 
-        <form action="/restablecer" class="form" method="post">
+        <?php if (!empty($message) && $message['tipo']=== 'error') return; ?>
+
+        <form class="form" method="post">
+            <?= isset($errors['password']) ? "<p class='error'>" . $errors['password'] . "</p>" : ''; ?>
             <div class="field">
                 <label for="password">Contraseña</label>
                 <input type="password" id="password" placeholder="Tu contraseña" name="password">
@@ -17,8 +21,7 @@
             </div>
         </form>
         <div class="actions">
-            <a href="/crear">¿Aún no tienes una cuenta? Obtenener una</a>
-            <a href="/olvide">¿Olvidaste tu contraseña?</a>
+            <a href="/crear">Iniciar Sesión</a>
         </div>
 
     </div> <!--.contenedor-sm-->

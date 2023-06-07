@@ -44,14 +44,71 @@ class CtrlCuenta {
         ]);
     }
     public static function olvide(Router $router) {
+        $error = [];
+        $message = [];
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $error = ValidadorUsuario::validarEmail($_POST['email']);
+
+            if (empty($error)) {
+                $usuario = Usuario::where($_POST['email'], "email");
+
+                if ($usuario && $usuario->getConfirmado()){
+                    $usuario->crearToken();
+                    $usuario->update();
+
+                    $email = new Email($usuario->getEmail(), $usuario->getNombre(), $usuario->getToken());
+                    $email->enviarInstrucciones(); 
+
+                    $message['tipo'] = "exito"; 
+                    $message['info'] = "Revisa tu Email";
+                } else {
+                    $message['tipo'] = "error"; 
+                    $message['info'] = "El usuario no existe o no ha confirmado su cuenta";
+                }
+            }
+        }
+
         $router->render("auth/olvide", [
-            'titulo' => 'Olvide mi contraseña'
+            'titulo' => 'Olvide mi contraseña', 
+            'error' => $error, 
+            'message' => $message
         ]);
     }
-    
+
     public static function restablecer(Router $router) {
+        $token = validarTokenORedireccionar();
+        $usuario = Usuario::where($token, 'token');
+        $errors = [];
+        $message = [];
+
+        if (!$usuario) {
+            $message['tipo'] = "error";
+            $message['info'] = "El token no es valido";
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            $password = $_POST['password'];
+            $errors = ValidadorUsuario::validarPassword($password, $_POST['password2']);
+
+            if (empty($errors)) {
+                $usuario->setPassword($password); 
+                $usuario->setToken(null);
+                $usuario->hashPassword();
+                if ($usuario->update()) {
+                    $message['tipo'] = "exito";
+                    $message['info'] = "La contraseña ha sido restablecida correctamente";
+                }
+            }
+        }
+
+
+
+
         $router->render("auth/restablecer", [
-            'titulo' => 'Restablecer contraseña'
+            'titulo' => 'Restablecer contraseña', 
+            'message' => $message, 
+            'errors' => $errors
         ]);
     }
     
@@ -64,13 +121,8 @@ class CtrlCuenta {
 
     public static function confirmar(Router $router){
 
-        $token = sanitizarHtml($_GET['token']);
+        $token = validarTokenORedireccionar();
         $message = [];
-        
-        if (!$token) {
-            header("Location: /");
-        }
-
         $usuario = Usuario::where($token, 'token');
 
         if (is_null($usuario)){

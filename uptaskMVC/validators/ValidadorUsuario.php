@@ -26,6 +26,8 @@ class ValidadorUsuario {
 
         if (!$email){
             $error['email'] = "El email es obligatorio";
+        } else  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $error['email'] = "Verifique que el email tenga un formato valido";
         }
 
         return $error;

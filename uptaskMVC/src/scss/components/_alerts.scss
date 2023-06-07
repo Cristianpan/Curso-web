@@ -3,23 +3,30 @@
 
 
 .modal {
-    display: flex;
-    align-items: center;
-    height: 5rem;
-    padding-left: 2rem;
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    max-width: 80rem;
+    width: 100%;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.5rem;
+    margin: 3rem 0;
     
-    &.error {
-        background-color: lighten(v.$rojo, 60%);
-        border-left: 0.5rem solid v.$rojo;
+    p {
+        text-align: center;
+        font-weight: bold;
+        line-height: 1;
     }
     
-    &.exito{
-        background-color: lighten(v.$verde, 60%);
-        border-left: 0.5rem solid v.$verde;
-    } 
+    &.error {
+        background-color: lighten(v.$rojo, 50%);
+        p {
+            color: v.$rojo; 
+        }
+    }
+    
+    &.exito {
+        background-color: lighten(v.$verde, 50%);
+
+        p {
+            color: v.$verde; 
+        }
+    }
 
 }

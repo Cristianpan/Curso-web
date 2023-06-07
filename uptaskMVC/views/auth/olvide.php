@@ -4,7 +4,10 @@
     <div class="contenedor-sm">
         <p class="descripcion-pagina">Recupera tu Acceso a Uptask</p>
 
-        <form action="/crear" class="form" method="post">
+        <?php include_once __DIR__ . "/../templates/alert.php"?>
+
+        <form action="/olvide" class="form" method="post">
+            <?= isset($error['email']) ? "<p class='error'>" . $error['email'] . "</p>" : ''; ?>
             <div class="field">
                 <label for="email">Email</label>
                 <input type="email" id="email" placeholder="Tu Email" name="email">

@@ -18,3 +18,13 @@ function isAuth() : void {
         header('Location: /');
     }
 }
+
+function validarTokenORedireccionar() {
+    $token = sanitizarHtml($_GET['token']);
+
+    if (!$token) {
+        header("Location: /");
+    }
+
+    return $token;
+}

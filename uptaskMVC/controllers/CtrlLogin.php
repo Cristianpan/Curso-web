@@ -3,7 +3,7 @@ namespace Controllers;
 use MVC\Router;
 class CtrlLogin {
     public static function login(Router $router){   
-
+        $error = [];
         if ($_SERVER["REQUEST_METHOD"] === "POST"){
             
         }
