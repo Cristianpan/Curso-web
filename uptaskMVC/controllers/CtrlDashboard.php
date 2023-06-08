@@ -9,9 +9,12 @@ class CtrlDashboard {
     public static function index(Router $router) {
         session_start(); 
         ValidadorLogin::isAuth();
+
+        $proyectos = Proyecto::getByUsuarioId($_SESSION['id']);
+
         $router->render("dashboard/index", [
             'titulo' => 'Proyectos',
-            
+            'proyectos' => $proyectos
         ]);
     }
 
@@ -29,7 +32,7 @@ class CtrlDashboard {
                 $proyecto->setUrl(md5(uniqid()));
 
                 if ($proyecto->save()) {
-                    header("Location: /proyecto?url=" . $proyecto->getUrl());
+                    header("Location: /proyecto?token=" . $proyecto->getUrl());
                 }
             }
 
@@ -41,6 +44,25 @@ class CtrlDashboard {
             
         ]);
     }
+
+    public static function proyecto(Router $router){
+        session_start();
+        ValidadorLogin::isAuth();
+
+
+        $token = validarTokenORedireccionar("/dashboard");
+
+        $proyecto = Proyecto::where($token, "url");
+        
+        if (!$proyecto || $proyecto->getUsuarioId() !== $_SESSION['id']){
+            header("Location: /dashboard");
+        }
+
+        $router->render("dashboard/proyecto", [
+            'titulo' => $proyecto->getProyecto()
+        ]);
+    }
+
     public static function perfil(Router $router){
         session_start(); 
         ValidadorLogin::isAuth();

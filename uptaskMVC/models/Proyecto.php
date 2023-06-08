@@ -57,6 +57,26 @@ class Proyecto extends ActiveRecord {
         return $flag;
     }
 
+    public static function getByUsuarioId($usuarioId){
+        $dato = [];
+        $db = DbConnection::getDbConnection(); 
+        $query = "SELECT * FROM proyectos WHERE usuarioId = ?";
+        $stmt = $db->prepare($query); 
+        $stmt->bind_param("i", $usuarioId);
+        $stmt->execute(); 
+
+        $resultado = $stmt->get_result();
+
+        while ($value = $resultado->fetch_assoc()) {
+            $dato[] = new Proyecto($value);
+        }
+
+        $stmt->close();
+        $db->close();
+        
+        return $dato; 
+    }
+
     public static function crearObjeto($dato){
         return new Proyecto($dato);
     }

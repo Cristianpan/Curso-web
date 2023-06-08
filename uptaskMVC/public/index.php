@@ -34,6 +34,7 @@ $router->get('/confirmar', [CtrlCuenta::class, 'confirmar']);
 $router->get('/dashboard', [CtrlDashboard::class, 'index']); 
 $router->get('/crearProyecto', [CtrlDashboard::class, 'crearProyecto']); 
 $router->post('/crearProyecto', [CtrlDashboard::class, 'crearProyecto']); 
+$router->get('/proyecto', [CtrlDashboard::class, 'proyecto']); 
 $router->get('/perfil', [CtrlDashboard::class, 'perfil']); 
 
 

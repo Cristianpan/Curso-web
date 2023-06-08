@@ -12,11 +12,11 @@ function sanitizarHtml($html) : string {
     return $s;
 }
 
-function validarTokenORedireccionar() {
+function validarTokenORedireccionar($url) {
     $token = sanitizarHtml($_GET['token']);
 
     if (!$token) {
-        header("Location: /");
+        header("Location: " . $url);
     }
 
     return $token;

@@ -7,4 +7,3 @@
 
         <div class="contenido">
             <h2 class="nombre-pagina"><?= $titulo ?></h2>
-        </div>

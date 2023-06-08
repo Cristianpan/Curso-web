@@ -77,7 +77,7 @@ class CtrlCuenta {
     }
 
     public static function restablecer(Router $router) {
-        $token = validarTokenORedireccionar();
+        $token = validarTokenORedireccionar("/");
         $usuario = Usuario::where($token, 'token');
         $errors = [];
         $message = [];
@@ -121,7 +121,7 @@ class CtrlCuenta {
 
     public static function confirmar(Router $router){
 
-        $token = validarTokenORedireccionar();
+        $token = validarTokenORedireccionar("/");
         $message = [];
         $usuario = Usuario::where($token, 'token');
 
