@@ -12,13 +12,6 @@ function sanitizarHtml($html) : string {
     return $s;
 }
 
-// Función que revisa que el usuario este autenticado
-function isAuth() : void {
-    if(!isset($_SESSION['login'])) {
-        header('Location: /');
-    }
-}
-
 function validarTokenORedireccionar() {
     $token = sanitizarHtml($_GET['token']);
 

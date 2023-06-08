@@ -22,6 +22,7 @@ class CtrlLogin {
                 if (empty($errors)) {
                     session_start(); 
                     $_SESSION['id'] = $usuario->getId();
+                    $_SESSION['nombre'] = $usuario->getNombre();
                     $_SESSION['auth'] = true; 
 
                     header("Location: /dashboard");
