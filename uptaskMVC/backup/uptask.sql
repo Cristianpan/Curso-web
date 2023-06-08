@@ -17,8 +17,28 @@ CREATE TABLE `usuarios` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE `proyectos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuarioId` int DEFAULT NULL,
+  `proyecto` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `usuarioId` (`usuarioId`),
+  CONSTRAINT `proyectos_ibfk_1` FOREIGN KEY (`usuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 INSERT INTO `usuarios` (`id`, `nombre`, `email`, `password`, `token`, `confirmado`) VALUES
 (2, 'Cristian David', 'panzaldivarcristian@gmail.com', '$2y$10$BVo9MHH659ed7TGgy7NE6.EdajiA9XfltETE6SvPNANMA8Jr/33KG', NULL, 1);
+
+INSERT INTO `proyectos` (`id`, `usuarioId`, `proyecto`, `url`) VALUES
+(1, 2, 'Tienda virtual', 'deb97f9eddf3cc594ac4b7148b19b980');
+INSERT INTO `proyectos` (`id`, `usuarioId`, `proyecto`, `url`) VALUES
+(4, 2, 'API para bank system', 'f5060fb04fb1fa2ca42307115f9c37d6');
+INSERT INTO `proyectos` (`id`, `usuarioId`, `proyecto`, `url`) VALUES
+(5, 2, 'Frond end para administrador de pacientes', '60f26bd17aa07df49616ceaf1f72d83d');
+INSERT INTO `proyectos` (`id`, `usuarioId`, `proyecto`, `url`) VALUES
+(6, 2, 'Portafolio personal ', '38895791b299ec7ed1bdacf2643b4a5c');
+
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
