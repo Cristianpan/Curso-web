@@ -20,4 +20,25 @@
         }
     }
 
+    .form {
+        margin: 2rem auto;
+        width: 80%;
+
+        label {
+            color: darken(v.$grisOscuro, 10%);
+        }
+
+        input:not([type="submit"]){
+            background-color: v.$blanco;
+            width: auto;
+        }
+
+        input[type="submit"]{
+            @include m.boton(v.$indigo, v.$blanco);
+            font-size: 1.8rem;
+            padding: 1rem;
+            margin: 0;
+        }
+    }
+
 }

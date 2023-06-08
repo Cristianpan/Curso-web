@@ -31,7 +31,7 @@ class Usuario extends ActiveRecord {
 
         $stmt->execute();
 
-        if ($stmt->affected_rows > 0){
+        if ($stmt->affected_rows){
             $flag = true; 
         }
 
@@ -52,7 +52,7 @@ class Usuario extends ActiveRecord {
 
         $stmt->execute();
 
-        if ($stmt->affected_rows > 0){
+        if ($stmt->affected_rows){
             $flag = true; 
         }
         

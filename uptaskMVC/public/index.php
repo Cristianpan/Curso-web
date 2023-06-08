@@ -33,6 +33,7 @@ $router->get('/confirmar', [CtrlCuenta::class, 'confirmar']);
 //Paginas privadas 
 $router->get('/dashboard', [CtrlDashboard::class, 'index']); 
 $router->get('/crearProyecto', [CtrlDashboard::class, 'crearProyecto']); 
+$router->post('/crearProyecto', [CtrlDashboard::class, 'crearProyecto']); 
 $router->get('/perfil', [CtrlDashboard::class, 'perfil']); 
 
 
