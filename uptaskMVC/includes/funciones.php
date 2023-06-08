@@ -7,15 +7,17 @@ function debuguear($variable) : string {
     exit;
 }
 
-// Escapa / Sanitizar el HTML
-function s($html) : string {
+function sanitizarHtml($html) : string {
     $s = htmlspecialchars($html);
     return $s;
 }
 
-// Función que revisa que el usuario este autenticado
-function isAuth() : void {
-    if(!isset($_SESSION['login'])) {
-        header('Location: /');
+function validarTokenORedireccionar($url) {
+    $token = sanitizarHtml($_GET['token']);
+
+    if (!$token) {
+        header("Location: " . $url);
     }
+
+    return $token;
 }

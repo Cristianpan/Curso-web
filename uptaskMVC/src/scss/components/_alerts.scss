@@ -1,0 +1,32 @@
+@use '../base/mixins' as m;
+@use '../base/variables' as v; 
+
+
+.modal {
+    width: 100%;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.5rem;
+    margin: 3rem 0;
+    
+    p {
+        text-align: center;
+        font-weight: bold;
+        line-height: 1;
+    }
+    
+    &.error {
+        background-color: lighten(v.$rojo, 50%);
+        p {
+            color: v.$rojo; 
+        }
+    }
+    
+    &.exito {
+        background-color: lighten(v.$verde, 50%);
+
+        p {
+            color: v.$verde; 
+        }
+    }
+
+}

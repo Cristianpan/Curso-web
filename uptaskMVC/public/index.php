@@ -4,6 +4,8 @@ require_once __DIR__ . '/../includes/app.php';
 
 use Controllers\CtrlCuenta;
 use Controllers\CtrlLogin;
+use Controllers\CtrlApp;
+use Controllers\CtrlDashboard;
 use MVC\Router;
 $router = new Router();
 
@@ -27,6 +29,13 @@ $router->post('/restablecer', [CtrlCuenta::class, 'restablecer']);
 //Confirmacion de Cuenta 
 $router->get('/mensaje', [CtrlCuenta::class, 'mensaje']);
 $router->get('/confirmar', [CtrlCuenta::class, 'confirmar']);
+
+//Paginas privadas 
+$router->get('/dashboard', [CtrlDashboard::class, 'index']); 
+$router->get('/crearProyecto', [CtrlDashboard::class, 'crearProyecto']); 
+$router->post('/crearProyecto', [CtrlDashboard::class, 'crearProyecto']); 
+$router->get('/proyecto', [CtrlDashboard::class, 'proyecto']); 
+$router->get('/perfil', [CtrlDashboard::class, 'perfil']); 
 
 
 
