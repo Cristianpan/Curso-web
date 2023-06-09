@@ -2,9 +2,10 @@
 namespace Model;
 
 use DbConnection;
+use JsonSerializable;
 use Model\ActiveRecord;
 
-class Proyecto extends ActiveRecord {
+class Proyecto extends ActiveRecord implements JsonSerializable{
     protected static $table = 'proyectos'; 
     protected $id; 
     private $usuarioId; 
@@ -12,8 +13,8 @@ class Proyecto extends ActiveRecord {
     private $url; 
 
     public function __construct($args = []){
-        $this->id = $args['id'] ?? ''; 
-        $this->usuarioId = $args['usuarioId'] ?? ''; 
+        $this->id = $args['id'] ?? null; 
+        $this->usuarioId = $args['usuarioId'] ?? null; 
         $this->proyecto = $args['proyecto'] ?? ''; 
         $this->url = $args['url'] ?? ''; 
     }
@@ -36,6 +37,15 @@ class Proyecto extends ActiveRecord {
         $db->close();
 
         return $flag;
+    }
+
+    public function jsonSerialize(): array {
+        return [
+            'id' => $this->id,
+            'usuarioId' => $this->usuarioId, 
+            'proyecto' => $this->proyecto, 
+            'url' => $this->url
+        ];
     }
 
     public function update() {

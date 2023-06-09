@@ -54,5 +54,15 @@
                 @include m.boton(v.$naranja, v.$blanco);
             }
         }
+
+        .alert {
+            padding: 1px 0.5rem;
+        }
+
+        input:not([type="submit"]), textarea {
+            flex: 1;
+            padding: 1rem;
+            background-color: lighten(v.$gris, 45%);
+        }
     }
 }
