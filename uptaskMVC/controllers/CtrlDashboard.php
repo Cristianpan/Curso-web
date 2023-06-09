@@ -59,7 +59,8 @@ class CtrlDashboard {
         }
 
         $router->render("dashboard/proyecto", [
-            'titulo' => $proyecto->getProyecto()
+            'titulo' => $proyecto->getProyecto(), 
+            'proyectoId' => $proyecto->getId(),
         ]);
     }
 

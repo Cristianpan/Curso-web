@@ -61,8 +61,8 @@ class Email {
          $mailer->Host = 'sandbox.smtp.mailtrap.io';
          $mailer->SMTPAuth = true;
          $mailer->Port = 2525;
-         $mailer->Username = '330c7a81e18132';
-         $mailer->Password = '2a31e509b969a7';
+         $mailer->Username = $_ENV['MAILER_USERNAME'];
+         $mailer->Password = $_ENV['MAILER_PASSWORD'];
          $mailer->SMTPSecure = 'tls';
  
          $mailer->setFrom('cuentas@uptask.com');

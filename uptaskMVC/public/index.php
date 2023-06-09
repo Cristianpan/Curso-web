@@ -6,6 +6,7 @@ use Controllers\CtrlCuenta;
 use Controllers\CtrlLogin;
 use Controllers\CtrlApp;
 use Controllers\CtrlDashboard;
+use Controllers\CtrlTarea;
 use MVC\Router;
 $router = new Router();
 
@@ -38,8 +39,11 @@ $router->get('/proyecto', [CtrlDashboard::class, 'proyecto']);
 $router->get('/perfil', [CtrlDashboard::class, 'perfil']); 
 
 
-
-
+//Api para las tareas
+$router->get('/api/tareas', [CtrlTarea::class, 'index']);
+$router->post('/api/crearTarea', [CtrlTarea::class,'crearTarea']);
+$router->post('/api/actualizarTarea', [CtrlTarea::class,'actualizarTarea']);
+$router->post('/api/eliminarTarea', [CtrlTarea::class,'eliminarTarea']);
 
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador

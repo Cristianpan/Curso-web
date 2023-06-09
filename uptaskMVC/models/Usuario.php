@@ -12,12 +12,12 @@ class Usuario extends ActiveRecord {
     private $confirmado; 
 
     public function __construct($args = []) {
-        $this->id = $args['id'] ?? ''; 
+        $this->id = $args['id'] ?? null; 
         $this->nombre = $args['nombre'] ?? ''; 
         $this->email = $args['email'] ?? ''; 
         $this->password = $args['password'] ?? ''; 
         $this->token = $args['token'] ?? null; 
-        $this->confirmado = $args['confirmado'] ?? ''; 
+        $this->confirmado = $args['confirmado'] ?? 0; 
     }
 
     public function save(){

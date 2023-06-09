@@ -6,7 +6,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
 CREATE TABLE `usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -27,8 +26,20 @@ CREATE TABLE `proyectos` (
   CONSTRAINT `proyectos_ibfk_1` FOREIGN KEY (`usuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE `tareas` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `proyectoId` int NOT NULL,
+  `nombre` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `estado` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `proyectoId` (`proyectoId`),
+  CONSTRAINT `tareas_ibfk_1` FOREIGN KEY (`proyectoId`) REFERENCES `proyectos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 INSERT INTO `usuarios` (`id`, `nombre`, `email`, `password`, `token`, `confirmado`) VALUES
 (2, 'Cristian David', 'panzaldivarcristian@gmail.com', '$2y$10$BVo9MHH659ed7TGgy7NE6.EdajiA9XfltETE6SvPNANMA8Jr/33KG', NULL, 1);
+
 
 INSERT INTO `proyectos` (`id`, `usuarioId`, `proyecto`, `url`) VALUES
 (1, 2, 'Tienda virtual', 'deb97f9eddf3cc594ac4b7148b19b980');
@@ -38,6 +49,9 @@ INSERT INTO `proyectos` (`id`, `usuarioId`, `proyecto`, `url`) VALUES
 (5, 2, 'Frond end para administrador de pacientes', '60f26bd17aa07df49616ceaf1f72d83d');
 INSERT INTO `proyectos` (`id`, `usuarioId`, `proyecto`, `url`) VALUES
 (6, 2, 'Portafolio personal ', '38895791b299ec7ed1bdacf2643b4a5c');
+
+INSERT INTO `tareas` (`id`, `proyectoId`, `nombre`, `descripcion`, `estado`) VALUES
+(1, 1, 'Crear vistas principales', 'Creas vistas de: \n- Listado de productos\n- Nosotros\n- Contacto', 0);
 
 
 

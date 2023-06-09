@@ -2,19 +2,24 @@
 @use '../base/variables' as v; 
 
 
-.modal {
+.alert {
     width: 100%;
-    padding: 0.2rem 0.5rem;
-    border-radius: 0.5rem;
+    height: 3rem;
+    border-radius: 0.2rem;
     margin: 3rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
     p {
         text-align: center;
         font-weight: bold;
         line-height: 1;
+        font-size: 1.8rem;
     }
     
     &.error {
+        border-left: 0.5rem solid v.$rojo;
         background-color: lighten(v.$rojo, 50%);
         p {
             color: v.$rojo; 
@@ -22,6 +27,7 @@
     }
     
     &.exito {
+        border-left: 0.5rem solid v.$verde;
         background-color: lighten(v.$verde, 50%);
 
         p {

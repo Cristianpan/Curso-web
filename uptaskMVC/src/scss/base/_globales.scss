@@ -42,11 +42,24 @@ input {
 }
 
 .error {
-    color: v.$rosa; 
+    color: v.$rojo; 
     font-size: 1.5rem;
+    font-weight: bold;
+}
+.exito {
+    color: v.$verde; 
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 ul {
     list-style: none;
     padding: 0;
+}
+
+textarea {
+    border: none;
+    resize: none;
+    outline-color: v.$naranja;
+    padding: 1rem;
 }
