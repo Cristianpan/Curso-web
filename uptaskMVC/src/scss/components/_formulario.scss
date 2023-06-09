@@ -14,10 +14,10 @@
             font-weight: bold;
         }
     
-        input {
+        input, textarea {
             flex: 1;
             padding: 1rem;
-            background-color: lighten(v.$gris, 40%);
+            background-color: lighten(v.$gris, 45%);
         }
     }
 }

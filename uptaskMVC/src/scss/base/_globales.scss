@@ -50,3 +50,10 @@ ul {
     list-style: none;
     padding: 0;
 }
+
+textarea {
+    border: none;
+    resize: none;
+    outline-color: v.$naranja;
+    padding: 1rem;
+}

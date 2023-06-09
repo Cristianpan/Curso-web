@@ -1,0 +1,13 @@
+@use '../base/variables' as v; 
+@use '../base/mixins' as m;
+
+.container-new-task {
+
+
+    .add-task{
+        @include m.boton(v.$cyan, v.$blanco);
+        margin: 0 auto;
+        padding: 1.2rem 3rem;
+
+    }
+}
