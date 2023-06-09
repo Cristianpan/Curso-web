@@ -75,7 +75,9 @@
 
   function removeAlertMessage(type = ".error"){
     const alert = document.querySelector(type);
-    alert.remove();
+    if (alert){
+      alert.remove();
+    }
   }
 
   async function addTask(task) {
