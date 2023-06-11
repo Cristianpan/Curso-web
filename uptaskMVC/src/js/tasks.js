@@ -2,7 +2,7 @@
   const btnAddTask = document.querySelector("#add-task");
   btnAddTask.addEventListener("click", showForm);
   let tasks = [];
-  
+
   getTasks();
 
   function showForm() {
@@ -41,7 +41,6 @@
         setTimeout(() => {
           modal.remove();
         }, 200);
-
       } else if (value.contains("submit-new-task")) {
         submitForm();
       }
@@ -57,14 +56,12 @@
     if (!nombre) {
       createAlertMessage("El nombre de la tarea es obligatorio", "legend");
     } else {
-      removeAlertMessage();
       addTask({ nombre, descripcion });
     }
   }
-  
+
   function createAlertMessage(message, reference, type = "error") {
-    const alert = document.querySelector(".error");
-    if (!alert) {
+    
       const referenceElement = document.querySelector(reference);
       const divAlert = document.createElement("DIV");
       divAlert.classList.add(type);
@@ -73,14 +70,10 @@
       messageText.textContent = message;
       divAlert.appendChild(messageText);
       referenceElement.after(divAlert);
-    }
-  }
-
-  function removeAlertMessage(type = ".error") {
-    const alert = document.querySelector(type);
-    if (alert) {
-      alert.remove();
-    }
+    
+      setTimeout(()=> {
+        divAlert.remove();
+      }, 1200)
   }
 
   async function addTask(task) {
@@ -96,9 +89,9 @@
           "Content-Type": "application/json",
         },
       });
-      
+
       const result = await response.json();
-      
+
       if (!result.ok) {
         createAlertMessage(result.message, "legend");
       } else {
@@ -160,13 +153,14 @@
       1: "Completa",
     };
     const taskContainer = document.createElement("LI");
+    taskContainer.id = task.id;
     taskContainer.classList.add("task");
-    taskContainer.classList.add(`taskId-${task.id}`);
 
     const taskName = document.createElement("P");
     taskName.innerHTML = `&#10148; ${task.nombre}`;
 
     const taskDescription = document.createElement("P");
+    taskDescription.classList.add("description");
     taskDescription.textContent = task.descripcion;
 
     const optionsDiv = document.createElement("DIV");
@@ -176,11 +170,16 @@
     btnStateTask.classList.add("state-task");
     btnStateTask.classList.add(`${states[task.estado].toLowerCase()}`);
     btnStateTask.textContent = states[task.estado];
-    btnStateTask.dataset.stateTask = task.estado;
+    btnStateTask.ondblclick = () => {
+      changeStateTask({ ...task });
+    };
 
     const btnDeleteTask = document.createElement("BUTTON");
     btnDeleteTask.classList.add("delete-task");
     btnDeleteTask.textContent = "Eliminar";
+    btnDeleteTask.onclick = () => {
+      deleteTask(task.id);
+    };
 
     optionsDiv.appendChild(btnStateTask);
     optionsDiv.appendChild(btnDeleteTask);
@@ -198,11 +197,74 @@
     return taskContainer;
   }
 
-
   function addTaskToHtmL(task) {
     const taskList = document.querySelector("#task-list");
     const taskElement = createTask(task);
     taskList.appendChild(taskElement);
   }
 
+  function removeNodeTaskToHtml(taskId) {
+    const taskNode = document.getElementById(taskId);
+    taskNode.remove();
+  }
+
+  function deleteTask(taskId) {
+    tasks = tasks.filter((task) => {
+      task.id !== taskId;
+    });
+    removeNodeTaskToHtml(taskId);
+  }
+
+  function changeStateTask(task) {
+    task.estado = task.estado === 1 ? 0 : 1;
+    updateTask(task);
+  }
+
+  async function updateTask(task) {
+    const url = "/api/actualizarTarea";
+    try {
+      const response = await fetch(url, {
+        method: 'post',
+        body: JSON.stringify(task),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+  
+      const result = await response.json();
+      const typeAlert = result.ok ? "exito" : "error"; 
+      createAlertMessage(result.message, ".nombre-pagina", typeAlert);
+      
+      if (result.ok) {
+        updateNodeTask(task);     
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function updateNodeTask(task){
+    const states = {
+      0: "Pendiente",
+      1: "Completa",
+    };
+
+    tasks = tasks.map(element => {
+      if (element.id === task.id){
+        element = {...task};
+      }
+
+      return element;
+    });
+
+    const nodeTask = document.getElementById(task.id);
+    const taskName = nodeTask.querySelector("summary p");
+    taskName.innerHTML = `&#10148; ${task.nombre}`;
+    const btnStateTask = nodeTask.querySelector(".state-task");
+    btnStateTask.textContent = states[task.estado];
+    task.estado === 1 ? btnStateTask.classList.remove("pendiente") : btnStateTask.classList.remove("completa");
+    btnStateTask.classList.add(states[task.estado].toLowerCase()); 
+    const taskDescription = nodeTask.querySelector(".description"); 
+    taskDescription.textContent = task.descripcion;
+  }
 })();

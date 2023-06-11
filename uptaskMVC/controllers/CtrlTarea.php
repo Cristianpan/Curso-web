@@ -50,6 +50,27 @@ class CtrlTarea{
     }
 
     public static function actualizarTarea(){
+        $response = [
+            'ok' => true,
+            'message' => "La tarea ha sido actualizada correctamente", 
+            'body' => null,
+        ];
+
+        $dataTask = get_object_vars(json_decode(file_get_contents('php://input')));
+        session_start();        
+        $tarea = new Tarea($dataTask);
+        $proyecto = Proyecto::where($tarea->getProyectoId(), 'id');
+
+        if (!$proyecto || $proyecto->getUsuarioId() !== $_SESSION['id']){
+            $response['ok'] = false;
+            $response['message'] = "Ha ocurrido un error al agregar la tarea";
+        } else {
+            $tarea->update();
+            $response['body'] = $tarea;
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($response, JSON_UNESCAPED_UNICODE);
 
     }
 
