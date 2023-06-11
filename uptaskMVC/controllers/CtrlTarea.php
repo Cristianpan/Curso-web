@@ -75,6 +75,25 @@ class CtrlTarea{
     }
 
     public static function eliminarTarea(){
+        $response = [
+            'ok' => true,
+            'message' => "La tarea ha sido eliminada correctamente", 
+        ];
 
+        $dataTask = get_object_vars(json_decode(file_get_contents('php://input')));
+        session_start();        
+        $tarea = new Tarea($dataTask);
+        $proyecto = Proyecto::where($tarea->getProyectoId(), 'id');
+
+        if (!$proyecto || $proyecto->getUsuarioId() !== $_SESSION['id']){
+            $response['ok'] = false;
+            $response['message'] = "Ha ocurrido un error al eliminar la tarea";
+        } else {
+            $tarea->delete();
+            $response['body'] = $tarea;
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($response, JSON_UNESCAPED_UNICODE);
     }
 }

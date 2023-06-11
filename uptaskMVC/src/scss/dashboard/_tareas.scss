@@ -3,8 +3,28 @@
 
 
 .add-task{
-    @include m.boton(v.$cyan, v.$blanco);
-    padding: 1.2rem 3rem;
+    width: 5rem;
+    height: 5rem;
+    background-color: v.$azul;
+    color: v.$blanco;
+    border-radius: 50%;
+    font-size: 3rem;
+    font-weight: bold;
+    transition: background-color 0.2s;
+
+    position: fixed;
+    bottom: 4rem;
+    right: 4rem;
+
+    @include m.desktop {
+        bottom: 5rem;
+        right: 10rem;
+    }
+
+    &:hover {
+        background-color: darken(v.$azul, 15%);
+        cursor: pointer;
+    }
 }
 
 .task-list {
