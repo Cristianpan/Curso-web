@@ -1,13 +1,76 @@
 @use '../base/variables' as v; 
 @use '../base/mixins' as m;
 
-.container-new-task {
 
+.add-task{
+    @include m.boton(v.$cyan, v.$blanco);
+    padding: 1.2rem 3rem;
+}
 
-    .add-task{
-        @include m.boton(v.$cyan, v.$blanco);
-        margin: 0 auto;
-        padding: 1.2rem 3rem;
+.task-list {
+    margin-top: 3.5rem;
 
+    .no-tasks {
+        text-align: center;
+    }
+
+    p {
+        margin: 0.5rem; 
+    }
+
+    summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 }
+
+.task {
+    background-color: v.$blanco;
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+    padding: 0.5rem 2rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0px 3px 10px 2px rgba(0, 0, 0, 0.25);
+    
+    p {
+        &:nth-child(2){
+            border-top: 1px solid lighten(v.$gris, 30%);
+            padding: 1rem 0 0.5rem 0;
+        }
+    }
+    
+    .options {
+        display: flex;
+        gap: 1rem;
+
+        button {
+            border: none;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.9rem;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+    
+        .completa {
+            background-color: v.$indigo;
+            color: v.$blanco;
+        }
+        .pendiente {
+            background-color: v.$naranja;
+            color: v.$blanco;
+        }
+    
+        .delete-task{
+            background-color: v.$rojo;
+            color: v.$blanco;
+        }
+
+    }
+
+}
+
+
