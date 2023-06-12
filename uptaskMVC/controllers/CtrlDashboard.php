@@ -41,7 +41,6 @@ class CtrlDashboard {
         $router->render("dashboard/crearProyecto", [
             'titulo' => 'Crear Proyecto',
             'errors' => $errors
-            
         ]);
     }
 
@@ -50,7 +49,7 @@ class CtrlDashboard {
         ValidadorLogin::isAuth();
 
 
-        $token = validarTokenORedireccionar("/dashboard");
+        $token = validarTokenORedireccionar('token', "/dashboard");
 
         $proyecto = Proyecto::where($token, "url");
         
@@ -60,7 +59,6 @@ class CtrlDashboard {
 
         $router->render("dashboard/proyecto", [
             'titulo' => $proyecto->getProyecto(), 
-            'proyectoId' => $proyecto->getId(),
         ]);
     }
 
@@ -69,7 +67,6 @@ class CtrlDashboard {
         ValidadorLogin::isAuth();
         $router->render("dashboard/perfil", [
             'titulo' => 'Perfil',
-            
         ]);
     }
 }

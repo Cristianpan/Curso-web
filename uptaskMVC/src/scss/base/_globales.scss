@@ -55,6 +55,7 @@ input {
 ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 textarea {
@@ -62,4 +63,8 @@ textarea {
     resize: none;
     outline-color: v.$naranja;
     padding: 1rem;
+}
+
+button {
+    border: none;
 }

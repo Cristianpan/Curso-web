@@ -16,8 +16,6 @@ class CtrlCuenta {
             $usuario->setNombre($_POST['nombre']);
             $usuario->setEmail($_POST['email']);
 
-
-
             if (empty($errors)) {
                 $usuario->setPassword($_POST['password']);
                 if ($usuario->existeCorreoRegistrado()) {
@@ -33,7 +31,6 @@ class CtrlCuenta {
                         header("Location: /mensaje");
                     }
                 }
-
             }
         }
 
@@ -77,7 +74,7 @@ class CtrlCuenta {
     }
 
     public static function restablecer(Router $router) {
-        $token = validarTokenORedireccionar("/");
+        $token = validarTokenORedireccionar('token',"/");
         $usuario = Usuario::where($token, 'token');
         $errors = [];
         $message = [];
@@ -102,9 +99,6 @@ class CtrlCuenta {
             }
         }
 
-
-
-
         $router->render("auth/restablecer", [
             'titulo' => 'Restablecer contraseña', 
             'message' => $message, 
@@ -115,13 +109,12 @@ class CtrlCuenta {
     public static function mensaje(Router $router){
         $router->render("auth/mensaje", [
             'titulo' => 'Cuenta creada'
-        ]);
-        
+        ]);  
     }
 
     public static function confirmar(Router $router){
 
-        $token = validarTokenORedireccionar("/");
+        $token = validarTokenORedireccionar('token',"/");
         $message = [];
         $usuario = Usuario::where($token, 'token');
 

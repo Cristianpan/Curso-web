@@ -19,7 +19,6 @@ class Proyecto extends ActiveRecord implements JsonSerializable{
         $this->url = $args['url'] ?? ''; 
     }
 
-
     public function save() {
         $flag = false; 
         $db = DbConnection::getDbConnection();
@@ -40,12 +39,7 @@ class Proyecto extends ActiveRecord implements JsonSerializable{
     }
 
     public function jsonSerialize(): array {
-        return [
-            'id' => $this->id,
-            'usuarioId' => $this->usuarioId, 
-            'proyecto' => $this->proyecto, 
-            'url' => $this->url
-        ];
+        return get_object_vars($this);
     }
 
     public function update() {

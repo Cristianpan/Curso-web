@@ -15,18 +15,12 @@ class Tarea extends ActiveRecord implements JsonSerializable {
         $this->id = $args['id'] ?? null; 
         $this->proyectoId = $args['proyectoId'] ?? null; 
         $this->nombre = $args['nombre'] ?? ''; 
-        $this->descripcion = $args['descripcion'] ?? 'Ninguna'; 
+        $this->descripcion = $args['descripcion'] ? $args['descripcion'] : 'Ninguna'; 
         $this->estado = $args['estado'] ?? 0; 
     }
 
     public function jsonSerialize(): array {
-        return [
-            'id' => $this->id, 
-            'proyectoId' => $this->proyectoId,
-            'nombre' => $this->nombre,
-            'descripcion' => $this->descripcion,
-            'estado' => $this->estado 
-        ];
+        return get_object_vars($this);
     }
 
     public function save(){
@@ -41,6 +35,7 @@ class Tarea extends ActiveRecord implements JsonSerializable {
         $stmt->execute();
 
         if ($stmt->affected_rows){
+            $this->id = $stmt->insert_id;
             $flag = true; 
         }
 
@@ -70,10 +65,29 @@ class Tarea extends ActiveRecord implements JsonSerializable {
         return $flag; 
     }
 
+    public static function getByProyectId($proyectoId){
+        $dato = [];
+        $db = DbConnection::getDbConnection(); 
+        $query = "SELECT * FROM tareas WHERE proyectoId = ?";
+        $stmt = $db->prepare($query); 
+        $stmt->bind_param("i", $proyectoId);
+        $stmt->execute(); 
+
+        $resultado = $stmt->get_result();
+
+        while ($value = $resultado->fetch_assoc()) {
+            $dato[] = new Tarea($value);
+        }
+
+        $stmt->close();
+        $db->close();
+        
+        return $dato; 
+    }
+
     public static function crearObjeto($dato){
         return new Tarea($dato);
     }
-
 
     //getters and setters
     public function setId ($id){

@@ -12,8 +12,8 @@ function sanitizarHtml($html) : string {
     return $s;
 }
 
-function validarTokenORedireccionar($url) {
-    $token = sanitizarHtml($_GET['token']);
+function validarTokenORedireccionar($name, $url) {
+    $token = sanitizarHtml($_GET[$name]);
 
     if (!$token) {
         header("Location: " . $url);
