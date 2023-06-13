@@ -1,31 +1,51 @@
 (() => {
+  let tasks = [];
+  getTasks();
+
   const btnAddTask = document.querySelector("#add-task");
-  btnAddTask.addEventListener("click", ()=> {
+  btnAddTask.addEventListener("click", () => {
     showForm();
   });
-  let tasks = [];
 
-  getTasks();
+  const filters = document.querySelectorAll("#filters input[type='radio']");
+  filters.forEach((filter) => {
+    filter.addEventListener("input", filterTasks);
+  });
+
+  function filterTasks(e) {
+    const value = e.target.value;
+    let auxTasks = [...tasks];
+    if (value) {
+      auxTasks = auxTasks.filter((task) => task.estado == value);
+    }
+
+    clearTasks();
+    showTasks(auxTasks);
+  }
 
   /**
    * Genera un modal para poder agregar una nueva tarea a un proyecto
    */
-  function showForm(edit = false, task = {nombre: "", descripcion: ""}) {
+  function showForm(edit = false, task = { nombre: "", descripcion: "" }) {
     const modal = document.createElement("DIV");
     modal.classList.add("modal");
     modal.innerHTML = `
             <form class="form new-task">
-                <legend>${edit ? 'Editar Tarea' : 'Agregar Tarea'}</legend>
+                <legend>${edit ? "Editar Tarea" : "Agregar Tarea"}</legend>
                 <div class="field">
                     <label for="task">Tarea</label>
-                    <input type="text" name="task" placeholder="Nombre de la tarea" id="task" value="${task.nombre}"/>
+                    <input type="text" name="task" placeholder="Nombre de la tarea" id="task" value="${
+                      task.nombre
+                    }"/>
                 </div>
                 <div class="field">
                     <label for="description">Descripcion</label>
-                    <textarea id="description" name="description" placeholder="Descripción de la tarea">${task.descripcion}</textarea>
+                    <textarea id="description" name="description" placeholder="Descripción de la tarea">${
+                      task.descripcion
+                    }</textarea>
                 </div>
 
-                <div class="options aling-right">
+                <div class="options">
                     <button type="button" class="close-modal">Cancelar</button>
                     <input type="submit" class="submit-new-task" value="Guardar Tarea"/>
                 </div>
@@ -60,12 +80,12 @@
   function submitForm(edit, task) {
     const nombre = document.querySelector("#task").value.trim();
     const descripcion = document.querySelector("#description").value.trim();
-    task = {...task, nombre, descripcion};
+    task = { ...task, nombre, descripcion };
 
     if (!nombre) {
       createAlertMessage("El nombre de la tarea es obligatorio", "legend");
     } else {
-      if (!edit){
+      if (!edit) {
         addTask(task);
       } else {
         updateTask(task);
@@ -83,17 +103,20 @@
    */
   function createAlertMessage(message, reference, type = "error") {
     const referenceElement = document.querySelector(reference);
-    const divAlert = document.createElement("DIV");
-    divAlert.classList.add(type);
-    divAlert.classList.add("alert");
-    const messageText = document.createElement("P");
-    messageText.textContent = message;
-    divAlert.appendChild(messageText);
-    referenceElement.after(divAlert);
+    if (referenceElement){
+      const divAlert = document.createElement("DIV");
+      divAlert.classList.add(type);
+      divAlert.classList.add("alert");
+      const messageText = document.createElement("P");
+      messageText.textContent = message;
+      divAlert.appendChild(messageText);
+      referenceElement.after(divAlert);
+      
+      setTimeout(() => {
+        divAlert.remove();
+      }, 1200);
+    }
 
-    setTimeout(() => {
-      divAlert.remove();
-    }, 1200);
   }
 
   //Methods to add
@@ -185,9 +208,9 @@
     btnDeleteTask.ondblclick = () => {
       confirmDeleteTask(task);
     };
-    
-    const btnEditTask = document.createElement("BUTTON"); 
-    btnEditTask.classList.add("edit-task"); 
+
+    const btnEditTask = document.createElement("BUTTON");
+    btnEditTask.classList.add("edit-task");
     btnEditTask.ondblclick = () => {
       showForm(true, task);
     };
@@ -302,7 +325,9 @@
 
       const result = await response.json();
       const typeAlert = result.ok ? "exito" : "error";
-      
+
+      createAlertMessage(result.message, "legend", typeAlert);
+
       if (result.ok) {
         tasks = tasks.map((element) => {
           if (element.id === task.id) {
@@ -310,16 +335,17 @@
           }
           return element;
         });
+        
 
-        setTimeout(()=> {
-          document.querySelector(".modal").remove();
-        }, 500);
+        setTimeout(() => {
+          const modal = document.querySelector(".modal");
+          if (modal) {
+            modal.remove();
+          }
+        }, 1000);
         
-        setTimeout(()=> {
-          createAlertMessage(result.message, ".nombre-pagina", typeAlert);
-          updateNodeTask(task);
-        },600); 
-        
+        updateNodeTask(task);
+
         flag = true;
       }
     } catch (error) {
@@ -411,5 +437,13 @@
   function removeNodeTaskToHtml(taskId) {
     const taskNode = document.getElementById(taskId);
     taskNode.remove();
+  }
+
+  function clearTasks() {
+    const taskList = document.querySelector("#task-list");
+
+    while (taskList.firstChild) {
+      taskList.removeChild(taskList.firstChild);
+    }
   }
 })();
