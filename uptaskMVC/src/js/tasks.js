@@ -1,31 +1,53 @@
 (() => {
-  const btnAddTask = document.querySelector("#add-task");
-  btnAddTask.addEventListener("click", showForm);
   let tasks = [];
-
   getTasks();
+
+  const btnAddTask = document.querySelector("#add-task");
+  btnAddTask.addEventListener("click", () => {
+    showForm();
+  });
+
+  const filters = document.querySelectorAll("#filters input[type='radio']");
+  filters.forEach((filter) => {
+    filter.addEventListener("input", filterTasks);
+  });
+
+  function filterTasks(e) {
+    const value = e.target.value;
+    let auxTasks = [...tasks];
+    if (value) {
+      auxTasks = auxTasks.filter((task) => task.estado == value);
+    }
+
+    clearTasks();
+    showTasks(auxTasks);
+  }
 
   /**
    * Genera un modal para poder agregar una nueva tarea a un proyecto
    */
-  function showForm() {
+  function showForm(edit = false, task = { nombre: "", descripcion: "" }) {
     const modal = document.createElement("DIV");
     modal.classList.add("modal");
     modal.innerHTML = `
             <form class="form new-task">
-                <legend>Añade una nueva tarea</legend>
+                <legend>${edit ? "Editar Tarea" : "Agregar Tarea"}</legend>
                 <div class="field">
                     <label for="task">Tarea</label>
-                    <input type="text" name="task" placeholder="Agrega una tarea al proyecto" id="task"/>
+                    <input type="text" name="task" placeholder="Nombre de la tarea" id="task" value="${
+                      task.nombre
+                    }"/>
                 </div>
                 <div class="field">
                     <label for="description">Descripcion</label>
-                    <textarea id="description" name="description" placeholder="Descripción de la tarea"></textarea>
+                    <textarea id="description" name="description" placeholder="Descripción de la tarea">${
+                      task.descripcion
+                    }</textarea>
                 </div>
 
-                <div class="options aling-right">
+                <div class="options">
                     <button type="button" class="close-modal">Cancelar</button>
-                    <input type="submit" class="submit-new-task" value="Agregar Tarea"/>
+                    <input type="submit" class="submit-new-task" value="Guardar Tarea"/>
                 </div>
             </form>
         `;
@@ -45,7 +67,7 @@
           modal.remove();
         }, 200);
       } else if (value.contains("submit-new-task")) {
-        submitForm();
+        submitForm(edit, task);
       }
     });
 
@@ -55,14 +77,19 @@
   /**
    * Realiza el envio del formulario
    */
-  function submitForm() {
+  function submitForm(edit, task) {
     const nombre = document.querySelector("#task").value.trim();
     const descripcion = document.querySelector("#description").value.trim();
+    task = { ...task, nombre, descripcion };
 
     if (!nombre) {
       createAlertMessage("El nombre de la tarea es obligatorio", "legend");
     } else {
-      addTask({ nombre, descripcion });
+      if (!edit) {
+        addTask(task);
+      } else {
+        updateTask(task);
+      }
     }
   }
 
@@ -76,17 +103,20 @@
    */
   function createAlertMessage(message, reference, type = "error") {
     const referenceElement = document.querySelector(reference);
-    const divAlert = document.createElement("DIV");
-    divAlert.classList.add(type);
-    divAlert.classList.add("alert");
-    const messageText = document.createElement("P");
-    messageText.textContent = message;
-    divAlert.appendChild(messageText);
-    referenceElement.after(divAlert);
+    if (referenceElement){
+      const divAlert = document.createElement("DIV");
+      divAlert.classList.add(type);
+      divAlert.classList.add("alert");
+      const messageText = document.createElement("P");
+      messageText.textContent = message;
+      divAlert.appendChild(messageText);
+      referenceElement.after(divAlert);
+      
+      setTimeout(() => {
+        divAlert.remove();
+      }, 1200);
+    }
 
-    setTimeout(() => {
-      divAlert.remove();
-    }, 1200);
   }
 
   //Methods to add
@@ -114,8 +144,8 @@
       if (!result.ok) {
         createAlertMessage(result.message, "legend");
       } else {
-        createAlertMessage(result.message, "legend", "exito");
         tasks = [...tasks, result.body];
+        createAlertMessage(result.message, "legend", "exito");
         setTimeout(() => {
           document.querySelector(".modal").remove();
           addTaskToHtmL(result.body);
@@ -168,8 +198,8 @@
     btnStateTask.classList.add("state-task");
     btnStateTask.classList.add(`${states[task.estado].toLowerCase()}`);
     btnStateTask.textContent = states[task.estado];
-    btnStateTask.ondblclick = () => {
-      changeStateTask({ ...task });
+    btnStateTask.ondblclick = async () => {
+      await changeStateTask(task);
     };
 
     const btnDeleteTask = document.createElement("BUTTON");
@@ -179,7 +209,16 @@
       confirmDeleteTask(task);
     };
 
+    const btnEditTask = document.createElement("BUTTON");
+    btnEditTask.classList.add("edit-task");
+    btnEditTask.ondblclick = () => {
+      showForm(true, task);
+    };
+
+    btnEditTask.textContent = "Editar";
+
     optionsDiv.appendChild(btnStateTask);
+    optionsDiv.appendChild(btnEditTask);
     optionsDiv.appendChild(btnDeleteTask);
     const summaryTask = document.createElement("SUMMARY");
     summaryTask.appendChild(taskName);
@@ -216,7 +255,6 @@
       const response = await fetch(url);
       const result = await response.json();
       tasks = result.body;
-
       showTasks(tasks);
     } catch (error) {
       console.log(error);
@@ -224,7 +262,7 @@
   }
   /**
    * Agrega las tareas, correspondientes al proyecto, al DOM
-   * 
+   *
    * @param {Object} tasks Arreglo de objetos de tareas
    */
   function showTasks(tasks) {
@@ -251,15 +289,19 @@
   // Functions to update
 
   /**
-   * Cambia el valor del atributo "estado" de la tarea: 
-   * De 1 a 0 y de 0 a 1. Realiza el llamado a una funcion para actualizar los datos 
-   * de la tarea en el nodo correspondiente. 
-   * 
-   * @param {Object} task 
+   * Cambia el valor del atributo "estado" de la tarea:
+   * De 1 a 0 y de 0 a 1. Realiza el llamado a una funcion para actualizar los datos
+   * de la tarea en el nodo correspondiente.
+   *
+   * @param {Object} task
    */
-  function changeStateTask(task) {
-    task.estado = task.estado === 1 ? 0 : 1;
-    updateTask(task);
+  async function changeStateTask(task) {
+    const auxTask = { ...task };
+    auxTask.estado = auxTask.estado === 1 ? 0 : 1;
+
+    if (await updateTask(auxTask)) {
+      task.estado = task.estado === 1 ? 0 : 1;
+    }
   }
 
   /**
@@ -271,6 +313,7 @@
 
   async function updateTask(task) {
     const url = "/api/actualizarTarea";
+    let flag = false;
     try {
       const response = await fetch(url, {
         method: "post",
@@ -282,14 +325,34 @@
 
       const result = await response.json();
       const typeAlert = result.ok ? "exito" : "error";
-      createAlertMessage(result.message, ".nombre-pagina", typeAlert);
+
+      createAlertMessage(result.message, "legend", typeAlert);
 
       if (result.ok) {
+        tasks = tasks.map((element) => {
+          if (element.id === task.id) {
+            element = { ...task };
+          }
+          return element;
+        });
+        
+
+        setTimeout(() => {
+          const modal = document.querySelector(".modal");
+          if (modal) {
+            modal.remove();
+          }
+        }, 1000);
+        
         updateNodeTask(task);
+
+        flag = true;
       }
     } catch (error) {
       console.log(error);
     }
+
+    return flag;
   }
 
   /**
@@ -303,13 +366,6 @@
       0: "Pendiente",
       1: "Completa",
     };
-
-    tasks = tasks.map((element) => {
-      if (element.id === task.id) {
-        element = { ...task };
-      }
-      return element;
-    });
 
     const nodeTask = document.getElementById(task.id);
     const taskName = nodeTask.querySelector("summary p");
@@ -383,4 +439,11 @@
     taskNode.remove();
   }
 
+  function clearTasks() {
+    const taskList = document.querySelector("#task-list");
+
+    while (taskList.firstChild) {
+      taskList.removeChild(taskList.firstChild);
+    }
+  }
 })();

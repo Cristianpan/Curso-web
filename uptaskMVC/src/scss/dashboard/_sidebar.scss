@@ -2,13 +2,63 @@
 @use '../base/mixins' as m;
 
 .sidebar {
-    background-color: v.$indigo;
-    padding: 2rem;
-    h2 {
-        color:v.$blanco;
-        margin: 0;
-        text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s;
+    height: 0;
+    overflow: hidden;
+
+    &.mostrar {
+        opacity: 1;
+        padding: 2rem;
+        height: 100vh;
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.90);
+        backdrop-filter: blur(1rem);
+        z-index: 2;
     }
+
+    &.ocultar {
+        opacity: 0;
+    }
+    
+    @include m.tablet {
+        opacity: 1;
+        height: 100%;
+        padding: 2rem;
+        background-color: v.$indigo;
+    }
+
+    .contenedor-sidebar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            color:v.$blanco;
+            margin: 0;
+            text-align: center;
+        }
+
+        .cerrar-menu{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 2rem;
+            width: 2rem;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            @include m.tablet {
+                display: none;
+                
+            }
+        }
+    }
+
+    
 
     .sidebar-nav {
         margin-top: 5rem;
@@ -16,9 +66,17 @@
         a {
             color: v.$blanco;
             display: block;
-            padding: 0.7rem;
+            padding: 1rem;
+            font-size: 2rem;
             margin-bottom: 1.5rem;
             transition: background-color 300ms;
+            text-align: center;
+
+            @include m.tablet {
+                font-size: 1.6rem;
+                padding: 0.8rem;
+                text-align: start;
+            }
 
             &:hover, &.activo {
                 background-color: darken(v.$indigo, 20%);

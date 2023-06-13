@@ -14,7 +14,7 @@
 
     position: fixed;
     bottom: 4rem;
-    right: 4rem;
+    right: 2rem;
 
     @include m.desktop {
         bottom: 5rem;
@@ -28,7 +28,7 @@
 }
 
 .task-list {
-    margin-top: 3.5rem;
+    margin: 3.5rem 0;
 
     .no-tasks {
         text-align: center;

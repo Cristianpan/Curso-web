@@ -2,7 +2,7 @@
 @use '../base/variables' as v;  
 
 .modal{
-    position: absolute;
+    position: fixed;
     background-color: rgb(0 0 0 / .5);
     padding: 0 2rem;
     top: 0;
@@ -44,14 +44,24 @@
 
         .options {
             display: flex;
-            column-gap: 2rem;
+            flex-direction: column-reverse;    
+
+            @include m.tablet {
+                flex-direction: row;
+                column-gap: 2rem;
+                justify-content: flex-end;
+            }
 
             .submit-new-task {
                 @include m.boton(v.$indigo, v.$blanco);
+                @include m.tablet {
+                    margin: 0;
+                }
             }
-
+            
             .close-modal {
                 @include m.boton(v.$naranja, v.$blanco);
+                margin: 0;
             }
         }
 
