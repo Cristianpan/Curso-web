@@ -29,7 +29,7 @@
 <?php include_once __DIR__ . "/footer-dashboard.php" ?>
 
 <?php
-$script = '<script src="/build/js/tasks.js"></script>
+$script .= '<script src="/build/js/tasks.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>            
     ';
 ?>
