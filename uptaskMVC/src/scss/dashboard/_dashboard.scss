@@ -42,4 +42,14 @@
         }
     }
 
+    .link {
+        margin-left: 10%;
+        display: block;
+        color: v.$indigo;
+
+        &:hover {
+            color: darken(v.$indigo, 20%);
+        }
+    }
+
 }

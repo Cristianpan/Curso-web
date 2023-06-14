@@ -162,6 +162,11 @@
    * @param {Object} task Objecto de tarea a insertar en el html
    */
   function addTaskToHtmL(task) {
+
+    if (tasks.length === 1){
+      document.querySelector(".no-tasks").remove();
+    }
+
     const taskList = document.querySelector("#task-list");
     const taskElement = createTask(task);
     taskList.appendChild(taskElement);
@@ -437,6 +442,10 @@
   function removeNodeTaskToHtml(taskId) {
     const taskNode = document.getElementById(taskId);
     taskNode.remove();
+
+    if (tasks.length === 0){
+      showTasks(tasks);
+    }
   }
 
   function clearTasks() {

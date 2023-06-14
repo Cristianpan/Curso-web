@@ -58,4 +58,12 @@ class ValidadorUsuario {
 
         return $error; 
     }
+
+    public static function validarPasswordActual($usuarioExistente, $password){
+        if(!password_verify($password, $usuarioExistente->getPassword())){
+            return false;  
+        }
+
+        return true;
+    }
 }
