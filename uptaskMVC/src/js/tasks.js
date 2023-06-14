@@ -427,9 +427,8 @@
     createAlertMessage(result.message, ".nombre-pagina", typeAlert);
 
     if (result.ok) {
-      tasks = tasks.filter((element) => {
-        element.id !== task.id;
-      });
+      tasks = tasks.filter(element => element.id !== task.id);
+      
       removeNodeTaskToHtml(task.id);
     }
   }

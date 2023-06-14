@@ -1,0 +1,137 @@
+@use '../base/variables' as v; 
+@use '../base/mixins' as m;
+
+@media (prefers-color-scheme: dark){
+    $grisOscuro: #2c2c3b;
+
+    body {
+        background-color: $grisOscuro;
+    }
+
+    .tagline, .form label, .nombre-pagina{
+        color: v.$blanco;
+    }
+
+    .contenedor-sm .actions a, .dashboard .link {
+        color: v.$grisClaro;
+        &:hover {
+            color: darken(v.$grisClaro, 20%);
+        }
+    }
+
+    .descripcion-pagina {
+        color: darken(v.$grisClaro, 15%);
+    }
+
+    .form .field input {
+        background-color: lighten($grisOscuro, 15%);
+        color: v.$grisClaro;
+    }  
+    
+    .error {
+        color: v.$naranja;
+    }
+
+    .barra-mobile {
+        background-color: darken($grisOscuro, 10%);
+    }
+    
+    .barra {
+        background-color: darken(v.$grisOscuro, 20%);
+
+        p {
+            color: v.$naranja;
+            
+            span {
+                color: v.$blanco;
+            }
+        }
+
+        .cerrar-sesion {
+            color: v.$naranja;
+            &::before {
+                background-color: v.$naranja;     
+            }
+
+            &:hover {
+                color: v.$grisClaro;
+            }
+        }
+    }
+
+    .dashboard {
+        background-color: $grisOscuro;
+
+        .form .field input, .form .field textarea {
+            background-color: lighten($grisOscuro, 15%);
+            color: v.$grisClaro;
+        }
+
+        .form label{
+            color: v.$blanco;
+        }
+
+        .filters {
+            background-color: darken(v.$grisOscuro, 20%);
+            color: v.$blanco;
+            
+            h2 {
+                color: v.$naranja;
+            }
+        }
+
+        .task-list .task {
+            background-color: darken(v.$grisOscuro, 20%);
+            
+            p {
+                color: v.$blanco;
+            }
+            
+            .edit-task {
+                background-color: lighten(v.$grisOscuro, 20%);
+                color: v.$blanco;
+            }
+        }
+
+        .form.new-task {
+            background-color: $grisOscuro;
+            legend {
+                color: v.$blanco;
+            }
+        }
+
+    }
+    
+    .sidebar {
+        @include m.tablet {
+            background-color: darken($grisOscuro, 10%);
+        }
+
+        .sidebar-nav a {
+            &.activo, 
+            &:hover {
+                background-color: v.$naranja;
+            }
+        }
+    }
+
+
+    .listado-proyectos .proyecto {
+        background-color: lighten(v.$grisOscuro, 20%);
+        box-shadow: 0px 3px 10px 2px rgba(0, 0, 0, 0.5);
+        
+        &:hover {
+            box-shadow: 0px 3px 10px 2px rgba(0, 0, 0, 0.75);
+        }
+
+        &:hover a {
+            color: v.$grisOscuro;
+        }
+        
+        a {
+            color: v.$blanco;
+
+        }
+    }
+
+}

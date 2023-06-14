@@ -21,7 +21,7 @@
             </div>
         </form>
         <div class="actions">
-            <a href="/crear">Iniciar Sesión</a>
+            <a href="/">Iniciar Sesión</a>
         </div>
 
     </div> <!--.contenedor-sm-->
