@@ -27,11 +27,12 @@ const paths = {
 }
 function css() {
     return src(paths.scss)
-        .pipe( sourcemaps.init())
-        .pipe( sass({outputStyle: 'expanded'}))
-        // .pipe( postcss([autoprefixer(), cssnano()]))
-        .pipe( sourcemaps.write('.'))
-        .pipe(  dest('public/build/css') );
+        .pipe(sourcemaps.init())
+        .pipe(sass())
+        .pipe(postcss([autoprefixer(), cssnano()]))
+        // .pipe(postcss([autoprefixer()]))
+        .pipe(sourcemaps.write('.'))
+        .pipe( dest('public/build/css') );
 }
 function javascript() {
     return src(paths.js)
