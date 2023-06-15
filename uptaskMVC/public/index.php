@@ -37,6 +37,9 @@ $router->get('/crearProyecto', [CtrlDashboard::class, 'crearProyecto']);
 $router->post('/crearProyecto', [CtrlDashboard::class, 'crearProyecto']); 
 $router->get('/proyecto', [CtrlDashboard::class, 'proyecto']); 
 $router->get('/perfil', [CtrlDashboard::class, 'perfil']); 
+$router->post('/perfil', [CtrlDashboard::class, 'perfil']); 
+$router->get('/cambiarPassword', [CtrlDashboard::class, 'cambiarPassword']); 
+$router->post('/cambiarPassword', [CtrlDashboard::class, 'cambiarPassword']); 
 
 
 //Api para las tareas

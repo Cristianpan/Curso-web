@@ -2,8 +2,10 @@
 namespace Controllers; 
 use MVC\Router;
 use Model\Proyecto;
+use Model\Usuario;
 use Validator\ValidadorLogin;
 use Validator\ValidadorProyecto;
+use Validator\ValidadorUsuario;
 
 class CtrlDashboard {
     public static function index(Router $router) {
@@ -63,10 +65,69 @@ class CtrlDashboard {
     }
 
     public static function perfil(Router $router){
-        session_start(); 
+        session_start();
         ValidadorLogin::isAuth();
+        $usuario = Usuario::getById($_SESSION['id']);
+        $errors = [];
+        $message = [];
+
+        if ($_SERVER['REQUEST_METHOD'] === "POST"){
+            $errors = ValidadorUsuario::validarNombre($_POST['nombre']);
+            $errors = array_merge($errors, ValidadorUsuario::validarNombre($_POST['email']));
+
+            if (empty($errors)){
+                $usuario->setEmail($_POST['email']);
+                $usuario->setNombre($_POST['nombre']);
+                $auxUsuario = Usuario::where($usuario->getEmail(), "email");
+
+                if ($auxUsuario && $auxUsuario->getId() !== $_SESSION['id']){
+                    $message['tipo'] = "error"; 
+                    $message['info'] = "El correo ya ha sido registrado, por favor ingrese otro"; 
+                } else if ($usuario->update()) {
+                    $_SESSION['nombre'] = $usuario->getNombre();
+                    $message['tipo'] = "exito"; 
+                    $message['info'] = "Datos actualizados correctamente";
+                }
+            }
+        }
+
         $router->render("dashboard/perfil", [
             'titulo' => 'Perfil',
+            'usuario' => $usuario,
+            'errors' => $errors, 
+            'message' => $message
+        ]);
+    }
+
+    public static function cambiarPassword(Router $router){
+        session_start();
+        ValidadorLogin::isAuth();
+        $errors = [];
+        $message = [];
+
+        if ($_SERVER['REQUEST_METHOD'] === "POST"){
+            $usuario = Usuario::getById($_SESSION['id']); 
+
+            if (ValidadorUsuario::validarPasswordActual($usuario, $_POST['password_actual'])){
+                $errors = ValidadorUsuario::validarPassword($_POST['password'], $_POST['password2']);
+
+                if (empty($errors)){
+                     $usuario->setPassword($_POST['password']);
+                     $usuario->hashPassword();
+                     $usuario->update();
+                     $message['tipo'] = "exito";
+                     $message['info'] = "La contraseña ha sido actualizada";
+                }
+            } else {
+                $message['tipo'] = "error"; 
+                $message['info'] = "La contraseña actual no coincide";
+            }
+        }
+
+        $router->render("dashboard/cambiarPassword", [
+            'titulo' => 'Cambiar Contraseña', 
+            'errors' => $errors,
+            'message' => $message 
         ]);
     }
 }
