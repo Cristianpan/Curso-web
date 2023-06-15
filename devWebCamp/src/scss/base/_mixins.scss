@@ -89,3 +89,43 @@
         margin: 0;
     }
 }
+
+@mixin menu-socialMedia($color, $size){
+
+    &__link {
+        &::before{
+            color: $color; 
+            font-size: $size;
+            display: inline-block;
+            font-style: normal;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialised; 
+            font-family: "Font Awesome 6 Brands";
+        }
+
+        &:nth-of-type(1)::before{
+            content: "\f39e";
+        }
+        &:nth-of-type(2)::before {
+            content: "\f099";
+        }
+        
+        &:nth-of-type(3):before {
+            content: "\f167";
+        }
+
+        &:nth-of-type(4):before {
+            content: "\f16d";
+        }
+
+        &:nth-of-type(5)::before {
+            content: "\e07b";
+        }
+
+    }
+
+    &__ocultar {
+        display: none;
+    } 
+}
+

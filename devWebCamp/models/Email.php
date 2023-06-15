@@ -25,7 +25,7 @@ class Email {
         $contenido = "<html>";
         $contenido .= "<p><strong>Hola ". $this->nombre . "</strong> Has creado tu cuenta en UpTask.
         Solo debes de confirmarla haciendo click en el siguiente enlace</p>";
-        $contenido .= "<p>Presiona aquí: <a href='http://localhost:3000/confirmar?token=" . $this->token . "'>Confirmar cuenta</a></p>"; 
+        $contenido .= "<p>Presiona aquí: <a href='". $_ENV['PAGE_HOST'] ."/confirmar?token=" . $this->token . "'>Confirmar cuenta</a></p>"; 
         $contenido .= "<p>Si no solicitaste esta cuenta, puedes ignorar este mensaje</p>"; 
         $contenido .= "</html>";
 
@@ -44,7 +44,7 @@ class Email {
         $contenido = "<html>";
         $contenido .= "<p><strong>Hola ". $this->nombre . "</strong> Has solicitado restablecer tu contraseña.
         Haz click en el siguiente enlace para poder hacerlo</p>";
-        $contenido .= "<p>Presiona aquí: <a href='http://localhost:3000/restablecer?token=" . $this->token . "'>Restablecer Contraseña</a></p>"; 
+        $contenido .= "<p>Presiona aquí: <a href='". $_ENV['PAGE_HOST'] ."/confirmar?token=" . $this->token . "'>Restablecer Contraseña</a></p>"; 
         $contenido .= "<p>Si no solicitaste restablecer tu contraseña, puedes ignorar este mensaje</p>"; 
         $contenido .= "</html>";
         
