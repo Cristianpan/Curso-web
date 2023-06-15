@@ -6,13 +6,13 @@ use Model\Usuario;
 use MVC\Router;
 use Validator\ValidadorUsuario;
 
-class CtrlRegistrar {
+class CtrlCuenta {
     public static function registrar(Router $router) {
         $usuario = new Usuario;
         $errors = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $errors = ValidadorUsuario::validarDatosRegistro($_POST);
+            $errors = ValidadorUsuario::validarDatos($_POST);
             if (empty($errors)) {
 
                 $usuario = new Usuario($_POST);
@@ -32,7 +32,8 @@ class CtrlRegistrar {
             }
         }
 
-        $router->render("auth/crearCuenta", [
+        $router->render("cuenta/crear", [
+            "titulo" => 'Crea tu cuenta en DevWebCamp',
             "usuario" => $usuario, 
             "errors" => $errors,
         ]);
@@ -57,7 +58,7 @@ class CtrlRegistrar {
             $message["informacion"] = "La cuenta ha sido confirmada correctamente. Inicie Sesión";
         }
 
-        $router->render("auth/confirmarCuenta", [
+        $router->render("cuenta/confirmar", [
             'message' => $message,
         ]); 
     }
@@ -91,7 +92,8 @@ class CtrlRegistrar {
             }
         }
 
-        $router->render("auth/olvidePassword", [
+        $router->render("cuenta/olvidePassword", [
+            "titulo" => 'Olvide mi Contraseña',
             "alerts" => $alerts, 
             "message" => $message,
         ]); 
@@ -111,7 +113,7 @@ class CtrlRegistrar {
 
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $password = $_POST['password'];
-            $alerts = ValidadorUsuario::validarPassword($password);
+            //$alerts = ValidadorUsuario::validarPassword($password);
 
             if (empty($alerts)) {
                 $usuario->setPassword($password); 
@@ -124,7 +126,7 @@ class CtrlRegistrar {
         }
 
 
-        $router->render("auth/restablecerPassword", [
+        $router->render("cuenta/restablecerPassword", [
             "message" => $message,
             "alerts" => $alerts,
         ]);
@@ -132,6 +134,6 @@ class CtrlRegistrar {
     }
 
     public static function mensaje(Router $router) {
-        $router->render("auth/mensaje");
+        $router->render("cuenta/mensaje");
     }
 }

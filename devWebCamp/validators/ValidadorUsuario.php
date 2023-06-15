@@ -1,32 +1,28 @@
 <?php 
     namespace Validator; 
     class ValidadorUsuario {
-        public static function validarDatosRegistro(array $datos): array{
+        public static function validarDatos ($datos) {
             $errors = [];
-
-            foreach($datos as $key => $value) {
-                if (!$value) {
-                    $errors[$key] = "El campo $key es obligatorio";
-                }
-
-                if ($key === 'telefono') {
-                    $errors[$key] = static::validarTelefono($value)[$key] ; 
-                    
-                } 
-
-                if ($key === 'email'){
-                    $errors[$key] = static::validarEmail($value)[$key] ; 
-                }
-
-                if ($key === 'password'){
-                    $errors[$key] = static::validarPassword($value)[$key] ; 
-                } 
-            }
-
+            $errors = array_merge($errors, static::validarNombreYApellido($datos['nombre'], $datos['apellido'])); 
+            $errors = array_merge($errors, static::validarEmail($datos['email'])); 
+            $errors = array_merge($errors, static::validarPassword($datos['password'], $datos['password2'])); 
+    
             return $errors; 
         }
-
-        public static function validarEmail(string $email): array{
+    
+        public static function validarNombreYApellido($nombre, $apellido){
+            $error = [];
+    
+            if (!$nombre) {
+                $error['nombre'] = "El nombre de usuario es obligatorio";
+            } else if (!$apellido){
+                $error['apellido'] = "El apellido del usuario es obligatorio";
+            }
+    
+            return $error; 
+        }
+    
+        public static function validarEmail($email){
             $error = [];
     
             if (!$email){
@@ -37,28 +33,18 @@
     
             return $error;
         }
-
-        public static function validarTelefono (string $telefono): array{
-            $error = []; 
-
-            if (!$telefono){
-                $error['telefono'] = "El campo telefono es obligatorio";
-            } else if (!preg_match("/[0-9]{10}/", $telefono)) {
-                $errors[$telefono] = "El número de telefono debe de tener 10 digitos enteros"; 
-            }
-
-            return $error; 
-        }
-
-        public static function validarPassword(string $password): array{
+    
+        public static function validarPassword($password, $password2){
             $error = [];
-
+    
             if (!$password) {
                 $error['password'] = "La contraseña es obligatoria";
             } else if (strlen($password) < 6) {
-                $error['password'] = "La contraseña debe de tener al menos 6 caracteres";
+                $error['password'] = "La contraseña debe contener al menos 6 caracteres";
+            } else if ($password !== $password2) {
+                $error['password'] = "Verifique que las contraseñas coincidan";
             }
-
-            return $error; 
+    
+            return $error;
         }
     }

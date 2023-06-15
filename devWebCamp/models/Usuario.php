@@ -10,7 +10,6 @@ class Usuario extends ActiveRecord {
     private $apellido; 
     private $email; 
     private $password; 
-    private $telefono; 
     private $admin; 
     private $confirmado; 
     private $token; 
@@ -21,7 +20,6 @@ class Usuario extends ActiveRecord {
         $this->apellido = $args["apellido"] ?? "";
         $this->email = $args["email"] ?? "";
         $this->password = $args["password"] ?? "";
-        $this->telefono = $args["telefono"] ?? "";
         $this->admin = $args["admin"] ?? 0;
         $this->confirmado = $args["confirmado"] ?? 0;
         $this->token = $args["token"] ?? "";
@@ -35,12 +33,12 @@ class Usuario extends ActiveRecord {
         $flag = false; 
         $db = DbConnection::getDbConnection();
 
-        $query = "INSERT INTO usuarios (nombre, apellido, email, password, telefono, admin, confirmado, token) 
+        $query = "INSERT INTO usuarios (nombre, apellido, email, password, admin, confirmado, token) 
         VALUES (?,?,?,?,?,?,?,?)";
         
         $stmt = $db->prepare($query);  
         
-        $stmt->bind_param("sssssiis",$this->nombre, $this->apellido, $this->email, $this->password, $this->telefono, $this->admin, $this->confirmado, $this->token);
+        $stmt->bind_param("ssssiis",$this->nombre, $this->apellido, $this->email, $this->password, $this->admin, $this->confirmado, $this->token);
 
         $stmt->execute();
 
@@ -59,7 +57,7 @@ class Usuario extends ActiveRecord {
 
         $query = "UPDATE usuarios SET nombre = ?, apellido = ?, email = ?, password = ?, telefono = ?, admin = ?, confirmado = ?, token = ? WHERE id = ?";
         $stmt = $db->prepare($query);
-        $stmt->bind_param("sssssiisi",$this->nombre, $this->apellido, $this->email, $this->password, $this->telefono, $this->admin, $this->confirmado, $this->token, $this->id);
+        $stmt->bind_param("ssssiisi",$this->nombre, $this->apellido, $this->email, $this->password, $this->admin, $this->confirmado, $this->token, $this->id);
         $stmt->execute();
 
         if ($stmt->affected_rows > 0) {
@@ -137,14 +135,6 @@ class Usuario extends ActiveRecord {
 
     public function setPassword ($password){
         $this->password = $password;
-    }
-
-    public function setTelefono ($telefono){
-        $this->$telefono = $telefono;
-    }
-
-    public function getTelefono () {
-        return $this->telefono;
     }
 
     public function getAdmin(){

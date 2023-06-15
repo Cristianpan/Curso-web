@@ -27,13 +27,14 @@
     padding: 1.5rem 4rem;
     color: $colorTexto;
     font-size: 1.8rem;
-    font-weight: 700;
+    font-weight: bold;
     border: none;
     transition-property: background-color;
     transition-duration: .3s;
     text-align: center;
     width: 100%;
     display: inline-block;
+    border-radius: 0.8rem;
 
     &:hover {
         background-color: darken( $bgColor, 10% );
@@ -45,4 +46,26 @@
     display: grid;
     gap: $espaciado;
     grid-template-columns: repeat($columnas, 1fr);
+}
+
+@mixin container {
+    width: min(95%, 120rem);
+    margin: 0 auto; 
+}
+
+@mixin container-sm {
+    width: min(80%, 60rem);
+    margin: 0 auto; 
+}
+
+@mixin headings {
+    font-family: v.$fuente_principal;
+    font-weight: v.$black;
+    margin: 2rem 0;
+}
+
+@mixin nombre-pagina{
+    @include headings;
+    margin: 6rem 0 3rem 0;
+    text-align: center;
 }
