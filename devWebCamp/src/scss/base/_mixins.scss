@@ -90,6 +90,21 @@
     }
 }
 
+@mixin enlace {
+    color: v.$blanco;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: color 0.2s;
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+        color: v.$azul;
+        cursor: pointer;
+    }
+}
+
 @mixin menu-socialMedia($color, $size){
 
     &__link {

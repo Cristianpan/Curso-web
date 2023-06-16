@@ -1,0 +1,97 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v; 
+
+
+.dashboard {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: v.$gris-claro;
+
+    &__heading {
+        text-align: center;
+    }
+
+    &__header {
+        background-color: v.$gris-oscuro;
+        padding: 2rem 5rem;
+    }
+
+    &__header-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include m.tablet {
+            flex-direction: row; 
+            justify-content: space-between; 
+        }
+    }
+
+    &__logo {
+        @include m.logo; 
+        @include m.flowing-text(2rem, 3rem);
+    }
+
+    &__form {
+        display: flex; 
+        justify-content: center; 
+    }
+
+    &__submit--logout{
+        @include m.enlace; 
+    }
+
+    &__grid {
+        display: flex;
+        flex: 1;
+    }
+
+    &__sidebar {
+        background-color: lighten(v.$gris-oscuro, 10);
+        width: 15rem;
+    }
+
+    &__menu {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__link{
+        width: 100%;
+        color: lighten(v.$gris-oscuro, 40);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        gap: 1rem;
+        transition: background-color 0.1s, color 0.1s;
+        border-radius: 1rem;
+
+        &:hover, &--actual {
+            color: v.$blanco;
+            background-color: lighten(v.$gris-oscuro, 20);
+        }
+    }
+
+    &__menu-texto {
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    &__icon {
+        font-size: 2rem;
+    }
+
+    &__contenido{
+        padding: 1rem 1rem 3rem 1rem;
+        width: 100%;
+        @include m.tablet {
+            padding: 1rem 5rem 3rem 5rem;
+        }
+    }
+}

@@ -20,3 +20,7 @@ function validarTokenORedireccionar($name, $url) {
 
     return $token;
 }
+
+function paginaActual($path){
+    return str_contains($_SERVER['PATH_INFO'], $path) ? true : false; 
+}
