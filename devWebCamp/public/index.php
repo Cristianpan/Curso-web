@@ -27,7 +27,7 @@ $router->post('/restablecer', [CtrlCuenta::class, 'restablecer']);
 
 // Confirmación de Cuenta
 $router->get('/mensaje', [CtrlCuenta::class, 'mensaje']);
-$router->get('/confirmarCuenta', [CtrlCuenta::class, 'confirmarCuenta']);
+$router->get('/confirmar', [CtrlCuenta::class, 'confirmarCuenta']);
 
 
 $router->comprobarRutas();

@@ -101,6 +101,12 @@
             text-rendering: auto;
             -webkit-font-smoothing: antialised; 
             font-family: "Font Awesome 6 Brands";
+            transition: transform 0.1s;
+        }
+
+        &:hover::before {
+            color: darken(v.$azul, 20); 
+            transform: scale(1.2);
         }
 
         &:nth-of-type(1)::before{

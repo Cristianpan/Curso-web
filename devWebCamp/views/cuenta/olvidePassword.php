@@ -2,7 +2,9 @@
     <h2 class="auth__heading"><?= $titulo ?></h2>
     <p class="auth__texto">Recupera tu acceso a DevWebCamp</p>
 
-    <form class="form">
+    <?php include_once __DIR__ . '/../templates/alerts.php' ?>
+
+    <form class="form" action="/olvide" method="post">
         <div class="form__field">
             <label for="email" class="form__label">Email</label>
             <input type="email" class="form__input" placeholder="Tu email" id="email" name="email">

@@ -1,3 +1,5 @@
+Options -Indexes
+
 DirectoryIndex index.php
 
 RewriteEngine On

@@ -34,7 +34,7 @@ class Usuario extends ActiveRecord {
         $db = DbConnection::getDbConnection();
 
         $query = "INSERT INTO usuarios (nombre, apellido, email, password, admin, confirmado, token) 
-        VALUES (?,?,?,?,?,?,?,?)";
+        VALUES (?,?,?,?,?,?,?)";
         
         $stmt = $db->prepare($query);  
         
@@ -55,7 +55,7 @@ class Usuario extends ActiveRecord {
         $flag = false; 
         $db = DbConnection::getDbConnection();
 
-        $query = "UPDATE usuarios SET nombre = ?, apellido = ?, email = ?, password = ?, telefono = ?, admin = ?, confirmado = ?, token = ? WHERE id = ?";
+        $query = "UPDATE usuarios SET nombre = ?, apellido = ?, email = ?, password = ?, admin = ?, confirmado = ?, token = ? WHERE id = ?";
         $stmt = $db->prepare($query);
         $stmt->bind_param("ssssiisi",$this->nombre, $this->apellido, $this->email, $this->password, $this->admin, $this->confirmado, $this->token, $this->id);
         $stmt->execute();

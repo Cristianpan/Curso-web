@@ -31,9 +31,9 @@ class CtrlLogin {
 
                     if ($usuario->getAdmin()) {
                         $_SESSION['admin'] = $usuario->getAdmin();
-                        header("Location: ");
+                        header("Location: /admin/dashboard");
                     } else {
-                        header("Location: ");
+                        header("Location: /finalizar-registro");
                     }
                 }
             }
@@ -44,6 +44,7 @@ class CtrlLogin {
             "errors" => $errors
         ]);
     }
+
     public static function logout(){
         session_start(); 
         $_SESSION = []; 
