@@ -34,7 +34,7 @@
     <div class="form__field">
         <label for="tags_input" class="form__label">Áreas de Experiencia (separadas por coma)</label>
         <input class="form__input" type="text" id="tags_input" name="tags_input" placeholder="Ej. Node.js, PHP, CSS">
-        <div id="tags" class="formulario__listado"></div>
+        <ul id="tags" class="form__list"></ul>
         <input type="hidden" name="tags">
     </div>
 </fieldset>
