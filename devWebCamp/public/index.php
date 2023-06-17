@@ -2,8 +2,13 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controller\CtrlDashboard;
 use Controller\CtrlLogin;
 use Controller\CtrlCuenta;
+use Controller\CtrlEventos;
+use Controller\CtrlPonentes;
+use Controller\CtrlRegistrados;
+use Controller\CtrlRegalos;
 use MVC\Router;
 
 $router = new Router();
@@ -27,7 +32,14 @@ $router->post('/restablecer', [CtrlCuenta::class, 'restablecer']);
 
 // Confirmación de Cuenta
 $router->get('/mensaje', [CtrlCuenta::class, 'mensaje']);
-$router->get('/confirmarCuenta', [CtrlCuenta::class, 'confirmarCuenta']);
+$router->get('/confirmar', [CtrlCuenta::class, 'confirmarCuenta']);
+
+//Area del administrador
+$router->get('/admin/dashboard', [CtrlDashboard::class, 'index']);
+$router->get('/admin/ponentes', [CtrlPonentes::class, 'index']);
+$router->get('/admin/eventos', [CtrlEventos::class, 'index']);
+$router->get('/admin/registrados', [CtrlRegistrados::class, 'index']);
+$router->get('/admin/regalos', [CtrlRegalos::class, 'index']);
 
 
 $router->comprobarRutas();

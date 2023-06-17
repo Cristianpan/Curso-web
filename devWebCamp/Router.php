@@ -38,8 +38,15 @@ class Router {
 
         ob_start();
         include __DIR__ . "/views/$view.php";
+        $urlActual = $_SERVER['PATH_INFO'] ?? '/';
         $contenido = ob_get_clean();
 
-        include __DIR__ . "/views/layout.php";
+        if (str_contains($urlActual, '/admin')){
+            include __DIR__ . '/views/adminLayout.php';
+        } else {
+            include __DIR__ . "/views/layout.php";
+        }
+
+
     }
 }

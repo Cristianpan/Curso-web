@@ -13,10 +13,8 @@ class CtrlCuenta {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             $errors = ValidadorUsuario::validarDatos($_POST);
+            $usuario = new Usuario($_POST);
             if (empty($errors)) {
-
-                $usuario = new Usuario($_POST);
-                
                 if ($usuario->existeCorreoRegistrado()){
                     $errors["email"] = "El correo ya ha sido registrado. Por favor ingrese otro.";
                 } else {
@@ -40,10 +38,8 @@ class CtrlCuenta {
     }
 
     public static function confirmarCuenta (Router $router){
-
         $message = [];
-
-        $token = sanitizarHtml($_GET['token']);
+        $token = validarTokenORedireccionar('token', '/login');
 
         $usuario = Usuario::where($token, "token");
 
@@ -59,6 +55,7 @@ class CtrlCuenta {
         }
 
         $router->render("cuenta/confirmar", [
+            'titulo' => 'Confirmar tu Cuenta DevWebCamp',
             'message' => $message,
         ]); 
     }
@@ -101,8 +98,8 @@ class CtrlCuenta {
 
     public static function restablecer(Router $router){
         $message = [];
-        $alerts = [];
-        $token = sanitizarHtml($_GET['token']);
+        $errors = [];
+        $token = sanitizarHtml($_GET['token'] ?? '');
 
         $usuario = Usuario::where($token, "token");
 
@@ -112,28 +109,29 @@ class CtrlCuenta {
         }
 
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
-            $password = $_POST['password'];
-            //$alerts = ValidadorUsuario::validarPassword($password);
+            $errors = ValidadorUsuario::validarPassword($_POST['password'], $_POST['password2']);
 
-            if (empty($alerts)) {
-                $usuario->setPassword($password); 
+            if (empty($errors)) {
+                $usuario->setPassword($_POST['password']); 
                 $usuario->setToken(null);
                 $usuario->hashPassword();
                 if ($usuario->update()) {
-                    header("Location: /");
+                    header("Location: /login");
                 }
             }
         }
 
-
-        $router->render("cuenta/restablecerPassword", [
-            "message" => $message,
-            "alerts" => $alerts,
+        $router->render("cuenta/restablecer", [
+            'titulo' => 'Restablecer contraseña',
+            'message' => $message,
+            'errors' => $errors,
         ]);
         
     }
 
     public static function mensaje(Router $router) {
-        $router->render("cuenta/mensaje");
+        $router->render("cuenta/mensaje", [
+            'titulo' => 'Cuenta Creada Exitosamente'
+        ]);
     }
 }

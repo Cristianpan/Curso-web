@@ -8,16 +8,19 @@ function debuguear($variable) : string {
 }
 
 function sanitizarHtml($html) : string {
-    $s = htmlspecialchars($html);
-    return $s;
+    return htmlspecialchars($html);
 }
 
 function validarTokenORedireccionar($name, $url) {
-    $token = sanitizarHtml($_GET[$name]);
+    $token = sanitizarHtml($_GET[$name] ?? '');
 
     if (!$token) {
         header("Location: " . $url);
     }
 
     return $token;
+}
+
+function paginaActual($path){
+    return str_contains($_SERVER['PATH_INFO'], $path) ? true : false; 
 }
