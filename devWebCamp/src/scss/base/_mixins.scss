@@ -58,6 +58,11 @@
     margin: 0 auto; 
 }
 
+@mixin container-md {
+    width: min(80%, 80rem);
+    margin: 0 auto;
+}
+
 @mixin headings {
     font-family: v.$fuente_principal;
     font-weight: v.$black;
@@ -103,6 +108,10 @@
         color: v.$azul;
         cursor: pointer;
     }
+}
+
+@mixin shadow {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 @mixin menu-socialMedia($color, $size){

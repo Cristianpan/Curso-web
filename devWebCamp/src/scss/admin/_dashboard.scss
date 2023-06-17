@@ -49,7 +49,7 @@
 
     &__sidebar {
         background-color: lighten(v.$gris-oscuro, 10);
-        width: 15rem;
+        width: 12rem;
     }
 
     &__menu {
@@ -92,6 +92,33 @@
         width: 100%;
         @include m.tablet {
             padding: 1rem 5rem 3rem 5rem;
+        }
+    }
+
+    &__contenedor-boton{
+        display: flex; 
+        justify-content: flex-end;
+    }
+
+    &__contenedor{
+        @include m.shadow; 
+        background-color: v.$blanco; 
+        padding: 2rem; 
+        border-radius: 1rem
+    }
+
+    &__formulario{
+        @extend .dashboard__contenedor; 
+        @include m.container-md; 
+        margin-top: 2rem; 
+    }
+
+    &__boton{
+        @include m.boton(v.$azul, v.$blanco);
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        @include m.tablet{
+            width: auto;
         }
     }
 }

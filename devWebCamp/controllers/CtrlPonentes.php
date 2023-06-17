@@ -10,7 +10,16 @@ class CtrlPonentes {
         ValidadorLogin::isAdmin();
 
         $router->render('admin/ponentes/index', [
-            'titulo' => 'Ponenter / Conferencistas',
+            'titulo' => 'Ponentes / Conferencistas',
+        ]);
+    }
+    public static function crear(Router $router){
+        session_start(); 
+        ValidadorLogin::isAuth(); 
+        ValidadorLogin::isAdmin();
+
+        $router->render('admin/ponentes/crear', [
+            'titulo' => 'Registrar Ponente',
         ]);
     }
 
