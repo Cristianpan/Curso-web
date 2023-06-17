@@ -8,9 +8,16 @@
 
     function readTags(){
         const tagsInput = document.querySelector('#tags_input')
+        const tagsInputHidden = document.querySelector('[name=tags]');
         if (tagsInput){
             tagsInput.addEventListener('beforeinput',saveTag); 
-        }   
+
+            if (tagsInputHidden.value){
+                tags = tagsInputHidden.value.split(',');
+                showTags();
+            }
+        }  
+
     }
 
     function saveTag(e){
@@ -29,12 +36,17 @@
 
     function addTag(newTag){
         const tagsDiv = document.querySelector("#tags"); 
-        const tag = document.createElement('LI');
-        tag.classList.add('form__tag');
-        tag.textContent = newTag;
-        tag.ondblclick = removeTag;
+        const tag = createTagLi(newTag);
         tagsDiv.appendChild(tag);
         updateInputHidden();
+    }
+
+    function showTags(){
+        const tagsDiv = document.querySelector("#tags"); 
+        tags.forEach((tag)=> {
+            const tagLi = createTagLi(tag);
+            tagsDiv.appendChild(tagLi);
+        });
     }
 
     function removeTag(e){
@@ -47,6 +59,14 @@
     function updateInputHidden(){
         const inputHidden = document.querySelector('[name=tags]'); 
         inputHidden.value = tags.toString();
+    }
+
+    function createTagLi(tag){
+        const tagLi = document.createElement('LI');
+        tagLi.classList.add('form__tag');
+        tagLi.textContent = tag;
+        tagLi.ondblclick = removeTag;
+        return tagLi;
     }
 
 })();

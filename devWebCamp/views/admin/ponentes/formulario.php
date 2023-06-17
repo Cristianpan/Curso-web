@@ -4,38 +4,39 @@
     <div class="form__field">
         <label for="nombre" class="form__label">Nombre</label>
         <?= isset($errors['nombre']) ? "<p class='error'>" . $errors['nombre'] . "</p>" : ''; ?>
-        <input class="form__input" type="text" id="nombre" name="nombre" placeholder="Nombre del ponente">
+        <input class="form__input" type="text" id="nombre" name="nombre" placeholder="Nombre del ponente" value="<?= sanitizarHtml($ponente->getNombre())?>" >
     </div>
     <div class="form__field">
         <label for="apellido" class="form__label">Apellido</label>
         <?= isset($errors['apellido']) ? "<p class='error'>" . $errors['apellido'] . "</p>" : ''; ?>
-        <input class="form__input" type="text" id="apellido" name="apellido" placeholder="Apellido del ponente">
+        <input class="form__input" type="text" id="apellido" name="apellido" placeholder="Apellido del ponente" value="<?= sanitizarHtml($ponente->getApellido())?>" >
     </div>
     <div class="form__field">
         <label for="ciudad" class="form__label">Ciudad</label>
         <?= isset($errors['ciudad']) ? "<p class='error'>" . $errors['ciudad'] . "</p>" : ''; ?>
-        <input class="form__input" type="text" id="ciudad" name="ciudad" placeholder="Ciudad del ponente">
+        <input class="form__input" type="text" id="ciudad" name="ciudad" placeholder="Ciudad del ponente" value="<?= sanitizarHtml($ponente->getCiudad())?>" >
     </div>
     <div class="form__field">
         <label for="pais" class="form__label">País</label>
         <?= isset($errors['pais']) ? "<p class='error'>" . $errors['pais'] . "</p>" : ''; ?>
-        <input class="form__input" type="text" id="pais" name="pais" placeholder="Pais del ponente">
+        <input class="form__input" type="text" id="pais" name="pais" placeholder="Pais del ponente" value="<?= sanitizarHtml($ponente->getPais())?>">
     </div>
     <div class="form__field">
         <label for="imagen" class="form__label">Imagen</label>
-        <?= isset($errors['pais']) ? "<p class='error'>" . $errors['pais'] . "</p>" : ''; ?>
-        <input class="form__input form__input--file" type="file" id="imagen" name="imagen">
+        <?= isset($errors['imagen']) ? "<p class='error'>" . $errors['imagen'] . "</p>" : ''; ?>
+        <input class="form__input form__input--file" type="file" name="imagen">
     </div>
 </fieldset>
 
 <fieldset class="form__fieldset">
     <legend class="form__legend">Informacion Extra</legend>
-
+    
     <div class="form__field">
         <label for="tags_input" class="form__label">Áreas de Experiencia (separadas por coma)</label>
-        <input class="form__input" type="text" id="tags_input" name="tags_input" placeholder="Ej. Node.js, PHP, CSS">
+        <?= isset($errors['tags']) ? "<p class='error'>" . $errors['tags'] . "</p>" : ''; ?>
+        <input class="form__input" type="text" id="tags_input" placeholder="Ej. Node.js, PHP, CSS">
         <ul id="tags" class="form__list"></ul>
-        <input type="hidden" name="tags">
+        <input type="hidden" name="tags" value="<?=sanitizarHtml($ponente->getTags())?>">
     </div>
 </fieldset>
 

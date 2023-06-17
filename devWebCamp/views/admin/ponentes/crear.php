@@ -9,7 +9,7 @@
 
 <div class="dashboard__formulario">
 
-    <form class="form" method="post" action="/admin/ponentes/crear" enctype="multiport/form-data">
+    <form class="form" method="post" action="/admin/ponentes/crear" enctype="multipart/form-data">
         <?php include_once __DIR__ . "/formulario.php" ?>
 
         <input class="form__submit form__submit--register" type="submit" value="Registrar Ponente">

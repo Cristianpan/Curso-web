@@ -38,6 +38,7 @@ $router->get('/confirmar', [CtrlCuenta::class, 'confirmarCuenta']);
 $router->get('/admin/dashboard', [CtrlDashboard::class, 'index']);
 $router->get('/admin/ponentes', [CtrlPonentes::class, 'index']);
 $router->get('/admin/ponentes/crear', [CtrlPonentes::class, 'crear']);
+$router->post('/admin/ponentes/crear', [CtrlPonentes::class, 'crear']);
 $router->get('/admin/eventos', [CtrlEventos::class, 'index']);
 $router->get('/admin/registrados', [CtrlRegistrados::class, 'index']);
 $router->get('/admin/regalos', [CtrlRegalos::class, 'index']);
