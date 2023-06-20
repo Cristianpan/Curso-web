@@ -1,5 +1,7 @@
 <?php
 
+define('CARPETA_IMAGENES', $_SERVER['DOCUMENT_ROOT'] . '/public/img/');
+
 function debuguear($variable) : string {
     echo "<pre>";
     var_dump($variable);

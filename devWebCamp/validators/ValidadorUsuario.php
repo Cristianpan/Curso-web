@@ -1,6 +1,19 @@
 <?php 
     namespace Validator; 
     class ValidadorUsuario {
+
+        public static function validarDatosPonente($datos){
+            $errors = [];
+
+            foreach($datos as $key => $value){
+                if (!$value){
+                    $errors[$key] = "El campo $key es obligatorio";
+                }
+            }
+
+            return $errors; 
+        }
+
         public static function validarDatos ($datos) {
             $errors = [];
             $errors = array_merge($errors, static::validarNombreYApellido($datos['nombre'], $datos['apellido'])); 

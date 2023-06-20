@@ -7,7 +7,8 @@
             "MVC\\" : "./",
             "Controller\\" : "./controllers",
             "Model\\" : "./models",
-            "Validator\\" : "./validators"
+            "Validator\\" : "./validators",
+            "Util\\" : "./utils"
         }
     },
     "authors": [
