@@ -40,6 +40,7 @@
         public static function isAdmin() {
             if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
                 header("Location: /finalizar-registro");
+                exit();
             }
 
             return true; 
