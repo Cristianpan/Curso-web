@@ -1,0 +1,49 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v; 
+
+.pagination{
+    display: flex;
+    margin: 3rem 0;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    @include m.tablet {
+        justify-content: flex-end;
+    }
+
+    &__link {
+        color: v.$azul;
+        font-size: 1.6rem;
+
+        &--text {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 0.1rem solid v.$azul;
+            transition: color 0.2s, background-color 0.2s;
+            
+            &:hover {
+                background-color: v.$azul;
+                color: v.$blanco;
+            }
+        }
+        
+        &--current {
+            margin: 0;
+            color: v.$gris;
+        }
+        
+        &--number {
+            font-weight: bold;
+            display: none;
+            transition: color 0.2s, transform 0.1s;
+            @include m.tablet {
+                display: block;
+            }   
+            
+            &:hover {
+                transform: scale(1.2);
+                color: darken(v.$azul, 15);
+            }
+        }
+    }
+}

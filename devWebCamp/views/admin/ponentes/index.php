@@ -42,8 +42,11 @@
             </tbody>
         </table>
 
-    <?php } else { ?>
+        
+        <?php } else { ?>
         <p class="text-center">Aún no hay ponentes registrados</p>
 
-    <?php } ?>
-</div>
+        <?php } ?>
+    </div>
+    
+    <?= $paginador->paginar()?>

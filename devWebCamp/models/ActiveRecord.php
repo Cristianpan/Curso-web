@@ -66,6 +66,7 @@ abstract class ActiveRecord {
         return $array;
         
     }
+
     public static function where($data, $column) {
         $db = DbConnection::getDbConnection();
         $dato = null; 
@@ -85,6 +86,43 @@ abstract class ActiveRecord {
         $db->close();
 
         return $dato; 
+    }
+
+    public static function paginar($registrosPorPagina, $offset){
+        $db = DbConnection::getDbConnection();
+        $query = "SELECT * FROM " .  static::$table . " LIMIT ? OFFSET ?";
+        $stmt = $db->prepare($query);
+        
+        $stmt->bind_param("ii", $registrosPorPagina, $offset);
+    
+        $stmt->execute();
+    
+        $resultado = $stmt->get_result();
+        $array = [];
+        while ($dato = $resultado->fetch_assoc()){
+            $array[] = static::crearObjeto($dato); 
+        }
+        
+        
+        $stmt->close();
+        $db->close();
+        return $array;
+    }
+
+    public static function getNumRegisters(){
+        $db = DbConnection::getDbConnection();
+        $query = "SELECT COUNT(*) FROM " . static::$table;
+        $stmt = $db->prepare($query);
+
+        $stmt->execute();
+
+        $stmt->bind_result($total);
+        $stmt->fetch(); 
+
+        $stmt->close();
+        $db->close();
+
+        return $total;
     }
 
     public function delete() {

@@ -1,7 +1,7 @@
 <?php 
 namespace Controller;
 
-use Model\Email;
+use Classes\Email;
 use Model\Usuario;
 use MVC\Router;
 use Validator\ValidadorUsuario;

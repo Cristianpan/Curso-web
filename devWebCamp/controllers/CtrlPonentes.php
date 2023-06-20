@@ -2,6 +2,7 @@
 
 namespace Controller;
 
+use Classes\Paginador;
 use Model\Ponente;
 use Model\Usuario;
 use MVC\Router;
@@ -15,11 +16,21 @@ class CtrlPonentes{
         ValidadorLogin::isAuth();
         ValidadorLogin::isAdmin();
 
-        $ponentes = Ponente::getAll();
+        $paginaActual = filter_var($_GET['page'], FILTER_VALIDATE_INT);
+        $registroPorPagina = 5;
+
+        if (!$paginaActual || $paginaActual < 1){
+            header("Location: /admin/ponentes?page=1");
+        }
+
+        $paginador = new Paginador($paginaActual, $registroPorPagina, Ponente::getNumRegisters());
+
+        $ponentes = Ponente::paginar($registroPorPagina, $paginador->offset());
 
         $router->render('admin/ponentes/index', [
             'titulo' => 'Ponentes / Conferencistas',
             'ponentes' => $ponentes,
+            'paginador' => $paginador
         ]);
     }
 
