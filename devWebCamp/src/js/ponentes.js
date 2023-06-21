@@ -2,18 +2,25 @@
     let ponentes = [];
     let ponentesFiltrados = [];
     const ponentesInput = document.querySelector('#ponentes');
+    const inputHiddenPonente = document.querySelector("[name='ponente']");
 
     if (ponentesInput){
-        ponentesInput.addEventListener('input', buscarPonentes)
+        ponentesInput.addEventListener('input', buscarPonentes); 
+        
         obtenerPonentes();
     }
-
-
+    
+    
     async function obtenerPonentes(){
         const url = '/api/ponentes'; 
         const response = await fetch(url); 
         const result = await response.json();  
         formatearPonentes(result.body); 
+        
+        if (inputHiddenPonente.value){
+            const auxPonente = ponentes.filter(ponente => ponente.id == inputHiddenPonente.value);
+            ponentesInput.value = auxPonente[0].nombre;
+        }
     }
 
 
@@ -36,6 +43,10 @@
             ponentesFiltrados = []; 
         }
 
+        if (inputHiddenPonente.value){
+            inputHiddenPonente.value = '';
+        }
+
         mostrarPonentes(); 
     }
 
@@ -44,7 +55,6 @@
         
         removePonentes();
         
-        
         if (ponentesFiltrados.length > 0) {
             const fragmen = document.createDocumentFragment();
             ponentesFiltrados.forEach(ponente => {
@@ -52,24 +62,31 @@
                 ponenteHtml.classList.add('listado-ponentes__ponente');
                 ponenteHtml.textContent = ponente.nombre; 
                 ponenteHtml.dataset.ponenteId = ponente.id;
+                ponenteHtml.onclick = seleccionarPonente; 
                 fragmen.appendChild(ponenteHtml);
             })
             listadoPonentes.appendChild(fragmen);
         } else {
             const noResultados = document.createElement('LI'); 
             noResultados.classList.add('listado-ponentes__no-resultado');
-            noResultados.textContent.textContent = 'No hay resultados para tu busqueda'
+            noResultados.textContent = 'No hay resultados para tu busqueda'
             listadoPonentes.appendChild(noResultados);
         }
     }
 
     function removePonentes(){
         const listadoPonentes = document.querySelector("#listado-ponentes");
-
         while(listadoPonentes.firstChild){
             listadoPonentes.removeChild(listadoPonentes.firstChild);
         }
+    }
 
+    function seleccionarPonente(e){
+        const inputHiddenPonente = document.querySelector("[name='ponente']"); 
+        inputHiddenPonente.value = e.target.dataset.ponenteId; 
+        ponentesInput.value = e.target.textContent;
+
+        removePonentes();
     }
     
 

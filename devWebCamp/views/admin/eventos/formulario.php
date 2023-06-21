@@ -32,7 +32,7 @@
             <?php foreach ($dias as $dia) : ?>
                 <div>
                     <label for="<?= strtolower($dia->getNombre()) ?>"><?= $dia->getNombre() ?></label>
-                    <input type="radio" id="<?= strtolower($dia->getNombre()) ?>" name="dia" value="<?= $dia->getId() ?>" />
+                    <input type="radio" id="<?= strtolower($dia->getNombre()) ?>" name="dia" value="<?= $dia->getId() ?>"  <?= ($evento->getDiaId() == $dia->getId()) ? 'checked' : ''; ?> />
                 </div>
             <?php endforeach ?>
         </div>
@@ -44,11 +44,11 @@
         
         <ul id="horas" class="horas">
             <?php foreach ($horas as $hora) : ?>
-                <li data-hora-id="<?= $hora->getId()?>"  class="horas__hora horas__hora--disabled"><?= $hora->getHora() ?></li>
+                <li data-hora-id="<?= $hora->getId()?>"  class="horas__hora horas__hora--<?= $hora->getId() == $evento->getHoraId() ? 'selected' : 'disabled' ?>"><?= $hora->getHora() ?></li>
                 <?php endforeach ?>
         </ul>
 
-        <input type="hidden" value="" name="hora">
+        <input type="hidden" value="<?=$evento->getHoraId() ?>" name="hora">
     </div>
 </fieldset>
 
@@ -57,9 +57,11 @@
     <div class="form__field">
         <label for="ponentes" class="form__label">Ponentes</label>
         <?= isset($errors['ponentes']) ? "<p class='error'>" . $errors['ponentes'] . "</p>" : ''; ?>
-        <input type="text" class="form__input" id="ponentes" name="ponentes" placeholder="Buscar Ponente">
+        <input type="text" class="form__input" id="ponentes" placeholder="Buscar Ponente">
 
         <ul id="listado-ponentes" class="listado-ponentes"></ul>
+
+        <input type="hidden" name="ponente" value="<?= $evento->getPonenteId()?>">
 
     </div>
     
