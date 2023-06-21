@@ -30,7 +30,7 @@
 
         public static function isAuth(): bool {
             if (!isset($_SESSION['auth']) || $_SESSION['auth'] === false) {
-                header("Location: /login");
+                header("Location: /");
                 exit();
             }
         
@@ -40,6 +40,7 @@
         public static function isAdmin() {
             if (!isset($_SESSION['admin']) || !$_SESSION['admin']) {
                 header("Location: /finalizar-registro");
+                exit();
             }
 
             return true; 

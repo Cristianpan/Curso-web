@@ -44,6 +44,11 @@
         cursor: pointer;
     }
 
+
+    &__image {
+        width: 20rem;
+    }
+
     &__icon{
         background-color: v.$gris-oscuro;
         width: 4rem;

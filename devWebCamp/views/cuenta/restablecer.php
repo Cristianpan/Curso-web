@@ -20,12 +20,12 @@
             <input type="password" class="form__input" placeholder="Confirma tu contraseña" id="password2" name="password2" />
         </div>
 
-        <a href="/login" class="action-link">¿Ya tienes una cuenta? <span>Inicia Sesión<span></a>
+        <a href="/" class="action-link">¿Ya tienes una cuenta? <span>Inicia Sesión<span></a>
         
         <input type="submit" class="form__submit" value="Guardar Contraseña">
         
     </form>
     
-    <a href="/olvide" class="action-link">¿Aún no tienes cuenta? Registrate</a>
+    <a href="/registro" class="action-link">¿Aún no tienes cuenta? Registrate</a>
 
 </main>

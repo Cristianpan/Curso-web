@@ -10,11 +10,20 @@ class UtilImage {
         }
     }
 
-    public static function guardarImagen($imagen, $nombreImagen){
+    public static function guardarImagen($imagen, $nombreImagen, $carpeta){
         $imagenPng = Image::make($imagen)->fit(800, 800)->encode('png', 80);
         $imagenWebp = Image::make($imagen)->fit(800, 800)->encode('webp', 80);
 
-        $imagenPng->save(CARPETA_IMAGENES . $nombreImagen . '.png');
-        $imagenWebp->save(CARPETA_IMAGENES . $nombreImagen . '.webp');
+        $imagenPng->save($carpeta . $nombreImagen . '.png');
+        $imagenWebp->save($carpeta . $nombreImagen . '.webp');
+    }
+
+    public static function eliminarImagen($path){
+        if (file_exists($path . ".png")){
+            unlink($path . ".png");
+        } 
+        if (file_exists($path . ".webp")){
+            unlink($path . ".webp");
+        }
     }
 }

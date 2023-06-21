@@ -1,5 +1,5 @@
 <?php 
-namespace Model;
+namespace Classes;
 use PHPMailer\PHPMailer\PHPMailer; 
 
 class Email {
