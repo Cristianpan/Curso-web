@@ -5,7 +5,7 @@
 
     <?php 
         if (empty($message) || $message['tipo'] === 'exito'){
-            echo '<a href="/login" class="action-link"><span>Inicia Sesión<span></a>';
+            echo '<a href="/" class="action-link"><span>Inicia Sesión<span></a>';
         }
     ?>
 </main>

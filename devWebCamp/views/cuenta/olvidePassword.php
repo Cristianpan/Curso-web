@@ -10,12 +10,12 @@
             <input type="email" class="form__input" placeholder="Tu email" id="email" name="email">
         </div>
 
-        <a href="/login" class="action-link">¿Ya tienes una cuenta? <span>Inicia Sesión<span></a>
+        <a href="/" class="action-link">¿Ya tienes una cuenta? <span>Inicia Sesión<span></a>
         
         <input type="submit" class="form__submit" value="Enviar">
         
     </form>
     
-    <a href="/login" class="action-link">¿Aún no tienes una cuenta? <span>Registrate<span></a>
+    <a href="/registro" class="action-link">¿Aún no tienes una cuenta? <span>Registrate<span></a>
 
 </main>

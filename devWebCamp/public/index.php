@@ -14,7 +14,7 @@ use MVC\Router;
 $router = new Router();
 
 // Login
-$router->get('/login', [CtrlLogin::class, 'login']);
+$router->get('/', [CtrlLogin::class, 'login']);
 $router->post('/login', [CtrlLogin::class, 'login']);
 $router->post('/logout', [CtrlLogin::class, 'logout']);
 

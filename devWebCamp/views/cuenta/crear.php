@@ -34,6 +34,6 @@
 
     </form>
     
-    <a href="/login" class="action-link">¿Ya tienes una cuenta? <span>Inicia Sesión<span></a>
+    <a href="/" class="action-link">¿Ya tienes una cuenta? <span>Inicia Sesión<span></a>
 
 </main>
