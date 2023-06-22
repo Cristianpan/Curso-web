@@ -7,6 +7,26 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+CREATE TABLE `categorias` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `dias` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+CREATE TABLE `horas` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `hora` varchar(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE `ponentes` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -30,6 +50,52 @@ CREATE TABLE `usuarios` (
   `admin` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `eventos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(120) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `disponibles` int NOT NULL,
+  `categoriaId` int NOT NULL,
+  `diaId` int NOT NULL,
+  `horaId` int NOT NULL,
+  `ponenteId` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  KEY `categoriaId` (`categoriaId`),
+  KEY `diaId` (`diaId`),
+  KEY `horaId` (`horaId`),
+  KEY `ponenteId` (`ponenteId`),
+  CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`categoriaId`) REFERENCES `categorias` (`id`),
+  CONSTRAINT `eventos_ibfk_2` FOREIGN KEY (`diaId`) REFERENCES `dias` (`id`),
+  CONSTRAINT `eventos_ibfk_3` FOREIGN KEY (`horaId`) REFERENCES `horas` (`id`),
+  CONSTRAINT `eventos_ibfk_4` FOREIGN KEY (`ponenteId`) REFERENCES `ponentes` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+INSERT INTO `categorias` (`id`, `nombre`) VALUES
+(1, 'Conferencias');
+INSERT INTO `categorias` (`id`, `nombre`) VALUES
+(2, 'Workshops');
+
+
+INSERT INTO `dias` (`id`, `nombre`) VALUES
+(1, 'Viernes');
+INSERT INTO `dias` (`id`, `nombre`) VALUES
+(2, 'Sábado');
+
+INSERT INTO `horas` (`id`, `hora`) VALUES
+(1, '10:00 - 10:55');
+INSERT INTO `horas` (`id`, `hora`) VALUES
+(2, '11:00 - 11:55');
+INSERT INTO `horas` (`id`, `hora`) VALUES
+(3, '12:00 - 12:55');
+INSERT INTO `horas` (`id`, `hora`) VALUES
+(4, '13:00 - 13:55'),
+(5, '16:00 - 16:55'),
+(6, '17:00 - 17:55'),
+(7, '18:00 - 18:55'),
+(8, '19:00 - 19:55');
 
 INSERT INTO `ponentes` (`id`, `nombre`, `apellido`, `ciudad`, `pais`, `imagen`, `tags`, `redes`) VALUES
 (1, ' Julian', 'Muñoz', 'Madrid', 'España', '6764a74ccf2b4b5b74e333016c13388a', 'React,PHP,Laravel', '{\"facebook\":\"https://facebook.com/C%C3%B3digo-Con-Juan-103341632130628\",\"twitter\":\"https://twitter.com/codigoconjuan\",\"youtube\":\"\",\"instagram\":\"https://instagram.com/codigoconjuan\",\"tiktok\":\"\",\"github\":\"https://github.com/codigoconjuan\"}');
@@ -61,7 +127,8 @@ INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `confir
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `confirmado`, `token`, `admin`) VALUES
 (2, 'Cristian', 'David', 'admin@gmail.com', '$2y$10$zLp51eM8IQRjfpQpDfUhWOOOiFI/fn5JLXrUq997Spym5w4jQSKeq', 1, NULL, 1);
 
-
+INSERT INTO `eventos` (`id`, `nombre`, `descripcion`, `disponibles`, `categoriaId`, `diaId`, `horaId`, `ponenteId`) VALUES
+(1, 'React', 'Curso Básico de React', 20, 1, 1, 1, 1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

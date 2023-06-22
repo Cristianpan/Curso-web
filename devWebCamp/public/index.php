@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controller\CtrlApiEvento;
+use Controller\CtrlApiPonente;
 use Controller\CtrlDashboard;
 use Controller\CtrlLogin;
 use Controller\CtrlCuenta;
@@ -47,12 +49,20 @@ $router->post('/admin/ponentes/eliminar', [CtrlPonentes::class, 'eliminar']);
 
 //crud eventos
 $router->get('/admin/eventos', [CtrlEventos::class, 'index']);
+$router->get('/admin/eventos/crear', [CtrlEventos::class, 'crear']);
+$router->post('/admin/eventos/crear', [CtrlEventos::class, 'crear']);
 
 //crud registrados
 $router->get('/admin/registrados', [CtrlRegistrados::class, 'index']);
 
 //crud regalos
 $router->get('/admin/regalos', [CtrlRegalos::class, 'index']);
+
+
+//api 
+
+$router->get('/api/eventosHorario', [CtrlApiEvento::class, 'index']);
+$router->get('/api/ponentes', [CtrlApiPonente::class, 'index']);
 
 
 $router->comprobarRutas();

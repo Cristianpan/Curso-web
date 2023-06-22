@@ -1,8 +1,9 @@
 <?php 
 namespace Model; 
 use DbConnection;
+use JsonSerializable;
 
-class Ponente extends ActiveRecord {
+class Ponente extends ActiveRecord  implements JsonSerializable{
     protected static $table = 'ponentes'; 
     protected $id; 
     private $nombre;
@@ -42,6 +43,10 @@ class Ponente extends ActiveRecord {
         $stmt->close();
         $db->close();
         return $flag;
+    }
+
+    public function jsonSerialize(): array {
+        return get_object_vars($this);
     }
 
     public function update(){

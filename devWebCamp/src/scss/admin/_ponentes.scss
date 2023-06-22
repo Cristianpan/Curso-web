@@ -1,0 +1,25 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v; 
+
+.listado-ponentes {
+    
+
+    &__ponente {
+        color: v.$gris-oscuro;
+        padding: 0.2rem;
+        text-align: center;
+        
+        &:nth-child(odd) {
+            background-color: darken(v.$gris-claro,10);
+        }
+
+        &:nth-child(even){
+            background-color: darken(v.$gris-claro,3);
+        }
+
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

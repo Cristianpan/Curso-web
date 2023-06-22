@@ -16,7 +16,7 @@ class CtrlPonentes{
         ValidadorLogin::isAuth();
         ValidadorLogin::isAdmin();
 
-        $paginaActual = filter_var($_GET['page'], FILTER_VALIDATE_INT);
+        $paginaActual = filter_var($_GET['page'] ?? '', FILTER_VALIDATE_INT);
         $registroPorPagina = 5;
 
         if (!$paginaActual || $paginaActual < 1){
