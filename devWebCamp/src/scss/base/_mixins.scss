@@ -159,3 +159,17 @@
     } 
 }
 
+
+@mixin card {
+    padding: 3rem;
+    border-radius: 1rem;
+    border: 0.1rem solid v.$gris-claro;
+    box-shadow: rgba(v.$gris-oscuro,  0.5) 0px 3px 8px;
+
+    &__nombre {
+        font-weight: bold;
+        font-size: 2.6rem;
+        margin: 2rem;
+        text-align: center;
+    }
+}

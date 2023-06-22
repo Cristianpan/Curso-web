@@ -10,7 +10,7 @@
             <input type="email" class="form__input" placeholder="Tu email" id="email" name="email">
         </div>
 
-        <a href="/" class="action-link">¿Ya tienes una cuenta? <span>Inicia Sesión<span></a>
+        <a href="/login" class="action-link">¿Ya tienes una cuenta? <span>Inicia Sesión<span></a>
         
         <input type="submit" class="form__submit" value="Enviar">
         

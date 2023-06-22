@@ -30,7 +30,7 @@
 
         public static function isAuth(): bool {
             if (!isset($_SESSION['auth']) || $_SESSION['auth'] === false) {
-                header("Location: /");
+                header("Location: /login");
                 exit();
             }
         

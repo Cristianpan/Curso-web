@@ -21,3 +21,11 @@ h3 {
 [class$="__heading"]{
     @include m.page-name;
 }
+
+[class$="__description"] {
+    text-align: center;
+    font-size: 1.8rem;
+    color: v.$gris-oscuro;
+    margin-bottom: 5rem;
+    
+}

@@ -8,6 +8,7 @@ use Controller\CtrlDashboard;
 use Controller\CtrlLogin;
 use Controller\CtrlCuenta;
 use Controller\CtrlEventos;
+use Controller\CtrlPaginas;
 use Controller\CtrlPonentes;
 use Controller\CtrlRegistrados;
 use Controller\CtrlRegalos;
@@ -61,11 +62,15 @@ $router->get('/admin/registrados', [CtrlRegistrados::class, 'index']);
 //crud regalos
 $router->get('/admin/regalos', [CtrlRegalos::class, 'index']);
 
-
 //api 
-
 $router->get('/api/eventosHorario', [CtrlApiEvento::class, 'index']);
 $router->get('/api/ponentes', [CtrlApiPonente::class, 'index']);
+
+//paginas publicas
+//$router->get('/', [CtrlPaginas::class, 'index']);
+$router->get('/devwebcamp', [CtrlPaginas::class, 'evento']);
+$router->get('/paquetes', [CtrlPaginas::class, 'paquetes']);
+$router->get('/workshops', [CtrlPaginas::class, 'conferencias']);
 
 
 $router->comprobarRutas();
