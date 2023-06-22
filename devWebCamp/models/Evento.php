@@ -21,10 +21,10 @@ class Evento extends ActiveRecord {
         $this->nombre = $args['nombre'] ?? ''; 
         $this->descripcion = $args['descripcion'] ?? ''; 
         $this->disponibles = $args['disponibles'] ?? ''; 
-        $this->categoriaId =  $args['categoria'] ?? ''; 
-        $this->diaId = $args['dia'] ?? ''; 
-        $this->horaId =  $args['hora'] ?? ''; 
-        $this->ponenteId = $args['ponente'] ?? ''; 
+        $this->categoriaId =  $args['categoriaId'] ?? ''; 
+        $this->diaId = $args['diaId'] ?? ''; 
+        $this->horaId =  $args['horaId'] ?? ''; 
+        $this->ponenteId = $args['ponenteId'] ?? ''; 
     }
     public function save() {
         $flag = false; 

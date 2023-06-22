@@ -2,7 +2,7 @@
     let ponentes = [];
     let ponentesFiltrados = [];
     const ponentesInput = document.querySelector('#ponentes');
-    const inputHiddenPonente = document.querySelector("[name='ponente']");
+    const inputHiddenPonente = document.querySelector("[name='ponenteId']");
 
     if (ponentesInput){
         ponentesInput.addEventListener('input', buscarPonentes); 
@@ -43,10 +43,6 @@
             ponentesFiltrados = []; 
         }
 
-        if (inputHiddenPonente.value){
-            inputHiddenPonente.value = '';
-        }
-
         mostrarPonentes(); 
     }
 
@@ -82,7 +78,7 @@
     }
 
     function seleccionarPonente(e){
-        const inputHiddenPonente = document.querySelector("[name='ponente']"); 
+        const inputHiddenPonente = document.querySelector("[name='ponenteId']"); 
         inputHiddenPonente.value = e.target.dataset.ponenteId; 
         ponentesInput.value = e.target.textContent;
 

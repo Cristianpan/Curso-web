@@ -51,6 +51,9 @@ $router->post('/admin/ponentes/eliminar', [CtrlPonentes::class, 'eliminar']);
 $router->get('/admin/eventos', [CtrlEventos::class, 'index']);
 $router->get('/admin/eventos/crear', [CtrlEventos::class, 'crear']);
 $router->post('/admin/eventos/crear', [CtrlEventos::class, 'crear']);
+$router->get('/admin/eventos/editar', [CtrlEventos::class, 'editar']);
+$router->post('/admin/eventos/editar', [CtrlEventos::class, 'editar']);
+$router->post('/admin/eventos/eliminar', [CtrlEventos::class, 'eliminar']);
 
 //crud registrados
 $router->get('/admin/registrados', [CtrlRegistrados::class, 'index']);
