@@ -10,19 +10,19 @@
         </div>
 
         <nav class="menu-redes">
-            <a class="menu-redes__link" rel="noopener noreferrer" target="_blank" href="#">
+            <a class="menu-redes__link menu-redes__link--facebook" rel="noopener noreferrer" target="_blank" href="#">
                 <span class="menu-redes__ocultar">Facebook</span>
             </a>
-            <a class="menu-redes__link" rel="noopener noreferrer" target="_blank" href="#">
+            <a class="menu-redes__link menu-redes__link--twitter" rel="noopener noreferrer" target="_blank" href="#">
                 <span class="menu-redes__ocultar">Twitter</span>
             </a>
-            <a class="menu-redes__link" rel="noopener noreferrer" target="_blank" href="#">
+            <a class="menu-redes__link menu-redes__link--youtube" rel="noopener noreferrer" target="_blank" href="#">
                 <span class="menu-redes__ocultar">YouTube</span>
             </a>
-            <a class="menu-redes__link" rel="noopener noreferrer" target="_blank" href="#">
+            <a class="menu-redes__link menu-redes__link--instagram" rel="noopener noreferrer" target="_blank" href="#">
                 <span class="menu-redes__ocultar">Instagram</span>
             </a>
-            <a class="menu-redes__link" rel="noopener noreferrer" target="_blank" href="#">
+            <a class="menu-redes__link menu-redes__link--tiktok" rel="noopener noreferrer" target="_blank" href="#">
                 <span class="menu-redes__ocultar">Tiktok</span>
             </a>
         </nav>

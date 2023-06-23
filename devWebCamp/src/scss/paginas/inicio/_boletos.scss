@@ -1,0 +1,66 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v; 
+
+.boletos {
+    &__grid {
+        @include m.container-md; 
+
+        @include m.grid(1, 3rem);
+        align-items: center;
+
+        @include m.tablet {
+            @include m.container;
+            @include m.grid(3, 3rem);
+        }
+    }
+
+    &__enlace-contenedor {
+        margin: 5rem 5rem 0 0;
+        display: flex; 
+        justify-content: flex-end;
+    }
+
+    &__enlace {
+        background-color: v.$azul; 
+        padding: 1.2rem; 
+        color: v.$blanco;
+        border-radius: 0.5rem 
+    }
+}
+
+.boleto {
+    @include m.card; 
+    padding: 2rem 3rem;
+    height: min-content;
+    background: linear-gradient(to right, v.$azul, v.$secundario);
+    border: none;
+    transition: transform 0.3s;
+
+    &:nth-child(1){
+        order: 2;
+    }
+    
+    @include m.tablet {
+        &:nth-child(1){
+            order: unset;
+        }
+        
+    }
+
+    &__logo {
+        font-size: 3rem;
+        margin: 2rem 0;
+        color: v.$blanco;
+    }
+
+    &__plan {
+        color: v.$gris-claro;
+    }
+
+    &__precio {
+        color: v.$blanco;
+        font-size: 3rem;
+        font-weight: bold;
+        margin: 0;
+    }
+}
