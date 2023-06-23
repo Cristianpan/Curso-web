@@ -1,0 +1,27 @@
+@use 'base/variables' as v; 
+@use 'base/mixins' as m;
+
+.devwebcamp {
+    
+    &__grid {
+        @include m.container;
+        @include m.grid(1, 3rem);
+        @include m.tablet {
+           @include m.grid(2, 5rem); 
+           align-items: center;
+        }
+    }
+
+    &__image {
+        source, img {
+            max-width: 100%;
+            @include m.shadow; 
+            border-radius: 1rem;
+        } 
+    }
+
+    &__text {
+        line-height: 1.5;
+    }
+}
+

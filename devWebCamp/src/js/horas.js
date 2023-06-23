@@ -7,7 +7,7 @@
   const horas = document.querySelector("#horas");
 
   if (horas) {
-    const dias = document.querySelectorAll('[name="dia"]');
+    const dias = document.querySelectorAll('[name="diaId"]');
     const categoria = document.querySelector("#categoria");
     
     categoria.addEventListener("change", terminoBusqueda);
@@ -24,7 +24,11 @@
   }
 
   function terminoBusqueda(e) {
-    busqueda[e.target.name] = e.target.value;
+    if (e.target.name === 'diaId'){
+      busqueda.dia = e.target.value; 
+    } else {
+      busqueda.categoria = e.target.value;
+    }
 
     if (busqueda.categoria && busqueda.dia) {
       buscarEventos();
@@ -44,12 +48,11 @@
 
   function obtenerHorasDisponibles(eventos) {
     const horasTomadas = eventos.map((evento) => evento.horaId);
-    document.querySelector("[name='hora']").value = "";
     
     const horasDisponibles = document.querySelectorAll("#horas li");
 
     horasDisponibles.forEach((hora) => {
-      if (!horasTomadas.includes(parseInt(hora.dataset.horaId))) {
+      if (!horasTomadas.includes(parseInt(hora.dataset.horaId)) || hora.classList.contains("horas__hora--selected")) {
         hora.classList.remove("horas__hora--disabled");
         hora.addEventListener("click", seleccionarHora);
       } else {
@@ -61,7 +64,7 @@
   }
 
   function seleccionarHora(e) {
-    const inputHiddenHora = document.querySelector("[name='hora']");
+    const inputHiddenHora = document.querySelector("[name='horaId']");
     removerSelected();
     inputHiddenHora.value = e.target.dataset.horaId;
     e.target.classList.add("horas__hora--selected");

@@ -4,7 +4,6 @@ namespace Controller;
 
 use Classes\Paginador;
 use Model\Ponente;
-use Model\Usuario;
 use MVC\Router;
 use Util\UtilImage;
 use Validator\ValidadorLogin;

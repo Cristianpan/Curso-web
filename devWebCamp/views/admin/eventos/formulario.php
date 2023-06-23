@@ -16,7 +16,7 @@
     <div class="form__field">
         <label for="categoria" class="form__label">Categoria</label>
         <?= isset($errors['categoria']) ? "<p class='error'>" . $errors['categoria'] . "</p>" : ''; ?>
-        <select class="form__input" name="categoria" id="categoria">
+        <select class="form__input" name="categoriaId" id="categoria">
             <option value="">- Seleccionar -</option>
             <?php foreach ($categorias as $categoria) : ?>
                 <option  <?php echo ($evento->getCategoriaId() == $categoria->getId()) ? 'selected' : '' ?> value="<?= $categoria->getId() ?>"><?= $categoria->getNombre() ?></option>
@@ -32,7 +32,7 @@
             <?php foreach ($dias as $dia) : ?>
                 <div>
                     <label for="<?= strtolower($dia->getNombre()) ?>"><?= $dia->getNombre() ?></label>
-                    <input type="radio" id="<?= strtolower($dia->getNombre()) ?>" name="dia" value="<?= $dia->getId() ?>"  <?= ($evento->getDiaId() == $dia->getId()) ? 'checked' : ''; ?> />
+                    <input type="radio" id="<?= strtolower($dia->getNombre()) ?>" name="diaId" value="<?= $dia->getId() ?>"  <?= ($evento->getDiaId() == $dia->getId()) ? 'checked' : ''; ?> />
                 </div>
             <?php endforeach ?>
         </div>
@@ -48,7 +48,7 @@
                 <?php endforeach ?>
         </ul>
 
-        <input type="hidden" value="<?=$evento->getHoraId() ?>" name="hora">
+        <input type="hidden" value="<?=$evento->getHoraId() ?>" name="horaId">
     </div>
 </fieldset>
 
@@ -61,7 +61,7 @@
 
         <ul id="listado-ponentes" class="listado-ponentes"></ul>
 
-        <input type="hidden" name="ponente" value="<?= $evento->getPonenteId()?>">
+        <input type="hidden" name="ponenteId" value="<?= $evento->getPonenteId()?>">
 
     </div>
     
