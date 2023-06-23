@@ -18,7 +18,7 @@ $router = new Router();
 
 // Login
 $router->get('/', [CtrlLogin::class, 'login']);
-$router->post('/login', [CtrlLogin::class, 'login']);
+$router->post('/', [CtrlLogin::class, 'login']);
 $router->post('/logout', [CtrlLogin::class, 'logout']);
 
 // Crear Cuenta
