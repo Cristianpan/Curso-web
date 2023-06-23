@@ -2,7 +2,7 @@
 @use 'base/mixins' as m;
 
 .agenda {
-    padding: 5rem 0;
+    padding-bottom: 5rem;
     @include m.container; 
 
 }
@@ -25,6 +25,18 @@
         #{$modificador}__heading {
             color: darken(v.$secundario, 10);
         }
+
+        .evento__informacion{
+            background-color: darken(v.$secundario, 10);
+
+            &:hover {
+            background-color: darken(v.$secundario, 15);
+            }
+        }
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+        color: rgba(v.$blanco, 0.5);
     }
 }
 
@@ -35,11 +47,15 @@
 
     &__nombre {
         font-weight: bold;
-        font-size: 2.5rem;
+        font-size: 2rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
     &__informacion {
-        padding: 2rem 5rem;
+        padding: 1rem 2rem;
         border-radius: 1rem;
         background-color: v.$azul;
         color: v.$blanco;

@@ -1,10 +1,17 @@
 <header class="header">
     <div class="header__container">
         <nav class="header__nav">
-           <a href="/registro" class="header__link">Registro</a> 
-           <a href="/login" class="header__link">Iniciar Sesión</a> 
+            <?php if (isset($_SESSION['auth']) && $_SESSION['auth']) { ?>
+                <a href="<?= isset($_SESSION['admin']) && $_SESSION['admin'] ?  '/admin/dashboard' : '/finalizarRegistro' ?>" class="header__link">Administrar</a>
+                <form method="post" action="/logout" class="header__form">
+                    <input type="submit" value="Cerrar Sesión" class="header__submit">
+                </form>
+            <?php } else { ?>
+                <a href="/registro" class="header__link">Registro</a>
+                <a href="/login" class="header__link">Iniciar Sesión</a>
+            <?php } ?>
         </nav>
- 
+
         <div class="header__content">
             <a href="/">
                 <h1 class="header__logo">&#60;DevWebCamp/></h1>
@@ -19,12 +26,14 @@
 
 <div class="bar">
     <div class="bar__content">
-        <a class="bar__logo" href="/"><h2>&#60;DevCampWeb/></h2></a>
+        <a class="bar__logo" href="/">
+            <h2>&#60;DevCampWeb/></h2>
+        </a>
         <nav class="nav">
-            <a href="/devwebcamp" class="nav__link">Evento</a>
-            <a href="/paquetes" class="nav__link">Paquetes</a>
-            <a href="/workshops" class="nav__link">Workshops / Conferencias</a>
-            <a href="/registro" class="nav__link">Comprar Pase</a>
+            <a href="/devwebcamp" class="nav__link <?= paginaActual('/devwebcamp') ? 'nav__link--actual' : '' ?>">Evento</a>
+            <a href="/paquetes" class="nav__link <?= paginaActual('/paquetes') ? 'nav__link--actual' : '' ?>">Paquetes</a>
+            <a href="/workshops" class="nav__link <?= paginaActual('/workshops') ? 'nav__link--actual' : '' ?> ">Workshops / Conferencias</a>
+            <a href="/registro" class="nav__link <?= paginaActual('/registro') ? 'nav__link--actual' : '' ?>">Comprar Pase</a>
         </nav>
     </div>
 </div>

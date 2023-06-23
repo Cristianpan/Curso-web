@@ -33,7 +33,7 @@ class CtrlLogin {
                         $_SESSION['admin'] = $usuario->getAdmin();
                         header("Location: /admin/dashboard");
                     } else {
-                        header("Location: /finalizar-registro");
+                        header("Location: /finalizarRegistro");
                     }
                 }
             }

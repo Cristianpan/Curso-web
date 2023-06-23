@@ -17,8 +17,8 @@ use MVC\Router;
 $router = new Router();
 
 // Login
-$router->get('/', [CtrlLogin::class, 'login']);
-$router->post('/', [CtrlLogin::class, 'login']);
+$router->get('/login', [CtrlLogin::class, 'login']);
+$router->post('/login', [CtrlLogin::class, 'login']);
 $router->post('/logout', [CtrlLogin::class, 'logout']);
 
 // Crear Cuenta
@@ -67,7 +67,7 @@ $router->get('/api/eventosHorario', [CtrlApiEvento::class, 'index']);
 $router->get('/api/ponentes', [CtrlApiPonente::class, 'index']);
 
 //paginas publicas
-//$router->get('/', [CtrlPaginas::class, 'index']);
+$router->get('/', [CtrlPaginas::class, 'index']);
 $router->get('/devwebcamp', [CtrlPaginas::class, 'evento']);
 $router->get('/paquetes', [CtrlPaginas::class, 'paquetes']);
 $router->get('/workshops', [CtrlPaginas::class, 'conferencias']);

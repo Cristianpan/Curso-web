@@ -42,6 +42,17 @@
         }
     }
 
+    &__form {
+        display: flex; 
+        align-items: center; 
+    }
+
+    &__submit{
+        background-color: inherit; 
+        border: none; 
+        @extend .header__link;
+    }
+
     &__content {
         padding-top: 10rem;
         @include m.tablet {
