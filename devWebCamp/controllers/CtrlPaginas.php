@@ -57,6 +57,7 @@ class CtrlPaginas {
     }
 
     public static function error(Router $router) {
+        session_start();
         $router->render("paginas/404");
     }
 

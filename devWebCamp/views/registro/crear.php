@@ -26,6 +26,11 @@
             </ul>
 
             <p class="paquete__precio">$199</p>
+            <div id="smart-button-container">
+                <div style="text-align: center;">
+                    <div id="paypal-button-container"></div>
+                </div>
+            </div>
         </div>
         <div class="paquete">
             <h3 class="paquete__nombre">Pase Virtual</h3>
@@ -37,7 +42,113 @@
             </ul>
 
             <p class="paquete__precio">$99</p>
+            <div id="smart-button-container">
+                <div style="text-align: center;">
+                  <div id="paypal-button-container-virtual"></div>
+                </div>
+            </div>
         </div>
-     </div>
-
+    </div>
 </main>
+
+
+<script src="https://www.paypal.com/sdk/js?client-id=AToM5QOUf1OTloYtPzeT7K_qiNcHFQuU8N9ONsNRPhWJG76bNdWaJ8zHhdC8gweCfo38YKmh5iESNVri&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+
+<script>
+    const payment = {
+        paqueteId: '',
+        pagoId: ''
+    }
+
+    function initPayPalButton() {
+
+        paypal.Buttons({
+            style: {
+                shape: 'rect',
+                color: 'blue',
+                layout: 'vertical',
+                label: 'pay',
+            },
+
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        "description": "1",
+                        "amount": {
+                            "currency_code": "USD",
+                            "value": 199
+                        }
+                    }]
+                });
+            },
+
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(orderData) {
+
+                    payment.pagoId = orderData.purchase_units[0].payments.captures[0].id;
+                    payment.paqueteId = orderData.purchase_units[0].description;
+
+                    enviarDatos();
+                });
+            },
+
+            onError: function(err) {
+                console.log(err);
+            }
+        }).render('#paypal-button-container');
+
+        paypal.Buttons({
+            style: {
+                shape: 'rect',
+                color: 'blue',
+                layout: 'vertical',
+                label: 'pay',
+            },
+
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        "description": "2",
+                        "amount": {
+                            "currency_code": "USD",
+                            "value": 99
+                        }
+                    }]
+                });
+            },
+
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(orderData) {
+
+                    payment.pagoId = orderData.purchase_units[0].payments.captures[0].id;
+                    payment.paqueteId = orderData.purchase_units[0].description;
+
+                    enviarDatos();
+                });
+            },
+
+            onError: function(err) {
+                console.log(err);
+            }
+        }).render('#paypal-button-container-virtual');
+    }
+
+    async function enviarDatos() {
+        console.log(payment);
+        const response = await fetch('/finalizarRegistro/pagar', {
+            method: 'POST',
+            body: JSON.stringify(payment),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        const result = await response.json();
+
+        if (result.ok) {
+            window.location.href = '/finalizarRegistro/conferencias'
+        }
+    }
+
+    initPayPalButton();
+</script>

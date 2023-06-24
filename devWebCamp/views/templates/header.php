@@ -1,8 +1,8 @@
 <header class="header">
     <div class="header__container">
         <nav class="header__nav">
+            <?php !isset($_SESSION) ? session_start() : '' ?>
             <?php if (isset($_SESSION['auth']) && $_SESSION['auth']) { ?>
-                <a href="<?= isset($_SESSION['admin']) && $_SESSION['admin'] ?  '/admin/dashboard' : '/finalizarRegistro' ?>" class="header__link">Administrar</a>
                 <form method="post" action="/logout" class="header__form">
                     <input type="submit" value="Cerrar Sesión" class="header__submit">
                 </form>

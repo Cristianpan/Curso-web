@@ -13,9 +13,9 @@ class CtrlRegistros {
 
         $registro = Registro::where($_SESSION['id'], 'usuarioId');
 
-        if ($registro){
+       if ($registro){
             header('Location: /boleto?id=' . urlencode($registro->getToken()));
-        }
+        } 
 
         $router->render('registro/crear', [
             'titulo' => 'Finalizar Registro',
@@ -60,5 +60,33 @@ class CtrlRegistros {
             'titulo' => 'Asistencia a DevWebCamp', 
             'registro' => $registro
         ]);
+    }
+
+    public static function pagar(){
+        session_start();
+        $response = [
+            'ok' => true,
+        ];
+        $datos = json_decode(file_get_contents('php://input'), true);
+
+        $datos = [
+            'paqueteId' => $datos['paqueteId'], 
+            'pagoId' => $datos['pagoId'], 
+            'token' => substr(md5(uniqid(rand(), true)), 0, 8), 
+            'usuarioId' => $_SESSION['id']
+        ];
+
+        $registro = new Registro($datos);
+
+        try {
+            if (!$registro->save()){
+                $response['ok'] = false; 
+            }
+        } catch (\Throwable $th) {
+            $response['ok'] = false; 
+        }
+
+        header('Content-Type: application/json');
+        echo json_encode($response, JSON_UNESCAPED_UNICODE);
     }
 }

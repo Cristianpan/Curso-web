@@ -76,6 +76,7 @@ $router->get('/404', [CtrlPaginas::class, 'error']);
 //registros de usuario 
 $router->get('/finalizarRegistro', [CtrlRegistros::class, 'crear']);
 $router->post('/finalizarRegistro/gratis', [CtrlRegistros::class, 'gratis']);
+$router->post('/finalizarRegistro/pagar', [CtrlRegistros::class, 'pagar']);
 
 //boletos virtuales
 $router->get('/boleto', [CtrlRegistros::class, 'boleto']);
