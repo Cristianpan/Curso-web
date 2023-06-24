@@ -39,7 +39,6 @@ $router->get('/confirmar', [CtrlCuenta::class, 'confirmarCuenta']);
 
 //Area del administrador
 $router->get('/admin/dashboard', [CtrlDashboard::class, 'index']);
-
 //CRUD ponentes 
 $router->get('/admin/ponentes', [CtrlPonentes::class, 'index']);
 $router->get('/admin/ponentes/crear', [CtrlPonentes::class, 'crear']);
@@ -71,6 +70,7 @@ $router->get('/', [CtrlPaginas::class, 'index']);
 $router->get('/devwebcamp', [CtrlPaginas::class, 'evento']);
 $router->get('/paquetes', [CtrlPaginas::class, 'paquetes']);
 $router->get('/workshops', [CtrlPaginas::class, 'conferencias']);
+$router->get('/404', [CtrlPaginas::class, 'error']);
 
 
 $router->comprobarRutas();
