@@ -20,23 +20,43 @@ CREATE TABLE `dias` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+
 CREATE TABLE `horas` (
   `id` int NOT NULL AUTO_INCREMENT,
   `hora` varchar(13) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE `paquetes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 CREATE TABLE `ponentes` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `apellido` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `ciudad` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `pais` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `imagen` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `tags` varchar(120) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `redes` text COLLATE utf8_unicode_ci,
+  `nombre` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apellido` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ciudad` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pais` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `imagen` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tags` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `redes` text COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `registros` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuarioId` int NOT NULL,
+  `paqueteId` int DEFAULT NULL,
+  `pagoId` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `usuarioId` (`usuarioId`),
+  KEY `paquete_id` (`paqueteId`),
+  CONSTRAINT `registros_ibfk_1` FOREIGN KEY (`usuarioId`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `registros_ibfk_2` FOREIGN KEY (`paqueteId`) REFERENCES `paquetes` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -49,6 +69,19 @@ CREATE TABLE `usuarios` (
   `admin` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `registros` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuarioId` int NOT NULL,
+  `paqueteId` int DEFAULT NULL,
+  `pagoId` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `usuarioId` (`usuarioId`),
+  KEY `paquete_id` (`paqueteId`),
+  CONSTRAINT `registros_ibfk_1` FOREIGN KEY (`usuarioId`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `registros_ibfk_2` FOREIGN KEY (`paqueteId`) REFERENCES `paquetes` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `eventos` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -82,6 +115,7 @@ INSERT INTO `dias` (`id`, `nombre`) VALUES
 INSERT INTO `dias` (`id`, `nombre`) VALUES
 (2, 'Sábado');
 
+
 INSERT INTO `horas` (`id`, `hora`) VALUES
 (1, '10:00 - 10:55');
 INSERT INTO `horas` (`id`, `hora`) VALUES
@@ -94,6 +128,13 @@ INSERT INTO `horas` (`id`, `hora`) VALUES
 (6, '17:00 - 17:55'),
 (7, '18:00 - 18:55'),
 (8, '19:00 - 19:55');
+
+INSERT INTO `paquetes` (`id`, `nombre`) VALUES
+(1, 'Presencial');
+INSERT INTO `paquetes` (`id`, `nombre`) VALUES
+(2, 'Virtual');
+INSERT INTO `paquetes` (`id`, `nombre`) VALUES
+(3, 'Gratis');
 
 INSERT INTO `ponentes` (`id`, `nombre`, `apellido`, `ciudad`, `pais`, `imagen`, `tags`, `redes`) VALUES
 (1, ' Julian', 'Muñoz', 'Madrid', 'España', '6764a74ccf2b4b5b74e333016c13388a', 'React,PHP,Laravel', '{\"facebook\":\"https://facebook.com/C%C3%B3digo-Con-Juan-103341632130628\",\"twitter\":\"https://twitter.com/codigoconjuan\",\"youtube\":\"\",\"instagram\":\"https://instagram.com/codigoconjuan\",\"tiktok\":\"\",\"github\":\"https://github.com/codigoconjuan\"}');
@@ -120,8 +161,12 @@ INSERT INTO `ponentes` (`id`, `nombre`, `apellido`, `ciudad`, `pais`, `imagen`, 
 (19, 'Cristian', 'Pan', 'Mérida', 'México', '869c52bc3309f9458acf4aaf4e019a88', 'Php,JS,CSS,HTML', '{\"facebook\":\"\",\"twitter\":\"\",\"youtube\":\"\",\"instagram\":\"\",\"tiktok\":\"\",\"github\":\"\"}'),
 (20, 'Mauricio', 'Carrillo', 'Mérida', 'México', '37fc55b22cfb6c2c222e061680d09bcd', 'Php,Express,HTML,CSS,JS', '{\"facebook\":\"\",\"twitter\":\"\",\"youtube\":\"\",\"instagram\":\"\",\"tiktok\":\"\",\"github\":\"\"}');
 
+INSERT INTO `registros` (`id`, `usuarioId`, `paqueteId`, `pagoId`, `token`) VALUES
+(1, 1, 3, '0', '85bc7511');
+
+
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `confirmado`, `token`, `admin`) VALUES
-(1, 'Cristian David', 'Pan Zaldivar', 'panzaldivarcristian@gmail.com', '$2y$10$590n5U5lImAhuUK4DsjIyu1SStHiKcSXDziBSVwnm0KK6nhFgjBY6', 1, NULL, 0);
+(1, 'Cristian David', 'Pan Zaldivar', 'panzaldivarcristian@gmail.com', '$2y$10$zLp51eM8IQRjfpQpDfUhWOOOiFI/fn5JLXrUq997Spym5w4jQSKeq', 1, NULL, 0);
 INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `password`, `confirmado`, `token`, `admin`) VALUES
 (2, 'Cristian', 'David', 'admin@gmail.com', '$2y$10$zLp51eM8IQRjfpQpDfUhWOOOiFI/fn5JLXrUq997Spym5w4jQSKeq', 1, NULL, 1);
 
@@ -161,6 +206,9 @@ INSERT INTO `eventos` (`id`, `nombre`, `descripcion`, `disponibles`, `categoriaI
 (30, 'Vue.js - Pinia para reemplazar Vuex', 'Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sodales condimentum magna fringilla egestas. In non pellentesque magna, at mollis velit. Morbi nec dapibus diam. Phasellus ante neque, blandit eget tortor a, cursus molestie turpis. Aenean placerat aliquet nibh, et interdum ipsum finibus at. Nulla sit amet faucibus leo, vel blandit urna. Curabitur dictum euismod sem, eget euismod magna pulvinar et. Nam semper aliquet nunc eu ornare. ', 25, 1, 2, 3, 14),
 (31, 'GraphQL - Introducción Práctica', 'Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sodales condimentum magna fringilla egestas. In non pellentesque magna, at mollis velit. Morbi nec dapibus diam. Phasellus ante neque, blandit eget tortor a, cursus molestie turpis. Aenean placerat aliquet nibh, et interdum ipsum finibus at. Nulla sit amet faucibus leo, vel blandit urna. Curabitur dictum euismod sem, eget euismod magna pulvinar et. Nam semper aliquet nunc eu ornare. ', 30, 1, 2, 8, 15),
 (32, 'React y TailwindCSS - Frontend Moderno', 'Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sodales condimentum magna fringilla egestas. In non pellentesque magna, at mollis velit. Morbi nec dapibus diam. Phasellus ante neque, blandit eget tortor a, cursus molestie turpis. Aenean placerat aliquet nibh, et interdum ipsum finibus at. Nulla sit amet faucibus leo, vel blandit urna. Curabitur dictum euismod sem, eget euismod magna pulvinar et. Nam semper aliquet nunc eu ornare. ', 30, 1, 2, 6, 17);
+
+
+
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

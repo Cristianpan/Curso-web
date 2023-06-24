@@ -12,6 +12,7 @@ use Controller\CtrlPaginas;
 use Controller\CtrlPonentes;
 use Controller\CtrlRegistrados;
 use Controller\CtrlRegalos;
+use Controller\CtrlRegistros;
 use MVC\Router;
 
 $router = new Router();
@@ -71,6 +72,15 @@ $router->get('/devwebcamp', [CtrlPaginas::class, 'evento']);
 $router->get('/paquetes', [CtrlPaginas::class, 'paquetes']);
 $router->get('/workshops', [CtrlPaginas::class, 'conferencias']);
 $router->get('/404', [CtrlPaginas::class, 'error']);
+
+//registros de usuario 
+$router->get('/finalizarRegistro', [CtrlRegistros::class, 'crear']);
+$router->post('/finalizarRegistro/gratis', [CtrlRegistros::class, 'gratis']);
+
+//boletos virtuales
+$router->get('/boleto', [CtrlRegistros::class, 'boleto']);
+
+
 
 
 $router->comprobarRutas();
