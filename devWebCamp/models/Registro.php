@@ -10,6 +10,7 @@ class Registro extends ActiveRecord {
     private $usuarioId; 
     private $paqueteId; 
     private $pagoId; 
+    private $regaloId; 
     private $token; 
 
     public function __construct($args = []){
@@ -17,6 +18,7 @@ class Registro extends ActiveRecord {
         $this->usuarioId = $args['usuarioId'] ?? null;
         $this->paqueteId = $args['paqueteId'] ?? null;
         $this->pagoId = $args['pagoId'] ?? null;
+        $this->regaloId = $args['regaloId'] ?? null;
         $this->token = $args['token'] ?? '';
     }
 
@@ -24,11 +26,11 @@ class Registro extends ActiveRecord {
         $flag = false;
         $db = DbConnection::getDbConnection();
 
-        $query = "INSERT INTO registros (usuarioId, paqueteId, pagoId, token) VALUES (?,?,?,?)";
+        $query = "INSERT INTO registros (usuarioId, paqueteId, pagoId, regaloId, token) VALUES (?,?,?,?,?)";
 
         $stmt = $db->prepare($query);
 
-        $stmt->bind_param("iiis", $this->usuarioId, $this->paqueteId, $this->pagoId, $this->token);
+        $stmt->bind_param("iiiis", $this->usuarioId, $this->paqueteId, $this->pagoId, $this->regaloId, $this->token);
 
         $stmt->execute();
 
@@ -45,11 +47,11 @@ class Registro extends ActiveRecord {
         $flag = false;
         $db = DbConnection::getDbConnection();
 
-        $query = "UPDATE registros SET usuarioId = ?, paqueteId = ?, pagoId = ?, token = ? WHERE id = ?";
+        $query = "UPDATE registros SET usuarioId = ?, paqueteId = ?, pagoId = ?, regaloId = ? token = ? WHERE id = ?";
 
         $stmt = $db->prepare($query);
 
-        $stmt->bind_param("iiisi", $this->usuarioId, $this->paqueteId, $this->pagoId, $this->token, $this->id);
+        $stmt->bind_param("iiiisi", $this->usuarioId, $this->paqueteId, $this->pagoId, $this->regaloId, $this->token, $this->id);
 
         $stmt->execute();
 

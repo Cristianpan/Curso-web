@@ -13,5 +13,9 @@
             </picture>
             <p class="evento__autor-nombre"><?= $evento->getPonenteId()->getNombre() . " " . $evento->getPonenteId()->getApellido() ?></p>
         </div>
+
+        <button type="button" data-id="<?= $evento->getId() ?>" class="evento__agregar" <?= !$evento->getDisponibles() ? 'disabled' : ''?> >
+        <?= !$evento->getDisponibles() ? 'Agotado' : "Agregar - ".$evento->getDisponibles() . " Disponibles"?>
+        </button>
     </div>
 </div>

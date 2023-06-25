@@ -102,7 +102,7 @@ class Evento extends ActiveRecord
         $db = DbConnection::getDbConnection();
 
         $query = "SELECT eventos.id, eventos.nombre, eventos.descripcion, 
-                  ponenteId, horas.hora as horaId, 
+                  ponenteId, horas.hora as horaId, eventos.disponibles,
                   categorias.nombre as categoriaId, dias.nombre as diaId
                   FROM eventos 
                   INNER JOIN horas ON horaId = horas.id

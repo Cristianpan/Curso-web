@@ -96,4 +96,14 @@
         font-weight: bold;   
     }
 
+    &__agregar {
+        margin: 1.5rem auto; 
+        @include m.boton(v.$blanco,v.$azul);
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+
 }
