@@ -5,6 +5,7 @@ namespace Controller;
 use Model\Registro;
 use MVC\Router;
 use Model\Evento;
+use Model\EventoRegistro;
 use Model\Regalo;
 use Validator\ValidadorLogin;
 
@@ -45,8 +46,7 @@ class CtrlRegistros
         }
     }
 
-    public static function boleto(Router $router)
-    {
+    public static function boleto(Router $router){
         session_start();
         ValidadorLogin::isAuth();
 
@@ -59,7 +59,11 @@ class CtrlRegistros
         $registro = Registro::where($id, 'token');
 
         if (!$registro) {
-            header('Location: /');
+            header('Location: /finalizarRegistro');
+        }
+
+        if (is_null($registro->getRegaloId()) && $registro->getPaqueteId()->getId() === 1){
+            header('Location: /finalizarRegistro/conferencias');
         }
 
         $router->render('registro/boleto', [
@@ -106,8 +110,13 @@ class CtrlRegistros
 
         $registro = Registro::where($_SESSION['id'], 'usuarioId');
 
-        if ($registro->getPaqueteId()->getId() !== 1) {
-            header('Location: /');
+        if (!$registro->getPaqueteId()->getId() !== 1) {
+            header('Location: /finalizarRegistro');
+        }
+        
+        if (!is_null($registro->getRegaloId())){
+            header('Location: /boleto?id='.$registro->getToken());
+
         }
 
         $conferenciasViernes = Evento::getEventoByCategoriaYDia(1, 1);
@@ -127,46 +136,72 @@ class CtrlRegistros
         ]);
     }
 
-    public static function guardarConferencias(){
+    public static function guardarConferencias()
+    {
+        session_start();
         ValidadorLogin::isAuth();
         $response = [
             'ok' => true,
-            'message' => 'Registro exitoso'
+            'message' => 'Tu elección ha sido registrada exitosamente. Te esperamos en DevWebCamp', 
+            'token' => '',
         ];
         $datos = json_decode(file_get_contents('php://input'), true);
         $registro = Registro::where($_SESSION['id'], 'usuarioId');
 
-        if (empty($datos['eventosId']) || !$datos['regaloId']){
-            $response['ok'] = false; 
-            $response['message'] = 'Selecciona al menos un evento y un regalo.';
+        if (empty($datos['eventosId']) || !$datos['regaloId']) {
+            $response['ok'] = false;
+            $response['message'] = 'Selecciona al menos un evento y un regalo e intente de nuevo';
         } else if (!isset($registro) || $registro->getPaqueteId()->getId() !== 1) {
             $response['ok'] = false;
             $response['message'] = 'Realice la compra del paquete presencial para completar el registro.';
         }
-        
-        $eventosArray = [];
-        foreach($datos['eventosId'] as $eventoId){
+
+        $eventos = [];
+        foreach ($datos['eventosId'] as $eventoId) {
             $evento = Evento::getById($eventoId);
 
-            if (!isset($evento) || $evento->getDisponibles() === 0){
-                $response['ok'] = false; 
-                $response['message'] = "El evento " . $evento->getNombre() . "ya no cuenta lugares disponibles";
-                
+            if (!isset($evento) || $evento->getDisponibles() === 0) {
+                $response['ok'] = false;
+                $response['message'] = "El evento " . $evento->getNombre() . " ya no cuenta con lugares disponibles. Por favor seleccione otro e intente de nuevo";
             } else {
-                $eventosArray[] = $evento; 
+                $eventos[] = $evento;
             }
-
         }
-        if ($response['ok']){
-            foreach($eventosArray as $evento){
+        if ($response['ok']) {
+            foreach ($eventos as $evento) {
                 $evento->setDisponibles($evento->getDisponibles() - 1);
                 $evento->update();
-    
+
                 //almacenar el registro
+                $datosRegistro = [
+                    'eventoId' => (int) $evento->getId(),
+                    'registroId' => (int) $registro->getId(),
+                ];
+
+                $registroUsuario = new EventoRegistro($datosRegistro);
+                $registroUsuario->save();
             }
+            $registro->setRegaloId($datos['regaloId']);
+            $registro->setPaqueteId($registro->getPaqueteId()->getId());
+            $registro->setUsuarioId($registro->getUsuarioId()->getId());
+
+            try {
+                //code...
+                if ($registro->update()){
+                    $response['token'] = $registro->getToken();
+                } else {
+                    $response['ok'] = false; 
+                    $response['message'] = 'Al ha salido mal. Por favor intente nuevamente.'; 
+                }
+            } catch (\Throwable $th) {
+                //throw $th;
+
+                var_dump($th);
+            }
+
         }
 
         header('Content-Type: application/json');
-        echo json_encode($response, JSON_UNESCAPED_UNICODE); 
+        echo json_encode($response, JSON_UNESCAPED_UNICODE);
     }
 }

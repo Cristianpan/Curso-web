@@ -33,7 +33,7 @@
             <a href="/devwebcamp" class="nav__link <?= paginaActual('/devwebcamp') ? 'nav__link--actual' : '' ?>">Evento</a>
             <a href="/paquetes" class="nav__link <?= paginaActual('/paquetes') ? 'nav__link--actual' : '' ?>">Paquetes</a>
             <a href="/workshops" class="nav__link <?= paginaActual('/workshops') ? 'nav__link--actual' : '' ?> ">Workshops / Conferencias</a>
-            <a href="/registro" class="nav__link <?= paginaActual('/registro') ? 'nav__link--actual' : '' ?>">Comprar Pase</a>
+            <a href="/login" class="nav__link <?= paginaActual('/login') ? 'nav__link--actual' : '' ?>">Comprar Pase</a>
         </nav>
     </div>
 </div>

@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
     const eventosBoton = document.querySelectorAll(".evento__agregar");
 
     const formularioRegistro = document.querySelector("#registro");
-    formularioRegistro.addEventListener('submit', submitFormulario);
+    formularioRegistro.addEventListener("submit", submitFormulario);
     mostrarEventos();
 
     eventosBoton.forEach((boton) =>
@@ -59,10 +59,10 @@ import Swal from "sweetalert2";
         resumen.appendChild(eventoDom);
       });
 
-      if (eventos.length === 0){
-        const noRegistro = document.createElement('P'); 
-        noRegistro.textContent = 'Aún no hay eventos seleccionados';
-        noRegistro.classList.add('registro__texto');
+      if (eventos.length === 0) {
+        const noRegistro = document.createElement("P");
+        noRegistro.textContent = "Aún no hay eventos seleccionados";
+        noRegistro.classList.add("registro__texto");
         resumen.appendChild(noRegistro);
       }
     }
@@ -82,48 +82,53 @@ import Swal from "sweetalert2";
       mostrarEventos();
     }
 
-    function submitFormulario(e){
-        e.preventDefault();
+    function submitFormulario(e) {
+      e.preventDefault();
 
-        //obtener el regalo; 
+      //obtener el regalo;
 
-        const regaloId = document.querySelector("#regalo").value;
-        const eventosId = eventos.map(evento => evento.id);
+      const regaloId = document.querySelector("#regalo").value;
+      const eventosId = eventos.map((evento) => evento.id);
 
-        if (eventosId.length === 0 || !regaloId){
-            Swal.fire({
-                title: "Error",
-                text: "Elige al menos un evento y un regalo",
-                icon: "error",
-                confirmButtonText: "Ok",
-              });
-        }else {
-            enviarDatos({regaloId, eventosId});
-        }
+      if (eventosId.length === 0 || !regaloId) {
+        Swal.fire({
+          title: "Error",
+          text: "Elige al menos un evento y un regalo",
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      } else {
+        enviarDatos({ regaloId, eventosId });
+      }
     }
 
-    async function enviarDatos(data){
-        const url = "/finalizarRegistro/guardarConferencias"; 
+    async function enviarDatos(data) {
+      const url = "/finalizarRegistro/guardarConferencias";
 
-         const response = await fetch(url, {
-            method: 'POST', 
-            body: JSON.stringify(data), 
-            headers: {
-                'Content-Type' : 'application/json'
-            }
-        })
-        const result = response.json(); 
+      const response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const result = await response.json();
 
-        if (result.ok){
-
-        } else {
-            Swal.fire({
-                title: "Error",
-                text: result.message,
-                icon: "error",
-                confirmButtonText: "Ok",
-              });
-        }
-    } 
+      if (result.ok) {
+        Swal.fire({
+          title: "Registro Exitoso",
+          text: result.message,
+          icon: "success",
+          confirmButtonText: "Ok",
+        }).then(()=> location.href = `/boleto?id=${result.token}`);
+      } else {
+        Swal.fire({
+          title: "Error",
+          text: result.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+        }).then(()=> location.reload());
+      }
+    }
   }
 })();

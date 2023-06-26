@@ -47,7 +47,7 @@ class Registro extends ActiveRecord {
         $flag = false;
         $db = DbConnection::getDbConnection();
 
-        $query = "UPDATE registros SET usuarioId = ?, paqueteId = ?, pagoId = ?, regaloId = ? token = ? WHERE id = ?";
+        $query = "UPDATE registros SET usuarioId = ?, paqueteId = ?, pagoId = ?, regaloId = ?, token = ? WHERE id = ?";
 
         $stmt = $db->prepare($query);
 
@@ -109,5 +109,13 @@ class Registro extends ActiveRecord {
     
     public function getToken () {
         return $this->token;
+    }
+
+    public function setRegaloId ($regaloId){
+        $this->regaloId = $regaloId;
+    }
+    
+    public function getRegaloId () {
+        return $this->regaloId;
     }
 }
