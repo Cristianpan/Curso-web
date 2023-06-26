@@ -64,6 +64,26 @@ class Registro extends ActiveRecord {
         return $flag;
     }
 
+    public static function countByRegaloId($regaloId){
+        $db = DbConnection::getDbConnection();
+        $query = "SELECT COUNT(*) FROM registros WHERE regaloId = ?";
+
+        $stmt = $db->prepare($query);
+        
+        $stmt->bind_param("i", $regaloId);
+
+        $stmt->bind_result($total);
+
+        $stmt->execute();
+
+        $stmt->fetch(); 
+
+        $stmt->close();
+        $db->close();
+
+        return $total;
+    }
+
     public static function crearObjeto($data){
         $data['usuarioId'] = Usuario::getById($data['usuarioId']);
         $data['paqueteId'] = Paquete::getById($data['paqueteId']);

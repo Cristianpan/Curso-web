@@ -49,7 +49,7 @@ abstract class ActiveRecord {
     
     public static function getLimit($limit) {
         $db = DbConnection::getDbConnection();
-        $query = "SELECT * FROM " . static::$table . " LIMIT ?"; 
+        $query = "SELECT * FROM " . static::$table . " ORDER BY id DESC LIMIT ?"; 
 
         $stmt = $db->prepare($query);
         $stmt->bind_param("i", $limit);
@@ -120,7 +120,7 @@ abstract class ActiveRecord {
         $stmt = $db->prepare($query);
         
         if ($column && $value){
-            $stmt->bind_param("i", $value);
+            $stmt->bind_param("s", $value);
         }
 
         $stmt->bind_result($total);

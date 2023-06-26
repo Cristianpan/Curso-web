@@ -1,9 +1,9 @@
 <?php 
 namespace Model; 
-
+use JsonSerializable;
 use DbConnection; 
 
-class Regalo extends ActiveRecord {
+class Regalo extends ActiveRecord   implements JsonSerializable{
     protected static $table = 'regalos';
     protected $id; 
     private $nombre; 
@@ -11,6 +11,10 @@ class Regalo extends ActiveRecord {
     public function __construct($args = []){
         $this->id = $args['id'] ?? null; 
         $this->nombre = $args['nombre'] ?? '';
+    }
+
+    public function jsonSerialize(): array {
+        return get_object_vars($this);
     }
 
     public function save(){
