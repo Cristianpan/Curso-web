@@ -97,12 +97,35 @@ class Evento extends ActiveRecord
         return $array;
     }
 
+    public static function orderByLimit($column, $order, $limit){
+        $db = DbConnection::getDbConnection(); 
+        $query = "SELECT * FROM eventos ORDER BY " . $column . " " . $order . " LIMIT ?"; 
+
+        $stmt = $db->prepare($query);
+        
+        $stmt->bind_param("i", $limit);
+
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+
+        $array = [];
+
+        while ($dato = $resultado->fetch_assoc()) {
+            $array[] = static::crearObjeto($dato);
+        }
+
+        $stmt->close();
+        $db->close();
+
+        return $array;
+    }
+
     public static function getEventoByCategoriaYDia($categoriaId, $diaId)
     {
         $db = DbConnection::getDbConnection();
 
         $query = "SELECT eventos.id, eventos.nombre, eventos.descripcion, 
-                  ponenteId, horas.hora as horaId, 
+                  ponenteId, horas.hora as horaId, eventos.disponibles,
                   categorias.nombre as categoriaId, dias.nombre as diaId
                   FROM eventos 
                   INNER JOIN horas ON horaId = horas.id

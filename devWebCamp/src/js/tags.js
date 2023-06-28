@@ -1,5 +1,5 @@
 (()=> {
-    window.addEventListener('DOMContentLoaded', iniciarApp); 
+    document.addEventListener('DOMContentLoaded', iniciarApp); 
     let tags = [];
 
     function iniciarApp(){
@@ -50,7 +50,6 @@
     }
 
     function removeTag(e){
-        console.log(e);
         tags = tags.filter(tag => tag != e.target.textContent);
         e.target.remove(); 
         updateInputHidden();

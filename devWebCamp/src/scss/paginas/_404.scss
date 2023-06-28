@@ -1,0 +1,41 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v; 
+
+.page-404 {
+    @include m.container; 
+    @include m.grid(1, 2rem);
+    
+    @include m.tablet {
+        grid-template-columns: 2fr 3fr;
+        align-items: center;
+        gap: 5rem;
+    }
+
+    &__heading {
+        font-size: 8rem;
+        @include m.gradient-text(v.$azul, v.$gris-oscuro);
+    }
+
+    &__description {
+        color: v.$gris;
+        margin: 0;
+    }
+
+    &__button {
+        @include m.boton(v.$azul, v.$blanco); 
+        display: block;
+        @include m.tablet {
+            display: none;
+        }
+        
+        &--768 {
+            display: none;
+            @include m.tablet {
+                margin-top: 2rem;
+                display: block;
+            }
+        }
+    }
+
+
+}

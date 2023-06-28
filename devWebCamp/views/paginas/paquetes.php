@@ -33,7 +33,7 @@
                 <li class="paquete__elemento">Acceso a las Grabaciones</li>
             </ul>
 
-            <p class="paquete__precio">$199</p>
+            <p class="paquete__precio">$99</p>
         </div>
      </div>
 </main>

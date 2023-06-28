@@ -24,5 +24,13 @@ function validarTokenORedireccionar($name, $url) {
 }
 
 function paginaActual($path){
-    return str_contains($_SERVER['PATH_INFO'], $path) ? true : false; 
+    return str_contains($_SERVER['PATH_INFO'] ?? '', $path) ? true : false; 
+}
+
+function aos_animacion() :string {
+    $efectos = ['fade-up', 'fade-down', 'fade-left', 'fade-right', 'flip-left', 'flip-right', 'zoom-in', 'zoom-in-up', 'zoom-in-down'];
+
+    $efecto = array_rand($efectos, 1);
+
+    return " data-aos='$efectos[$efecto]' ";
 }

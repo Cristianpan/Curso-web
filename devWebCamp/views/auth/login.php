@@ -2,7 +2,7 @@
     <h2 class="auth__heading"><?= $titulo ?></h2>
     <p class="auth__texto">Inicia Sesión en DevWebCamp</p>
 
-    <form class="form" action="/" method="post">
+    <form class="form" action="/login" method="post">
         <div class="form__field">
             <label for="email" class="form__label">Email</label>
             <?= isset($errors['email']) ? "<p class='error'>" . $errors['email'] . "</p>" : ''; ?>

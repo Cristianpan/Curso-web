@@ -36,12 +36,7 @@
     }
 
     &__tag{
-        border-radius: 0.5rem;
-        color: v.$blanco;
-        font-size: 1.4rem;
-        padding: 1rem;
-        background-color: v.$azul;
-        cursor: pointer;
+        @include m.tags; 
     }
 
 
@@ -101,6 +96,11 @@
         &--register {
             width: 100%;
             margin-top: 2rem;
+        }
+
+        &--full {
+            margin-top: 2rem;
+            width: 100%;
         }
     }
 

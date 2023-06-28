@@ -4,6 +4,7 @@ require_once __DIR__ . '/../includes/app.php';
 
 use Controller\CtrlApiEvento;
 use Controller\CtrlApiPonente;
+use Controller\CtrlApiRegalos;
 use Controller\CtrlDashboard;
 use Controller\CtrlLogin;
 use Controller\CtrlCuenta;
@@ -12,13 +13,14 @@ use Controller\CtrlPaginas;
 use Controller\CtrlPonentes;
 use Controller\CtrlRegistrados;
 use Controller\CtrlRegalos;
+use Controller\CtrlRegistros;
 use MVC\Router;
 
 $router = new Router();
 
 // Login
-$router->get('/', [CtrlLogin::class, 'login']);
-$router->post('/', [CtrlLogin::class, 'login']);
+$router->get('/login', [CtrlLogin::class, 'login']);
+$router->post('/login', [CtrlLogin::class, 'login']);
 $router->post('/logout', [CtrlLogin::class, 'logout']);
 
 // Crear Cuenta
@@ -39,7 +41,6 @@ $router->get('/confirmar', [CtrlCuenta::class, 'confirmarCuenta']);
 
 //Area del administrador
 $router->get('/admin/dashboard', [CtrlDashboard::class, 'index']);
-
 //CRUD ponentes 
 $router->get('/admin/ponentes', [CtrlPonentes::class, 'index']);
 $router->get('/admin/ponentes/crear', [CtrlPonentes::class, 'crear']);
@@ -56,21 +57,34 @@ $router->get('/admin/eventos/editar', [CtrlEventos::class, 'editar']);
 $router->post('/admin/eventos/editar', [CtrlEventos::class, 'editar']);
 $router->post('/admin/eventos/eliminar', [CtrlEventos::class, 'eliminar']);
 
-//crud registrados
+
 $router->get('/admin/registrados', [CtrlRegistrados::class, 'index']);
 
-//crud regalos
 $router->get('/admin/regalos', [CtrlRegalos::class, 'index']);
 
 //api 
 $router->get('/api/eventosHorario', [CtrlApiEvento::class, 'index']);
 $router->get('/api/ponentes', [CtrlApiPonente::class, 'index']);
+$router->get('/api/regalos', [CtrlApiRegalos::class, 'index']);
 
 //paginas publicas
-//$router->get('/', [CtrlPaginas::class, 'index']);
+$router->get('/', [CtrlPaginas::class, 'index']);
 $router->get('/devwebcamp', [CtrlPaginas::class, 'evento']);
 $router->get('/paquetes', [CtrlPaginas::class, 'paquetes']);
 $router->get('/workshops', [CtrlPaginas::class, 'conferencias']);
+$router->get('/404', [CtrlPaginas::class, 'error']);
+
+//registros de usuario 
+$router->get('/finalizarRegistro', [CtrlRegistros::class, 'crear']);
+$router->post('/finalizarRegistro/gratis', [CtrlRegistros::class, 'gratis']);
+$router->post('/finalizarRegistro/pagar', [CtrlRegistros::class, 'pagar']);
+$router->get('/finalizarRegistro/conferencias', [CtrlRegistros::class, 'conferencias']);
+$router->post('/finalizarRegistro/guardarConferencias', [CtrlRegistros::class, 'guardarConferencias']);
+
+//boletos virtuales
+$router->get('/boleto', [CtrlRegistros::class, 'boleto']);
+
+
 
 
 $router->comprobarRutas();

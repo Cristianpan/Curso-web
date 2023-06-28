@@ -23,7 +23,7 @@ class Email {
         $mailer->CharSet = 'UTF-8';
         
         $contenido = "<html>";
-        $contenido .= "<p><strong>Hola ". $this->nombre . "</strong> Has creado tu cuenta en UpTask.
+        $contenido .= "<p><strong>Hola ". $this->nombre . "</strong> Has creado tu cuenta en DevWebCamp.
         Solo debes de confirmarla haciendo click en el siguiente enlace</p>";
         $contenido .= "<p>Presiona aquí: <a href='". $_ENV['HOST'] ."/confirmar?token=" . $this->token . "'>Confirmar cuenta</a></p>"; 
         $contenido .= "<p>Si no solicitaste esta cuenta, puedes ignorar este mensaje</p>"; 
@@ -65,8 +65,8 @@ class Email {
          $mailer->Password = $_ENV['MAILER_PASSWORD'];
          $mailer->SMTPSecure = 'tls';
  
-         $mailer->setFrom('cuentas@uptask.com');
-         $mailer->addAddress('cuentas@uptask.com', 'Uptask.com');
+         $mailer->setFrom('cuentas@devwebcamp.com');
+         $mailer->addAddress('cuentas@devwebcamp.com', 'devwebcamp.com');
 
          return $mailer; 
     }
